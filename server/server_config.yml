@@ -1,0 +1,6 @@
+port: 8080
+redis:
+  host: redis.dns.baidu.com
+  port: 6379
+  dataBase: 0
+  timeout: 2000
