@@ -1,6 +1,7 @@
 package config
 
 import (
+	"collect/logger"
 	"fmt"
 	"io/ioutil"
 
@@ -20,14 +21,18 @@ type RedisData struct {
 	Timeout  string `yaml:"timeout"`
 }
 
-func (c *BaseInfo) GetConf() *BaseInfo {
+var BASE_CONFIG *BaseInfo
+
+func InitConfig() {
 	yamlFile, err := ioutil.ReadFile("./server_config.yml")
 	if err != nil {
-		fmt.Println(err.Error())
+		logger.Logger.Error(err.Error())
 	}
-	err = yaml.Unmarshal(yamlFile, c)
+	var c *BaseInfo
+	err = yaml.Unmarshal(yamlFile, &c)
 	if err != nil {
-		fmt.Println(err.Error())
+		logger.Logger.Error(err.Error())
 	}
-	return c
+	BASE_CONFIG = c
+	logger.Logger.Info(fmt.Sprintf("初始化配置 %v", BASE_CONFIG))
 }
