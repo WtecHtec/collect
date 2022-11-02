@@ -2,6 +2,7 @@ package main
 
 import (
 	"collect/config"
+	"collect/datasource"
 	"collect/logger"
 	"collect/middleware"
 	"collect/router"
@@ -15,6 +16,9 @@ func main() {
 	logger.InitLogger()
 	// 初始化配置
 	config.InitConfig()
+
+	// 初始化MySQL
+	datasource.InitMysqlXORM()
 
 	// 初始化JWT
 	middleware.InitJWT()

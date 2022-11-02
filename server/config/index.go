@@ -12,6 +12,7 @@ import (
 type BaseInfo struct {
 	Port  string    `yaml:"port"`
 	Redis RedisData `yaml:"redis"`
+	Mysql MySQLData `yam:"mysql"`
 }
 
 type RedisData struct {
@@ -19,6 +20,14 @@ type RedisData struct {
 	Port     string `yaml:"port"`
 	DataBase string `yaml:"dataBase"`
 	Timeout  string `yaml:"timeout"`
+}
+
+type MySQLData struct {
+	Host     string `yaml:"host"`
+	Port     string `yaml:"port"`
+	DataBase string `yaml:"dataBase"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
 }
 
 var BASE_CONFIG *BaseInfo

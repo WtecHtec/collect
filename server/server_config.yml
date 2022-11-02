@@ -1,4 +1,10 @@
 port: 4200
+mysql:
+  host: 12.9.9.0
+  port: 3306
+  user: root
+  password: 123457
+  dataBase: dd
 redis:
   host: redis.dns.baidu.com
   port: 6379
