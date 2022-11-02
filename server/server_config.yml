@@ -1,4 +1,4 @@
-port: 8080
+port: 4200
 redis:
   host: redis.dns.baidu.com
   port: 6379

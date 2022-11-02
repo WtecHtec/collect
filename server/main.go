@@ -3,6 +3,11 @@ package main
 import (
 	"collect/config"
 	"collect/logger"
+	"collect/middleware"
+	"collect/router"
+	"fmt"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -10,13 +15,14 @@ func main() {
 	logger.InitLogger()
 	// 初始化配置
 	config.InitConfig()
+
+	// 初始化JWT
+	middleware.InitJWT()
 	// 1.创建路由
-	// r := gin.Default()
-	// 2.绑定路由规则，执行的函数
-	// gin.Context，封装了request和response
-	// r.GET("/", func(c *gin.Context) {
-	// 	c.String(http.StatusOK, "hello World!")
-	// })
+	r := gin.Default()
+	// 加载路由
+	router.InitRouter(r)
+
 	// 3.监听端口，默认在8080
-	// r.Run(":" + baseInfo.Port)
+	r.Run(fmt.Sprintf(":%v", config.BASE_CONFIG.Port))
 }
