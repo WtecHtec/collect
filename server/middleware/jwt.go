@@ -26,7 +26,7 @@ type User struct {
 var AuthMiddleware *jwt.GinJWTMiddleware
 
 func InitJWT() *jwt.GinJWTMiddleware {
-	logger.Logger.Info(fmt.Sprintf("JWT 初始化"))
+	logger.Logger.Info(fmt.Sprintf("JWT start"))
 	// 定义一个Gin的中间件
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:            "test zone",           //标识
@@ -74,7 +74,7 @@ func InitJWT() *jwt.GinJWTMiddleware {
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("JWT Error %v", err.Error()))
 	}
-	logger.Logger.Info(fmt.Sprintf("JWT 初始化 succeed"))
+	logger.Logger.Info(fmt.Sprintf("JWT succeed"))
 	AuthMiddleware = authMiddleware
 	return authMiddleware
 }

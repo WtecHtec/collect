@@ -5,6 +5,7 @@ import (
 	"collect/datasource"
 	"collect/logger"
 	"collect/middleware"
+	"collect/model"
 	"collect/router"
 	"fmt"
 
@@ -19,6 +20,9 @@ func main() {
 
 	// 初始化MySQL
 	datasource.InitMysqlXORM()
+
+	// 同步数据结构
+	model.InitModel()
 
 	// 初始化JWT
 	middleware.InitJWT()

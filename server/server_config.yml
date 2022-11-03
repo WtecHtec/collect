@@ -1,10 +1,10 @@
 port: 4200
 mysql:
-  host: 12.9.9.0
+  host: 1.1.1.1
   port: 3306
-  user: root
-  password: 123457
-  dataBase: dd
+  user: rotklsc
+  password: oneX8748.!
+  dataBase: health_code
 redis:
   host: redis.dns.baidu.com
   port: 6379
