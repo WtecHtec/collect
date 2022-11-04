@@ -1,7 +1,8 @@
 import { mode, BASE_URL } from "../config";
 import { getStorage } from "./util";
+import { MINIKET_KEY } from './storage-keys'
 const Request = (url, data) => {
-	const minikey = getStorage('minikey') || '';
+	const minikey = getStorage(MINIKET_KEY) || '';
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${BASE_URL[mode]}${url}`,
