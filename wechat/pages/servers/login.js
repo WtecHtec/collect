@@ -63,8 +63,8 @@ export function getUserInfo() {
  * @param {*} code 
  * @returns 
  */
-export function postLogin(code) {
-	return Request('/login', { code })
+export function postLogin(code, avatarUrl, nickName) {
+	return Request('/login', { code, avatarUrl, nickName})
 }
 
 /**

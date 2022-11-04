@@ -31,7 +31,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "useIsolateContext": true,
+    "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
@@ -40,7 +40,8 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "userConfirmedUseIsolateContext": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",

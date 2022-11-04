@@ -17,8 +17,12 @@ Page({
       const [e, info]  = await getUserInfo();
       if (!e && info) {
         const code = await getLoginCode();
-        console.log(info)
-			  code && await this.handLogin(code);
+        console.log(info, code)
+				if (!code) {
+					// 进入兜底
+					return
+				}
+			  await this.handLogin(code, info.avatarUrl,info.nickName);
       } else {
         // 拒绝授权，进入兜底页
         console.log('拒绝授权')
@@ -27,8 +31,8 @@ Page({
       console.log('网络异常')
     }
 	},
-	async handLogin(code) {
-		const [err, res] = await postLogin(code);
+	async handLogin(code, avatarUrl, nickName) {
+		const [err, res] = await postLogin(code, avatarUrl, nickName);
 		if (!err && res && res.code === 200) {
 			setStorage(MINIKET_KEY, res.token)
 		}
