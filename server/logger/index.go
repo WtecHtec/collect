@@ -38,8 +38,8 @@ func InitLogger() {
 	})
 
 	// 获取 info、warn日志文件的io.Writer 抽象 getWriter() 在下方实现
-	infoHook := getWriter("./logs/info.log")
-	warnHook := getWriter("./logs/error.log")
+	infoHook := GetWriter("./logs/info.log")
+	warnHook := GetWriter("./logs/error.log")
 
 	// 最后创建具体的Logger
 	core := zapcore.NewTee(
@@ -50,7 +50,7 @@ func InitLogger() {
 	Logger = zap.New(core, zap.AddCaller()) // 需要传入 zap.AddCaller() 才会显示打日志点的文件名和行数, 有点小坑
 }
 
-func getWriter(filename string) io.Writer {
+func GetWriter(filename string) io.Writer {
 	// 生成rotatelogs的Logger 实际生成的文件名 demo.log.YYmmddHH
 	// demo.log是指向最新日志的链接
 	// 保存7天内的日志，每1小时(整点)分割一次日志

@@ -4,6 +4,7 @@ import (
 	"collect/config"
 	"collect/logger"
 	"fmt"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
@@ -29,5 +30,11 @@ func InitMysqlXORM() {
 	// db.SetMaxOpenConns(50)
 	// db.SetMaxIdleConns(50)
 	Engine = db
+	Engine.TZLocation, _ = time.LoadLocation("Asia/Shanghai")
+
+	sqlHook := logger.GetWriter("./logs/sql.log")
+	sqlLoger := xorm.NewSimpleLogger(sqlHook)
+	sqlLoger.ShowSQL(true)
+	Engine.SetLogger(sqlLoger)
 	logger.Logger.Info("MySQL success ")
 }

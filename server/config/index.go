@@ -10,9 +10,10 @@ import (
 
 //解析yml文件
 type BaseInfo struct {
-	Port  string    `yaml:"port"`
-	Redis RedisData `yaml:"redis"`
-	Mysql MySQLData `yam:"mysql"`
+	Port     string    `yaml:"port"`
+	Redis    RedisData `yaml:"redis"`
+	Mysql    MySQLData `yam:"mysql"`
+	WxConfig WxConfig  `yam:"wxconfig"`
 }
 
 type RedisData struct {
@@ -28,6 +29,11 @@ type MySQLData struct {
 	DataBase string `yaml:"dataBase"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
+}
+
+type WxConfig struct {
+	Appid     string `yaml:"appid"`
+	AppSecret string `yaml:"secret"`
 }
 
 var BASE_CONFIG *BaseInfo

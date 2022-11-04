@@ -12,17 +12,6 @@ import (
 
 var Identity_Key = "info"
 
-//用于登录code
-type login struct {
-	Code string `form:"code" json:"code" binding:"required"`
-}
-
-type User struct {
-	OpenId      string
-	UserName    string
-	PhoneNumber string
-}
-
 var AuthMiddleware *jwt.GinJWTMiddleware
 
 func InitJWT() *jwt.GinJWTMiddleware {
