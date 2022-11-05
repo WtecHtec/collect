@@ -18,7 +18,7 @@ func InitJWT() *jwt.GinJWTMiddleware {
 	logger.Logger.Info(fmt.Sprintf("JWT start"))
 	// 定义一个Gin的中间件
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
-		Realm:            "test zone",           //标识
+		Realm:            "wtechtec zone",       //标识
 		SigningAlgorithm: "HS256",               //加密算法
 		Key:              []byte("qweronexkfc"), //密钥
 		Timeout:          7 * 24 * time.Hour,    // 过期时间
@@ -27,7 +27,7 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载，这里可以定义返回jwt中的payload数据
 			if v, ok := data.(*User); ok {
 				return jwt.MapClaims{
-					Identity_Key: v,
+					Identity_Key: v.OpenId,
 				}
 			}
 			logger.Logger.Error(fmt.Sprintf("JWT PayloadFunc"))
@@ -35,11 +35,13 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} {
 			claims := jwt.ExtractClaims(c)
-			user, err := claims[Identity_Key].(User)
+			openId, err := claims[Identity_Key].(string)
 			if !err {
 				logger.Logger.Error(fmt.Sprintf("JWT IdentityHandler %v", claims))
 			}
-			return &user
+			return &User{
+				OpenId: openId,
+			}
 		},
 		Authenticator: Authenticator, //在这里可以写我们的登录验证逻辑
 		Authorizator: func(data interface{}, c *gin.Context) bool { //当用户通过token请求受限接口时，会经过这段逻辑
@@ -58,6 +60,7 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
 		TokenHeadName: "Bearer",
 		TimeFunc:      time.Now,
+		LoginResponse: handleLoginResponse,
 	})
 
 	if err != nil {

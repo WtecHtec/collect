@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
@@ -23,12 +24,14 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	}
 	openId := getWXOpen(loginVals.Code, loginVals.NickName)
 	if openId != "" {
-		dao.CreateUser(openId, loginVals.AvatarUrl, loginVals.NickName)
-		// return &User{
-		// 	OpenId:      "openid",
-		// 	UserName:    "Bo-Yi",
-		// 	PhoneNumber: "14785968565",
-		// }, nil
+		loginStatus := dao.CreateUser(openId, loginVals.AvatarUrl, loginVals.NickName)
+		if loginStatus {
+			return &User{
+				OpenId: openId,
+			}, nil
+		} else {
+			return nil, jwt.ErrFailedAuthentication
+		}
 	}
 	return nil, jwt.ErrFailedAuthentication
 }
@@ -51,4 +54,29 @@ func getWXOpen(code string, nickName string) string {
 	}
 	logger.Logger.Error(fmt.Sprintf("获取openId 失败：%v", nickName))
 	return ""
+}
+
+func handleLoginResponse(c *gin.Context, code int, message string, time time.Time) {
+	openId := paserToken(message)
+	info, ok := dao.GetUserInfoByOpenId(openId)
+	if ok == false {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"minikey": message,
+		"code":    http.StatusOK,
+		"info":    info,
+	})
+}
+
+// 解析token
+func paserToken(token string) string {
+	tk, ok := AuthMiddleware.ParseTokenString(token)
+	if ok != nil {
+		logger.Logger.Error("paserToken error")
+		return ""
+	}
+	claims := jwt.ExtractClaimsFromToken(tk)
+	return claims[Identity_Key].(string)
 }

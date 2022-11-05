@@ -11,4 +11,5 @@ type User struct {
 	OpenId      string `json:"openid"`
 	UserName    string
 	PhoneNumber string
+	HeadeImg    string
 }

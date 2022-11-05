@@ -34,7 +34,8 @@ Page({
 	async handLogin(code, avatarUrl, nickName) {
 		const [err, res] = await postLogin(code, avatarUrl, nickName);
 		if (!err && res && res.code === 200) {
-			setStorage(MINIKET_KEY, res.token)
+			setStorage(MINIKET_KEY, res.minikey)
+      setStorage(USERINFO_KEY, res.info)
 		}
 	},
   onClose() {
