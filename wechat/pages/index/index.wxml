@@ -1,0 +1,6 @@
+<loading wx:if="{{pageStatus === -1}}"  type="col" />
+<empty wx:elif="{{pageStatus === 1}}" type="1" marginTop="200"  descr="糟糕，有bug！！"/>
+<empty wx:elif="{{pageStatus === 2}}" type="2" marginTop="200"  descr="您没有授权哦！"> 
+	<ui-button bindclick="bindRight" text="点击授权" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#465CFF" color="#465CFF"/>
+</empty>
+<empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
