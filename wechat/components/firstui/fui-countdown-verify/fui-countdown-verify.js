@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 827 6  4530     19，身份证尾号：   227 01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //发送前显示文本
@@ -144,8 +143,8 @@ Component({
     reset() {
       this.clearTimer();
       this.setData({
-        showText:this.data.text,
-        status:1
+        showText: this.data.text,
+        status: 1
       })
     },
     clearTimer() {

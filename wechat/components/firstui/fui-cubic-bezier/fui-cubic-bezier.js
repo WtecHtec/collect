@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：182764   5 3  0  1  9，身份证尾号：22  7  0 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true
@@ -10,27 +9,27 @@ Component({
     },
     top: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 100
     },
     bottom: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 100
     },
     left: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 60
     },
     right: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 60
     },
     param: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },
@@ -42,12 +41,12 @@ Component({
     style_x: '',
     style_y: ''
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       let sys = wx.getSystemInfoSync()
       this.setData({
-        width:sys.windowWidth,
-        height:sys.windowHeight
+        width: sys.windowWidth,
+        height: sys.windowHeight
       })
     }
   },
@@ -63,8 +62,8 @@ Component({
         param: this.data.param
       });
     },
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     cbAni(e) {
@@ -97,18 +96,18 @@ Component({
 
       //移动距离
       this.setData({
-        animate:true
-      },()=>{
+        animate: true
+      }, () => {
         setTimeout(() => {
           this.setData({
-            style_x:`transform:translate3d(${diff.x}px,0,0)`,
-            style_y:`transform:translate3d(0,${diff.y}px,0)`
+            style_x: `transform:translate3d(${diff.x}px,0,0)`,
+            style_y: `transform:translate3d(0,${diff.y}px,0)`
           })
           setTimeout(() => {
             this.setData({
-              animate:false,
-              style_x:'',
-              style_y:''
+              animate: false,
+              style_x: '',
+              style_y: ''
             })
           }, 540);
         }, 50)

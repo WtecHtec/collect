@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8   2  76  4 53019，身份证尾号： 227    010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true
@@ -14,7 +13,7 @@ Component({
       observer(newVal) {
         this.setData({
           val: newVal
-        },()=>{
+        }, () => {
           this.parentChangeValue()
         })
       }
@@ -68,7 +67,7 @@ Component({
     attached: function () {
       this.setData({
         val: this.data.checked
-      },()=>{
+      }, () => {
         this.parentChangeValue()
       })
     }

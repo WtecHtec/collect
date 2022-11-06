@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18  2 7  645  3  019，身份证尾号：22     7010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true,
@@ -54,7 +53,7 @@ Component({
       value: true
     },
     //自定义按钮
-    custom:{
+    custom: {
       type: Boolean,
       value: false
     },

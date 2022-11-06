@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18276    4 5  3  019，身份证尾号：2  2 7 0 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true
@@ -10,17 +9,17 @@ Component({
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 320
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 320
     },
     radius: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     placeholder: {
@@ -41,27 +40,27 @@ Component({
     },
     marginTop: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     marginRight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     marginBottom: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     marginLeft: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     param: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },
@@ -69,20 +68,20 @@ Component({
     show: false,
     visible: false,
     elId: `fui_lazy_${Math.ceil(Math.random() * 10e5).toString(36)}`,
-    observer:null
+    observer: null
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.setData({
-        visible:this.data.placeholder ? true : false
+        visible: this.data.placeholder ? true : false
       })
     },
-    ready:function(){
+    ready: function () {
       setTimeout(() => {
-				this.startObserver()
-			}, 50)
+        this.startObserver()
+      }, 50)
     },
-    detached:function(){
+    detached: function () {
       this.endObserver()
     }
   },
@@ -90,15 +89,15 @@ Component({
     handleFade() {
       setTimeout(() => {
         this.setData({
-          show:true
+          show: true
         })
       }, 200)
       this.setData({
-        visible:false
+        visible: false
       })
       setTimeout(() => {
         this.setData({
-          visible:true
+          visible: true
         })
       }, 500)
     },

@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：18276    45 30     19，身份证尾号：2  270 1  0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true
@@ -17,10 +16,10 @@ Component({
       optionalTypes: [String],
       value: 300
     },
-		padding: {
-				type: Array,
-				value: ['26rpx', '32rpx']
-		},
+    padding: {
+      type: Array,
+      value: ['26rpx', '32rpx']
+    },
     position: {
       type: String,
       value: 'fixed'

@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1 8 27    6453 019，身份证尾号：2 2  701  0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 const canvasId = `fui_sc_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
   properties: {
@@ -9,58 +8,58 @@ Component({
     },
     range: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 3
     },
     location: {
       type: Object,
-      value:{},
-      observer(obj){
+      value: {},
+      observer(obj) {
         if (this.data.type == 2 && obj) {
           this.setData({
-            x:obj.x || 10,
-            y:obj.y || 10,
-            x1:obj.x1 || 160
+            x: obj.x || 10,
+            y: obj.y || 10,
+            x1: obj.x1 || 160
           })
-					if ((this.data.x + this.data.y + this.data.x1) % 2 === 0) {
+          if ((this.data.x + this.data.y + this.data.x1) % 2 === 0) {
             this.setData({
-              circle:true
+              circle: true
             })
-					} else {
+          } else {
             this.setData({
-              circle:false
+              circle: false
             })
-					}
-					this.data.src && this.handleImage()
-				}
+          }
+          this.data.src && this.handleImage()
+        }
       }
     },
     src: {
       type: String,
       value: '',
-      observer(val){
+      observer(val) {
         if (this.data.type == 1) {
-					val && this.handleImage()
-				} else {
-					if (this.data.location.x !== undefined && val) {
-						this.handleImage()
-					}
-				}
+          val && this.handleImage()
+        } else {
+          if (this.data.location.x !== undefined && val) {
+            this.handleImage()
+          }
+        }
       }
     },
     imageType: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 640
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 320
     },
     background: {
@@ -77,7 +76,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     descrColor: {
@@ -86,7 +85,7 @@ Component({
     },
     descrSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 36
     },
     closeColor: {
@@ -103,7 +102,7 @@ Component({
     },
     zIndex: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 996
     },
     maskBgColor: {
@@ -116,7 +115,7 @@ Component({
     }
   },
   data: {
-    canvasId:canvasId,
+    canvasId: canvasId,
     isShow: false,
     w: 320,
     h: 160,
@@ -132,13 +131,13 @@ Component({
     disabled: false,
     times: 0
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.setData({
-        w:this.getPx(this.data.width),
-        h:this.getPx(this.data.height),
-        sliderH:this.getPx(64)
-      },()=>{
+        w: this.getPx(this.data.width),
+        h: this.getPx(this.data.height),
+        sliderH: this.getPx(64)
+      }, () => {
         //后端验证时使用
         this.triggerEvent('init', {
           width: this.data.w,
@@ -148,19 +147,19 @@ Component({
         })
       })
     },
-    ready:function(){
+    ready: function () {
       if (this.data.type == 1) {
-				this.data.src && this.handleImage()
-			} else {
-				if (this.data.location.x !== undefined && this.data.src) {
-					this.handleImage()
-				}
-			}
+        this.data.src && this.handleImage()
+      } else {
+        if (this.data.location.x !== undefined && this.data.src) {
+          this.handleImage()
+        }
+      }
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getPx(value) {
@@ -215,17 +214,17 @@ Component({
     },
     getXY() {
       this.setData({
-        x:this.getRandom(20, this.data.w / 2 - 44),
-        y:this.getRandom(20, this.data.h - 60),
-        x1:this.getRandom(this.data.w / 2 + 44, this.data.w - 60)
+        x: this.getRandom(20, this.data.w / 2 - 44),
+        y: this.getRandom(20, this.data.h - 60),
+        x1: this.getRandom(this.data.w / 2 + 44, this.data.w - 60)
       })
       if ((this.data.x + this.data.y + this.data.x1) % 2 === 0) {
         this.setData({
-          circle:true
+          circle: true
         })
       } else {
         this.setData({
-          circle:false
+          circle: false
         })
       }
     },
@@ -242,7 +241,7 @@ Component({
             height: 44,
             success: (res) => {
               this.setData({
-                slotSrc:res.tempFilePath
+                slotSrc: res.tempFilePath
               })
             },
             fail: (err) => {
@@ -254,8 +253,8 @@ Component({
     },
     handleImage() {
       this.setData({
-        slotSrc:'',
-        times:0
+        slotSrc: '',
+        times: 0
       })
       if (this.data.type == 1) {
         this.getXY()
@@ -267,7 +266,7 @@ Component({
             this.toast('图片资源处理失败~')
           } else {
             this.setData({
-              imgSrc:res
+              imgSrc: res
             })
             this.darwImage(res)
           }
@@ -278,7 +277,7 @@ Component({
             this.toast('图片资源处理失败~')
           } else {
             this.setData({
-              imgSrc:res
+              imgSrc: res
             })
             this.darwImage(res)
           }
@@ -286,22 +285,22 @@ Component({
 
       } else {
         this.setData({
-          imgSrc:this.data.src
+          imgSrc: this.data.src
         })
         this.darwImage(this.data.src)
       }
     },
     reset() {
       this.setData({
-        resetNum:this.data.resetNum+1,
-        isPass:false,
+        resetNum: this.data.resetNum + 1,
+        isPass: false,
         disabled: false
       })
     },
     verify(e) {
       //验证中禁止操作
       this.setData({
-        disabled:true
+        disabled: true
       })
       this.triggerEvent('verify', {
         x: this.data.x,
@@ -311,7 +310,7 @@ Component({
     },
     success() {
       this.setData({
-        isPass:true
+        isPass: true
       })
       if (this.data.type == 1) {
         this.triggerEvent('success', {})
@@ -333,7 +332,7 @@ Component({
     closeVerify() {
       this.reset();
       this.setData({
-        isShow:false
+        isShow: false
       })
     },
     show(refresh) {
@@ -347,9 +346,9 @@ Component({
         }
       }
       this.setData({
-        isShow:true
+        isShow: true
       })
     },
-    stop() {}
+    stop() { }
   }
 })

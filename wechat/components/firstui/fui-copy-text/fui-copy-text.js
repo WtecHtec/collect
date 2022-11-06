@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1 82 764     53  01 9，身份证尾号： 2 2 7  010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     text: {
@@ -72,7 +71,7 @@ Component({
             value: this.data.value
           });
         },
-        fail(res) {}
+        fail(res) { }
       })
       this.hiddenTooltip();
     },

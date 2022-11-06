@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 182      76 45 3 019，身份证尾号：2270  1   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 import icons from './index.js';
 Component({
   options: {

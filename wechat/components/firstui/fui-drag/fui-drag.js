@@ -1,35 +1,34 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8   2 7 64  5301 9，身份证尾号：22 70  1  0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 const elId = `fui_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
   properties: {
     itemList: {
       type: Array,
-      value:[],
-      observer(val){
+      value: [],
+      observer(val) {
         this.reset()
       }
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0,
-      observer(val){
+      observer(val) {
         this.reset()
       }
     },
     // 每行显示个数
     columns: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1,
-      observer(val){
+      observer(val) {
         this.reset()
       }
     },
     //必传（square为true时失效）
     itemHeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     // 是否正方形显示，为true时itemHeight失效
@@ -48,13 +47,13 @@ Component({
       value: true
     },
     //是否可删除，显示删除图标
-    isDel:{
+    isDel: {
       type: Boolean,
       value: false
     }
   },
   data: {
-    elId:elId,
+    elId: elId,
     param: {},
     windowHeight: 0,
     wrapWidth: 0,
@@ -69,8 +68,8 @@ Component({
     wrapLeft: 0,
     list: []
   },
-  lifetimes:{
-    ready:function(){
+  lifetimes: {
+    ready: function () {
       setTimeout(() => {
         this.reset();
       }, 50);
@@ -80,8 +79,8 @@ Component({
     getId() {
       return `${Math.ceil(Math.random() * 10e5).toString(36)}_${new Date().getTime()}`
     },
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getWidth(fn) {
@@ -99,18 +98,18 @@ Component({
         cellHeight = cellWidth
       }
       this.setData({
-        windowHeight:sys.windowHeight,
-        wrapWidth:width,
-        cellWidth:cellWidth,
-        cellHeight:cellHeight
-      },()=>{
+        windowHeight: sys.windowHeight,
+        wrapWidth: width,
+        cellWidth: cellWidth,
+        cellHeight: cellHeight
+      }, () => {
         fn && fn()
       })
     },
     reset() {
       this.setData({
-        options:[],
-        dragging:false
+        options: [],
+        dragging: false
       })
       this.getWidth(() => {
         setTimeout(() => {
@@ -148,8 +147,8 @@ Component({
               realKey: index,
               sortKey: index,
               //若有误差，cellWidth、cellHeight取整
-              transX: `${index%columns * this.data.cellWidth}px`,
-              transY: `${Math.floor(index/columns) * this.data.cellHeight}px`,
+              transX: `${index % columns * this.data.cellWidth}px`,
+              transY: `${Math.floor(index / columns) * this.data.cellHeight}px`,
               entity: item
             }
           });
@@ -163,13 +162,13 @@ Component({
             wrapTop: wrapTop
           };
           this.setData({
-            rows:rows,
-            changeList:list,
-            list:list,
-            wrapTop:wrapTop,
-            wrapLeft:wrapLeft,
-            param:param,
-            dragging:true
+            rows: rows,
+            changeList: list,
+            list: list,
+            wrapTop: wrapTop,
+            wrapLeft: wrapLeft,
+            param: param,
+            dragging: true
           })
         })
       }, 500)
@@ -200,7 +199,7 @@ Component({
     },
     listChange(e) {
       this.setData({
-        changeList:e.itemList
+        changeList: e.itemList
       })
     },
     pageScroll(e) {

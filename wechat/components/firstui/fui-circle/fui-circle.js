@@ -1,93 +1,92 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8 2 7645 3 01    9，身份证尾号： 227 0  1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 const circleId = `fui_cc_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
   properties: {
-      percent: {
-        type: String,
-        optionalTypes:[Number],
-        value: 0,
-        observer(val) {
-          this.data.isReady && this.initDraw()
-        }
-      },
-      width: {
-        type: Number,
-        optionalTypes:[Number],
-        value: 120,
-        observer(val){
-          this.initWidth(val)
-        }
-      },
-      strokeWidth: {
-        type: String,
-        optionalTypes:[Number],
-        value: 4,
-        observer(val){
-          this.data.isReady && this.initDraw()
-        }
-      },
-      lineCap: {
-        type: String,
-        value: 'round'
-      },
-      size: {
-        type: String,
-        optionalTypes:[Number],
-        value: 12
-      },
-      color: {
-        type: String,
-        value: '#465CFF'
-      },
-      show: {
-        type: Boolean,
-        value: true
-      },
-      background: {
-        type: String,
-        value: '#CCCCCC'
-      },
-      defaultShow: {
-        type: Boolean,
-        value: true
-      },
-      foreground: {
-        type: String,
-        value: '#465CFF'
-      },
-      sAngle: {
-        type: Number,
-        value: 0
-      },
-      counterclockwise: {
-        type: Boolean,
-        value: false
-      },
-      speed: {
-        type: String,
-        optionalTypes:[Number],
-        value: 1
-      },
-      activeMode: {
-        type: String,
-        value: 'forwards'
+    percent: {
+      type: String,
+      optionalTypes: [Number],
+      value: 0,
+      observer(val) {
+        this.data.isReady && this.initDraw()
       }
+    },
+    width: {
+      type: Number,
+      optionalTypes: [Number],
+      value: 120,
+      observer(val) {
+        this.initWidth(val)
+      }
+    },
+    strokeWidth: {
+      type: String,
+      optionalTypes: [Number],
+      value: 4,
+      observer(val) {
+        this.data.isReady && this.initDraw()
+      }
+    },
+    lineCap: {
+      type: String,
+      value: 'round'
+    },
+    size: {
+      type: String,
+      optionalTypes: [Number],
+      value: 12
+    },
+    color: {
+      type: String,
+      value: '#465CFF'
+    },
+    show: {
+      type: Boolean,
+      value: true
+    },
+    background: {
+      type: String,
+      value: '#CCCCCC'
+    },
+    defaultShow: {
+      type: Boolean,
+      value: true
+    },
+    foreground: {
+      type: String,
+      value: '#465CFF'
+    },
+    sAngle: {
+      type: Number,
+      value: 0
+    },
+    counterclockwise: {
+      type: Boolean,
+      value: false
+    },
+    speed: {
+      type: String,
+      optionalTypes: [Number],
+      value: 1
+    },
+    activeMode: {
+      type: String,
+      value: 'forwards'
+    }
   },
-  observers:{
-    'w':function(val){
-       this.data.isReady && this.initDraw()
+  observers: {
+    'w': function (val) {
+      this.data.isReady && this.initDraw()
     }
   },
   data: {
-    circleId:circleId,
+    circleId: circleId,
     w: 30,
     context: null,
     canvas: null,
     start: 0,
     isReady: false
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.initWidth(this.data.width)
     },
     ready: function () {
@@ -95,8 +94,8 @@ Component({
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     initWidth(val) {
@@ -127,19 +126,19 @@ Component({
         canvas.width = width * dpr
         canvas.height = height * dpr
         ctx.scale(dpr, dpr)
-        this.data.context=ctx;
+        this.data.context = ctx;
         this.data.canvas = canvas
         this.drawCircle(start, ctx, canvas);
       } else {
         this.drawCircle(start, this.data.context, this.data.canvas);
       }
     },
-    drawDefaultCircle(ctx, canvas){
-        //终止弧度
+    drawDefaultCircle(ctx, canvas) {
+      //终止弧度
       let eAngle = Math.PI * 2 + this.data.sAngle;
       this.drawArc(ctx, eAngle, this.data.background);
     },
-    drawpercent(ctx, percent){
+    drawpercent(ctx, percent) {
       ctx.save();
       ctx.beginPath();
       ctx.fillStyle = this.data.color;
@@ -153,7 +152,7 @@ Component({
       ctx.stroke();
       ctx.restore();
     },
-    drawCircle(start, ctx, canvas){
+    drawCircle(start, ctx, canvas) {
       if (!ctx || !canvas) return;
       let that = this
       let percent = that.data.percent;
@@ -180,7 +179,7 @@ Component({
           that.drawpercent(ctx, start);
         }
         let isEnd = (percent == 0 || (that.data.counterclockwise && start == 100));
-        if(!isEnd){
+        if (!isEnd) {
           let eAngle = ((2 * Math.PI) / 100) * start + that.data.sAngle;
           that.drawArc(ctx, eAngle, that.data.foreground);
         }

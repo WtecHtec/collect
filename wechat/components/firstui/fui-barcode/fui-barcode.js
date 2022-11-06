@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：     18276 4  53  019，身份证尾号：    2270 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 import barcode from './barcode.js'
 const canvasId = `fui_bc_${Math.ceil(Math.random() * 10e5).toString(36)}`
 const defalutOptions = {
@@ -6,10 +5,10 @@ const defalutOptions = {
   prefix: true,
   color: '#181818',
   debug: false,
-  onValid() {},
-  onInvalid() {},
-  onSuccess() {},
-  onError() {}
+  onValid() { },
+  onInvalid() { },
+  onSuccess() { },
+  onError() { }
 }
 Component({
   properties: {
@@ -52,12 +51,12 @@ Component({
         h: this.rpx2px(this.data.height || 200)
       })
     },
-    ready:function(){
+    ready: function () {
       setTimeout(() => {
-				this.triggerEvent('ready', {
-					canvasId: this.data.canvasId
-				})
-			}, 50)
+        this.triggerEvent('ready', {
+          canvasId: this.data.canvasId
+        })
+      }, 50)
     }
   },
   methods: {

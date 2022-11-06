@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1 8  2  7   6 45301 9，身份证尾号：  227  01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true
@@ -6,7 +5,7 @@ Component({
   properties: {
     tabIndex: {
       type: Number,
-      optionalTypes:[String],
+      optionalTypes: [String],
       value: 0
     }
   },
@@ -22,15 +21,15 @@ Component({
     }
   },
   data: {
-    vtabs:null
+    vtabs: null
   },
-  lifetimes:{
-     detached:function(){
+  lifetimes: {
+    detached: function () {
       this.uninstall()
-     }
+    }
   },
   methods: {
-    init(){
+    init() {
       setTimeout(() => {
         this.calcHeight((height) => {
           this.data.vtabs.getCalcHeight(height, Number(this.data.tabIndex))
@@ -60,7 +59,7 @@ Component({
     uninstall() {
       let vtabs = this.data.vtabs
       if (vtabs && vtabs.data.linkage) {
-        this.data.vtabs.uninstall(Number(this.data.tabIndex),this)
+        this.data.vtabs.uninstall(Number(this.data.tabIndex), this)
       }
     }
   }

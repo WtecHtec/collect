@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：182 76        4 53019，身份证尾号：2  2701   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 /*!
  * 剪贴板
  *
@@ -15,16 +14,16 @@
  * **/
 const getClipboardData = function (data, callback) {
 
-	wx.setClipboardData({
-		data: data,
-		success(res) {
-			("function" == typeof callback) && callback(true)
-		},
-		fail(res) {
-			("function" == typeof callback) && callback(false)
-		}
-	})
+  wx.setClipboardData({
+    data: data,
+    success(res) {
+      ("function" == typeof callback) && callback(true)
+    },
+    fail(res) {
+      ("function" == typeof callback) && callback(false)
+    }
+  })
 }
 export default {
-	getClipboardData: getClipboardData
+  getClipboardData: getClipboardData
 };

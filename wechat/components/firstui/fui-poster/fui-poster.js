@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：    182 7645 3 01   9，身份证尾号：2 2 70  1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 import poster from './index.js';
 const canvasId = `fui_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
@@ -95,7 +94,7 @@ Component({
           if (item.type == 2) {
             funcArr.push(poster.getImage(item.imgResource))
             idxArr.push(index)
-          }else if (item.type == 3) {
+          } else if (item.type == 3) {
             funcArr.push(poster.getImagebyBase64(item.imgResource))
             idxArr.push(index)
           }

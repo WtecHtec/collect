@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1827   6  4 5301 9，身份证尾号： 2 2701   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 import lunar from './index.js';
 Component({
   properties: {
@@ -205,7 +204,7 @@ Component({
     swiperChange(e) {
       let current = e.detail.current
       let month = current + 1
-      let title = this.data.language === 'en' ? `${lunar.lang.m_en[month-1]} ${this.data.year}` :
+      let title = this.data.language === 'en' ? `${lunar.lang.m_en[month - 1]} ${this.data.year}` :
         `${this.data.year}年${month}月`;
       this.setData({
         title: title
@@ -369,7 +368,7 @@ Component({
     },
     _isDisAbled(index, idx) {
       let bool = false;
-      let date = `${this.data.year}/${index+1}/${idx+1}`;
+      let date = `${this.data.year}/${index + 1}/${idx + 1}`;
       let min = this.data.minArr.join('/')
       let max = this.data.maxArr.join('/')
       let ts = new Date(date).getTime();
@@ -379,7 +378,7 @@ Component({
       return bool;
     },
     setTitle() {
-      let title = this.data.language === 'en' ? `${lunar.lang.m_en[this.data.month-1]} ${this.data.year}` :
+      let title = this.data.language === 'en' ? `${lunar.lang.m_en[this.data.month - 1]} ${this.data.year}` :
         `${this.data.year}年${this.data.month}月`
       this.setData({
         title: title

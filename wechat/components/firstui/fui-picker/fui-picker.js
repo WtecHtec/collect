@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1    8  2764   530 19，身份证尾号：  2 2 7 010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     options: {
@@ -209,7 +208,7 @@ Component({
 
         } else {
           if (data[vals[0]][cKey] && data[vals[0]][cKey][vals[1]][cKey] && data[vals[0]][cKey][vals[1]][cKey]
-            [vals[2]][cKey])
+          [vals[2]][cKey])
             result = data[vals[0]][cKey][vals[1]][cKey][vals[2]][cKey][vals[3]]
         }
       } else {
@@ -237,8 +236,8 @@ Component({
           arr = data[first][children][second][children] || [];
       } else {
         if (data[first] && data[first][children] && data[first][children][second] && data[first][children][
-            second
-          ][children] && data[first][children][second][children][third])
+          second
+        ][children] && data[first][children][second][children][third])
           arr = data[first][children][second][children][third][children] || [];
       }
       return arr;
@@ -563,6 +562,6 @@ Component({
         isEnd: false
       })
     },
-    stop(e) {}
+    stop(e) { }
   }
 })

@@ -1,16 +1,15 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18276   4     530 19，身份证尾号： 22  7  010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //占据高度，单位rx
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 100
     },
     //1-上拉加载 2-正在加载... 3-没有更多了
     state: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 2
     },
     initText: {
@@ -34,7 +33,7 @@ Component({
     //文字大小，单位rpx
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 24
     },
     //loading图标背景色
@@ -50,7 +49,7 @@ Component({
     //loading 图标的宽度，单位rpx
     iconWidth: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     //自定义loading图标image路径，若自定义图标则iconColor、activeColor属性失效

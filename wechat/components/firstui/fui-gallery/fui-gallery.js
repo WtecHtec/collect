@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1   82 7 64 5   30 19，身份证尾号：2 2  7  010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     urls: {
@@ -50,10 +49,10 @@ Component({
     ready: function () {
       let sys = wx.getSystemInfoSync()
       this.setData({
-        top:sys.statusBarHeight + 20,
-        defActive:Number(this.data.current),
-        active:Number(this.data.current)
-      },()=>{
+        top: sys.statusBarHeight + 20,
+        defActive: Number(this.data.current),
+        active: Number(this.data.current)
+      }, () => {
         this.initData(this.data.urls)
         this.getDescr(this.data.active)
       })

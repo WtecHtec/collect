@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1827  6 45 3  0    19，身份证尾号： 227  0 1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true
@@ -16,7 +15,7 @@ Component({
         }
       }
     },
-     //number、text（主要用与输入负号）
+    //number、text（主要用与输入负号）
     type: {
       type: String,
       value: 'number'
@@ -109,8 +108,8 @@ Component({
     }
   },
   observers: {
-    'inputValue':function(newVal,oldVal){
-      if(!isNaN(Number(newVal)) && Number(newVal) !== Number(oldVal)){
+    'inputValue': function (newVal, oldVal) {
+      if (!isNaN(Number(newVal)) && Number(newVal) !== Number(oldVal)) {
         const val = this.getValue(+newVal)
         this.triggerEvent("change", {
           value: val,
@@ -119,14 +118,14 @@ Component({
         });
         this.setData({
           value: val,
-          oldValue:val
+          oldValue: val
         })
       }
     }
   },
   data: {
     inputValue: 0,
-    oldValue:0
+    oldValue: 0
   },
   lifetimes: {
     attached: function () {
@@ -136,7 +135,7 @@ Component({
     }
   },
   methods: {
-    bindinput(e){},
+    bindinput(e) { },
     getScale(val, step) {
       let scale = 1;
       let scaleVal = 1;
@@ -160,7 +159,7 @@ Component({
     },
     calcNum: function (type) {
       if (this.data.disabled || (this.data.inputValue == this.data.min && type === 'reduce') || (this.data.inputValue == this.data
-          .max && type === 'plus')) return;
+        .max && type === 'plus')) return;
       const scale = this.getScale(Number(this.data.inputValue), Number(this.data.step));
 
       let num = Number(this.data.inputValue) * scale;

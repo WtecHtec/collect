@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：   18    27 64 5 3019，身份证尾号：   2 2701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     padding: {
@@ -45,8 +44,8 @@ Component({
       clearTimeout(this.data.timer);
       let {
         duration = 2000,
-          src = '',
-          text = ''
+        src = '',
+        text = ''
       } = options;
       this.setData({
         text: text,

@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：18  2   7645 3    019，身份证尾号：  2 270 1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true,
@@ -11,7 +10,7 @@ Component({
     },
     radius: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 16
     },
     src: {
@@ -20,7 +19,7 @@ Component({
     },
     imgWidth: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     webp: {
@@ -33,7 +32,7 @@ Component({
     },
     param: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },
@@ -46,20 +45,20 @@ Component({
       }
     }
   },
-  lifetimes:{
-    attached:function(){
-        if(this.data.src){
-          this.setData({
-            isSrc: true
-          })
-        }
+  lifetimes: {
+    attached: function () {
+      if (this.data.src) {
+        this.setData({
+          isSrc: true
+        })
+      }
     },
-    ready:function(){
+    ready: function () {
       if (!this.data.src) {
-        setTimeout(()=>{
+        setTimeout(() => {
           this.getWaterfallItemInfo()
-        },20)
-			}
+        }, 20)
+      }
     }
   },
   data: {
@@ -70,32 +69,32 @@ Component({
     isShow: false,
     isLoaded: true,
     isSrc: false,
-    waterfall:null
+    waterfall: null
   },
   methods: {
-    init(){
+    init() {
       let waterfall = this.data.waterfall
       if (waterfall) {
-				waterfall.data.childrenArr.push(this)
-				if (waterfall.data.itemWidth) {
+        waterfall.data.childrenArr.push(this)
+        if (waterfall.data.itemWidth) {
           this.setData({
-            width:waterfall.data.itemWidth
+            width: waterfall.data.itemWidth
           })
-				} else {
-					waterfall.initParam((width) => {
+        } else {
+          waterfall.initParam((width) => {
             this.setData({
-              width:width
+              width: width
             })
-					})
-				}
+          })
+        }
       }
     },
     getWaterfallItemInfo() {
       this.getItemHeight((res) => {
-        let waterfall=this.data.waterfall
+        let waterfall = this.data.waterfall
         if (waterfall) {
           waterfall.data.loadedArr.push('ok')
-          if(waterfall.data.childrenArr.length===waterfall.data.loadedArr.length){
+          if (waterfall.data.childrenArr.length === waterfall.data.loadedArr.length) {
             waterfall.startSorting()
           }
         }
@@ -111,7 +110,7 @@ Component({
           if (index >= 20) return
           if (data && data.height) {
             this.setData({
-              height:data.height
+              height: data.height
             })
             callback && callback(data.height)
           } else {
@@ -131,8 +130,8 @@ Component({
     },
     handleError(e) {
       this.setData({
-        isLoaded:false
-      },()=>{
+        isLoaded: false
+      }, () => {
         this.getWaterfallItemInfo()
       })
     },

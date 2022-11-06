@@ -1,11 +1,10 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8 2    7 645 301 9，身份证尾号：2 27 01   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     max: {
       type: Number,
       optionalTypes: [String],
       value: 5,
-      observer(val){
+      observer(val) {
         this.initData(val)
       }
     },
@@ -13,7 +12,7 @@ Component({
       type: Number,
       optionalTypes: [String],
       value: 0,
-      observer(val){
+      observer(val) {
         this.initRateScore(val)
       }
     },
@@ -67,9 +66,9 @@ Component({
     rated: false
   },
   lifetimes: {
-    attached:function(){
+    attached: function () {
       this.initData(this.data.max)
-			this.initRateScore(this.data.score)
+      this.initRateScore(this.data.score)
     },
     ready: function () {
       setTimeout(() => {

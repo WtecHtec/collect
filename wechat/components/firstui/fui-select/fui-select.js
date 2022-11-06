@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：  18  2  764   5301 9，身份证尾号： 227  01  0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     show: {
@@ -168,7 +167,7 @@ Component({
             }
           })
         } else {
-          vals.map((item,index) => {
+          vals.map((item, index) => {
             item.checked = item.checked || false
             if (this.data.type === 'select' && !this.data.multiple && item.checked) {
               this.setData({
@@ -239,6 +238,6 @@ Component({
     handleClose() {
       this.triggerEvent('close', {})
     },
-    stop() {}
+    stop() { }
   }
 })

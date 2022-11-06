@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18   2 7 6 4  53 019，身份证尾号： 2 2  701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     fabs: {
@@ -73,7 +72,7 @@ Component({
     }
   },
   methods: {
-    stop() {},
+    stop() { },
     handleClick: function (e) {
       let index = Number(e.currentTarget.dataset.index)
       this.setData({

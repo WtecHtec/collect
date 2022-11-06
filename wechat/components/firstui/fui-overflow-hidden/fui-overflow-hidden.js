@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1 8  2 764530 1     9，身份证尾号：2 2 7  01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     text: {
@@ -7,12 +6,12 @@ Component({
     },
     type: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1
     },
     rows: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1
     },
     width: {
@@ -25,7 +24,7 @@ Component({
     },
     padding: {
       type: String,
-      value:'0'
+      value: '0'
     },
     align: {
       type: String,
@@ -37,7 +36,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 32
     },
     color: {
@@ -46,7 +45,7 @@ Component({
     },
     fontWeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 'normal'
     },
     overflow: {
@@ -63,7 +62,7 @@ Component({
     },
     param: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },

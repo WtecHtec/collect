@@ -1,24 +1,23 @@
-// 本文件由FirstUI授权予车永钊（手机号：  18 2 7  6 4530  1 9，身份证尾号：  2 2 701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     columnGap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 24
     },
     topGap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 24
     },
     leftGap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     rightGap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },
@@ -35,21 +34,21 @@ Component({
     tGap: 0,
     lGap: 0,
     x2: 0,
-    childrenArr:[],
-    loadedArr:[]
+    childrenArr: [],
+    loadedArr: []
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.initParam()
     },
-    detached:function(){
+    detached: function () {
       this.data.childrenArr = null
-			this.data.loadedArr = null
+      this.data.loadedArr = null
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getPx(value) {
@@ -62,13 +61,13 @@ Component({
       const rGap = this.getPx(this.data.rightGap)
       const gap = colGap + lGap + rGap;
       const sys = wx.getSystemInfoSync()
-      const itemWidth=(sys.windowWidth - gap) / 2
+      const itemWidth = (sys.windowWidth - gap) / 2
       this.setData({
-        tGap:this.getPx(this.data.topGap),
-        lGap:lGap,
-        itemWidth:itemWidth,
+        tGap: this.getPx(this.data.topGap),
+        lGap: lGap,
+        itemWidth: itemWidth,
         x2: lGap + itemWidth + colGap
-      },()=>{
+      }, () => {
         callback && callback(itemWidth)
         this.triggerEvent('init', {
           itemWidth: itemWidth
@@ -78,11 +77,11 @@ Component({
     //重置加载
     resetLoadmore() {
       this.setData({
-        leftHeight:0,
-        rightHeight:0,
-        height:0,
-        childrenArr:[],
-        loadedArr:[]
+        leftHeight: 0,
+        rightHeight: 0,
+        height: 0,
+        childrenArr: [],
+        loadedArr: []
       })
     },
     getWaterfallInfo(itemHeight, callback) {
@@ -120,7 +119,7 @@ Component({
     },
     setWaterfallHeight(itemGap) {
       this.setData({
-        height:Math.ceil(Math.max(this.data.leftHeight, this.data.rightHeight) + itemGap)
+        height: Math.ceil(Math.max(this.data.leftHeight, this.data.rightHeight) + itemGap)
       })
     },
     startSorting() {
@@ -132,11 +131,11 @@ Component({
           this.getWaterfallInfo(item.data.height, (res) => {
             itemGap = res.itemGap
             item.setData({
-              transform:`translate3d(${res.x}px,${res.y}px,0)`
-            },()=>{
+              transform: `translate3d(${res.x}px,${res.y}px,0)`
+            }, () => {
               setTimeout(() => {
                 item.setData({
-                  isShow:true
+                  isShow: true
                 })
               }, 20)
             })

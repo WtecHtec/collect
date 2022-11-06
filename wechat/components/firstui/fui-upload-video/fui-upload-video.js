@@ -1,26 +1,25 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1827     6453   0 19，身份证尾号：22    7 010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 640
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 320
     },
     fileList: {
       type: Array,
-      value:[],
-      observer(vals){
+      value: [],
+      observer(vals) {
         this.initData(vals)
       }
     },
     max: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1
     },
     addColor: {
@@ -61,7 +60,7 @@ Component({
     },
     sourceType: {
       type: Array,
-      value:['album', 'camera']
+      value: ['album', 'camera']
     },
     maxDuration: {
       type: Number,
@@ -73,11 +72,11 @@ Component({
     },
     extension: {
       type: Array,
-      value:[]
+      value: []
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 20
     },
     name: {
@@ -86,15 +85,15 @@ Component({
     },
     header: {
       type: Object,
-      value:{}
+      value: {}
     },
     formData: {
       type: Object,
-      value:{}
+      value: {}
     },
     param: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     }
   },
@@ -104,8 +103,8 @@ Component({
     status: [],
     progress: []
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.initData(this.data.fileList)
     }
   },
@@ -113,9 +112,9 @@ Component({
     initData(urls) {
       urls = urls || []
       this.setData({
-        status:[],
-        progress:[]
-      },()=>{
+        status: [],
+        progress: []
+      }, () => {
         let status = [];
         let progress = [];
         urls.forEach(item => {
@@ -123,20 +122,20 @@ Component({
           progress.push(100)
         })
         this.setData({
-          urls:[...urls],
-          status:status,
-          progress:progress
+          urls: [...urls],
+          status: status,
+          progress: progress
         })
       })
     },
     reUpload(e) {
       const index = Number(e.currentTarget.dataset.index)
       if (this.data.progress[index] !== -99) return;
-      this.data.status[index]='uploading';
+      this.data.status[index] = 'uploading';
       this.data.progress[index] = 0
       this.setData({
-        status:this.data.status,
-        progress:this.data.progress
+        status: this.data.status,
+        progress: this.data.progress
       })
       this.uploadVideo(index, this.data.urls[index]).then((res) => {
         this._success(res)
@@ -149,7 +148,7 @@ Component({
       let status = 'preupload';
       if (this.data.status.indexOf('preupload') === -1) {
         status = ~this.data.status.indexOf('uploading') ? 'uploading' : 'success';
-        if (status !== 'uploading' && ~this.data.status.indexOf("error")){
+        if (status !== 'uploading' && ~this.data.status.indexOf("error")) {
           // 上传失败
           status = 'error'
         }
@@ -184,8 +183,8 @@ Component({
     result(url, index) {
       if (!url || index === undefined) return;
       this.setData({
-        [`urls[${index}]`]:url
-      },()=>{
+        [`urls[${index}]`]: url
+      }, () => {
         this.onComplete('upload')
       })
     },
@@ -221,8 +220,8 @@ Component({
           this.data.progress.push(this.data.immediate ? 0 : -1)
           this.setData({
             urls: this.data.urls,
-            status:this.data.status,
-            progress:this.data.progress
+            status: this.data.status,
+            progress: this.data.progress
           })
           this.onComplete('choose')
           if (this.data.immediate) {
@@ -245,22 +244,22 @@ Component({
           filePath: videoUrl,
           success: (res) => {
             if (res.statusCode === 200) {
-              this.data.status[index]='success'
-              this.data.progress[index]=100
+              this.data.status[index] = 'success'
+              this.data.progress[index] = 100
               this.setData({
-                status:this.data.status,
-                progress:this.data.progress
+                status: this.data.status,
+                progress: this.data.progress
               })
               resolve({
                 res,
                 index
               })
             } else {
-              this.data.status[index]='error'
-              this.data.progress[index]=-99
+              this.data.status[index] = 'error'
+              this.data.progress[index] = -99
               this.setData({
-                status:this.data.status,
-                progress:this.data.progress
+                status: this.data.status,
+                progress: this.data.progress
               })
               reject({
                 res,
@@ -269,11 +268,11 @@ Component({
             }
           },
           fail: (res) => {
-            this.data.status[index]='error'
-            this.data.progress[index]=-99
+            this.data.status[index] = 'error'
+            this.data.progress[index] = -99
             this.setData({
-              status:this.data.status,
-              progress:this.data.progress
+              status: this.data.status,
+              progress: this.data.progress
             })
             reject({
               res,
@@ -282,9 +281,9 @@ Component({
           }
         })
         uploadTask.onProgressUpdate((res) => {
-          this.data.progress[index]=res.progress
+          this.data.progress[index] = res.progress
           this.setData({
-            progress:this.data.progress
+            progress: this.data.progress
           })
         });
       })
@@ -307,9 +306,9 @@ Component({
                 _this.data.status.splice(index, 1)
                 _this.data.progress.splice(index, 1)
                 _this.setData({
-                  urls:_this.data.urls,
-                  status:_this.data.status,
-                  progress:_this.data.progress
+                  urls: _this.data.urls,
+                  status: _this.data.status,
+                  progress: _this.data.progress
                 })
                 _this.onComplete('delete')
               }
@@ -320,9 +319,9 @@ Component({
           this.data.status.splice(index, 1)
           this.data.progress.splice(index, 1)
           this.setData({
-            urls:this.data.urls,
-            status:this.data.status,
-            progress:this.data.progress
+            urls: this.data.urls,
+            status: this.data.status,
+            progress: this.data.progress
           })
           this.onComplete('delete')
         }
@@ -339,11 +338,11 @@ Component({
         if (urls[i].startsWith('https')) {
           continue;
         } else {
-          this.data.status[i]='uploading'
-          this.data.progress[i]=0
+          this.data.status[i] = 'uploading'
+          this.data.progress[i] = 0
           this.setData({
-            status:this.data.status,
-            progress:this.data.progress
+            status: this.data.status,
+            progress: this.data.progress
           })
           this.uploadVideo(i, urls[i], this.data.url).then(res => {
             this._success(res)

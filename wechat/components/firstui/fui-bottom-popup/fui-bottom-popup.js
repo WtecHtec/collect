@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：18 27645  3   01    9，身份证尾号：22    7 010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     show: {
@@ -36,6 +35,6 @@ Component({
       if (!this.data.maskClosable) return;
       this.triggerEvent('close', {});
     },
-    stop(e) {}
+    stop(e) { }
   }
 })

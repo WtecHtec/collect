@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1827  6    45 30  1 9，身份证尾号： 227    010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true,

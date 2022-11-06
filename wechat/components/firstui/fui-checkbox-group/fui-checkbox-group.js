@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：     182 7   645 3019，身份证尾号：22 7   01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   behaviors: ['wx://form-field-group'],
   properties: {

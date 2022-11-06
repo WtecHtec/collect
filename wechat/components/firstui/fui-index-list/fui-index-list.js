@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1 82 76 4    5 30  19，身份证尾号：22  70 1  0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true
@@ -103,12 +102,12 @@ Component({
         }
         height += 40;
         model.originalIndex = i;
-       // model.key = `fui_key_${Math.ceil(Math.random() * 10e5).toString(36)}`
+        // model.key = `fui_key_${Math.ceil(Math.random() * 10e5).toString(36)}`
         lists.push(model)
       }
       this.setData({
         idtHeight: height,
-        styles:`height:${height}rpx;`,
+        styles: `height:${height}rpx;`,
         lists: lists
       }, () => {
         wx.createSelectorQuery()
@@ -130,7 +129,7 @@ Component({
     setStyles() {
       let indicators = []
       let styles =
-        `height:${this.data.idtHeight}rpx;top:${this.data.winHeight / 2}px;-webkit-transform: translateY(-${this.data.idtHeight/2}rpx);transform: translateY(-${this.data.idtHeight/2}rpx)`
+        `height:${this.data.idtHeight}rpx;top:${this.data.winHeight / 2}px;-webkit-transform: translateY(-${this.data.idtHeight / 2}rpx);transform: translateY(-${this.data.idtHeight / 2}rpx)`
       let start = this.data.winHeight / 2 - this.rpx2px(this.data.idtHeight) / 2;
       this.data.lists.forEach((item, index) => {
         //20为40的一半，50为100的一半

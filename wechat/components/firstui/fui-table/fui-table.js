@@ -1,10 +1,9 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1   8 27 6 4 53019，身份证尾号： 22  70 1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     header: {
       type: Array,
-      value:[],
-      observer(val){
+      value: [],
+      observer(val) {
         this.handleHeader(val)
       }
     },
@@ -14,7 +13,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     color: {
@@ -23,7 +22,7 @@ Component({
     },
     fontWeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 600
     },
     headerBgColor: {
@@ -37,7 +36,7 @@ Component({
     //数据集合
     itemList: {
       type: Array,
-      value:[]
+      value: []
     },
     //总宽度 < 屏幕宽度- gap*2时，是否铺满
     full: {
@@ -47,13 +46,13 @@ Component({
     //Table 的高度，默认为自动高度，单位rpx。
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     //组件外层设置的左右padding值（距离屏幕左右侧距离），rpx
     gap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     //是否带有纵向边框
@@ -88,7 +87,7 @@ Component({
     },
     textSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     textColor: {
@@ -108,7 +107,7 @@ Component({
     //单元格上下padding值，单位rpx
     padding: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 20
     }
   },
@@ -121,14 +120,14 @@ Component({
     totalW: 0,
     scrollH: 0
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.handleHeader(this.data.header)
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getPx(value) {
@@ -173,7 +172,7 @@ Component({
       let maxWidth = width > totalWidth ? totalWidth : width
       let divideW = 0;
       if (this.data.full && totalWidth > maxWidth) {
-       divideW = Math.floor((totalWidth - maxWidth) / len)
+        divideW = Math.floor((totalWidth - maxWidth) / len)
         let lastW = (totalWidth - maxWidth) % len
         let item = vals[len - 1]
         item.width += lastW
@@ -182,16 +181,16 @@ Component({
         totalW += dw
       }
       this.setData({
-        totalW:totalW,
-        width:maxWidth,
-        divideW:divideW,
-        hData:vals
+        totalW: totalW,
+        width: maxWidth,
+        divideW: divideW,
+        hData: vals
       })
     },
     handleTap(e) {
-      let dataset=e.currentTarget.dataset;
-      let index=Number(dataset.index)
-      let idx=Number(dataset.idx)
+      let dataset = e.currentTarget.dataset;
+      let index = Number(dataset.index)
+      let idx = Number(dataset.idx)
       let item = this.data.itemList[index]
       this.triggerEvent('click', {
         item: item,
@@ -200,8 +199,8 @@ Component({
       })
     },
     trClick(e) {
-      let dataset=e.currentTarget.dataset;
-      let index=Number(dataset.index)
+      let dataset = e.currentTarget.dataset;
+      let index = Number(dataset.index)
       let item = this.data.itemList[index]
       this.triggerEvent('rowClick', {
         item: item,

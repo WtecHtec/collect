@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8 2  76 4 53 0  19，身份证尾号： 22   70 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     previewData: {
@@ -37,7 +36,7 @@ Component({
     },
     labelWidth: {
       type: Number,
-      optionalTypes:[String],
+      optionalTypes: [String],
       value: 0
     },
     //left / right / justify
@@ -104,12 +103,12 @@ Component({
   },
   data: {
     pvd: {},
-    label:'label',
-    value:'value',
-    list:'list',
-    lColor:'labelColor',
-    valueColor:'valueColor',
-    buttons:'buttons',
+    label: 'label',
+    value: 'value',
+    list: 'list',
+    lColor: 'labelColor',
+    valueColor: 'valueColor',
+    buttons: 'buttons',
     text: 'text',
     color: 'color'
   },
@@ -121,23 +120,23 @@ Component({
   methods: {
     handleFileds(callback) {
       const fields = this.data.fields
-      if (fields&& typeof fields === 'object') {
+      if (fields && typeof fields === 'object') {
         this.setData({
-          label:fields.label || 'label',
-          value:fields.value || 'value',
-          list:fields.list || 'list',
-          lColor:fields.labelColor || 'labelColor',
-          valueColor:fields.valueColor || 'valueColor',
-          buttons:fields.buttons || 'buttons',
-          text:fields.text || 'text',
-          color:fields.color || 'color'
-        },()=>{
+          label: fields.label || 'label',
+          value: fields.value || 'value',
+          list: fields.list || 'list',
+          lColor: fields.labelColor || 'labelColor',
+          valueColor: fields.valueColor || 'valueColor',
+          buttons: fields.buttons || 'buttons',
+          text: fields.text || 'text',
+          color: fields.color || 'color'
+        }, () => {
           callback && callback()
         })
       }
     },
     initData(val) {
-      this.handleFileds(()=>{
+      this.handleFileds(() => {
         val = val || {};
         val[this.data.list] = val[this.data.list] || [];
         val[this.data.buttons] = val[this.data.buttons] || [];

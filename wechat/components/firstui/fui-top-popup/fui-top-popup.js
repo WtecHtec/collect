@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：    18   2  764 53019，身份证尾号： 2270 1   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     show: {
@@ -13,12 +12,12 @@ Component({
     //圆角
     radius: {
       type: Number,
-      optionalTypes:[String],
+      optionalTypes: [String],
       value: 24
     },
     zIndex: {
       type: Number,
-      optionalTypes:[String],
+      optionalTypes: [String],
       value: 1001
     },
     //点击遮罩 是否可关闭
@@ -36,6 +35,6 @@ Component({
       if (!this.data.maskClosable) return;
       this.triggerEvent('close', {});
     },
-    stop() {}
+    stop() { }
   }
 })

@@ -1,18 +1,17 @@
-// 本文件由FirstUI授权予车永钊（手机号：18 2 7 6 4 5  3   019，身份证尾号：  22701   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //面板数据
     panelData: {
       type: Object,
       value: {},
-      observer(val){
+      observer(val) {
         this.initData(val)
       }
     },
     fields: {
       type: Object,
       value: {},
-      observer(val){
+      observer(val) {
         this.handleFileds()
       }
     },
@@ -163,24 +162,24 @@ Component({
   },
   methods: {
     handleFileds(callback) {
-      const fields=this.data.fields
+      const fields = this.data.fields
       if (fields && typeof fields === 'object') {
         this.setData({
-          head:fields.head || 'head',
-          list:fields.list || 'list',
-          src:fields.src || 'src',
-          title:fields.title || 'title',
-          desc:fields.desc || 'desc',
-          source:fields.source || 'source',
-          time:fields.time || 'time',
-          extra:fields.extra || 'extra'
-        },()=>{
+          head: fields.head || 'head',
+          list: fields.list || 'list',
+          src: fields.src || 'src',
+          title: fields.title || 'title',
+          desc: fields.desc || 'desc',
+          source: fields.source || 'source',
+          time: fields.time || 'time',
+          extra: fields.extra || 'extra'
+        }, () => {
           callback && callback()
         })
       }
     },
     initData(val) {
-      this.handleFileds(()=>{
+      this.handleFileds(() => {
         val = val || {};
         let list = val[this.data.list] && [...val[this.data.list]]
         if (val[this.data.list] && Array.isArray(list)) {

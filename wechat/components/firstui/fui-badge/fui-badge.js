@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1   8 2 764 53 0  19，身份证尾号：2  270   10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     value: {
@@ -9,7 +8,7 @@ Component({
         this.getWidth()
       }
     },
-    max:{
+    max: {
       type: String,
       optionalTypes: [Number],
       value: -1
@@ -82,17 +81,17 @@ Component({
   },
   methods: {
     getWidth() {
-        let max = Number(this.data.max)
-				let val = Number(this.data.value)
-				let value = ''
-				if (val === NaN || max === -1) {
-					value = this.data.value
-				} else {
-					value = val > max ? `${max}+` : val
-				}
+      let max = Number(this.data.max)
+      let val = Number(this.data.value)
+      let value = ''
+      if (val === NaN || max === -1) {
+        value = this.data.value
+      } else {
+        value = val > max ? `${max}+` : val
+      }
       let width = this.data.dot ? '8px' : ((String(value).length * 16 + 20) + 'rpx')
       this.setData({
-        showValue:value,
+        showValue: value,
         width: width
       })
     },

@@ -1,47 +1,46 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1  8  27  6 453019，身份证尾号： 22 7 0 1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     vtabs: {
       type: Array,
-      value:[],
-      observer(vals){
+      value: [],
+      observer(vals) {
         this.initData(vals)
       }
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: '0',
-      observer(val){
+      observer(val) {
         this.setWidth(val)
       }
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: '0',
-      observer(val){
+      observer(val) {
         this.setHeight(val)
       }
     },
     tabWidth: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 220
     },
     tabHeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 110
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 26
     },
     activeSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 26
     },
     color: {
@@ -54,12 +53,12 @@ Component({
     },
     fontWeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 'normal'
     },
     activeFontWeight: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 'normal'
     },
     background: {
@@ -80,14 +79,14 @@ Component({
     },
     activeTab: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0,
-      observer(val){
+      observer(val) {
         if (this.data.linkage) {
-					this.setDefaultTab(val)
-				} else {
-					this.switchTab(val, true);
-				}
+          this.setDefaultTab(val)
+        } else {
+          this.switchTab(val, true);
+        }
       }
     },
     animation: {
@@ -116,14 +115,14 @@ Component({
     '../fui-vtabs-content/fui-vtabs-content': {
       type: 'descendant',
       linked: function (target) {
-          this.data.children.push(target)
+        this.data.children.push(target)
       }
     }
   },
   data: {
-    children:[],
-    calcHeightTimer:null,
-    scrollTimer:null,
+    children: [],
+    calcHeightTimer: null,
+    scrollTimer: null,
     vals: [],
     scrollInto: '',
     current: 0,
@@ -134,17 +133,17 @@ Component({
     vtabsH: '600px',
     isTap: false
   },
-  observers:{
-     'current':function(val){
-        this.scrollTabBar(val)
-     }
+  observers: {
+    'current': function (val) {
+      this.scrollTabBar(val)
+    }
   },
-  lifetimes:{
-     attached:function(){
-			this.setWidth(this.data.width)
-			this.setHeight(this.data.height)
-			this.initData(this.data.vtabs)
-     }
+  lifetimes: {
+    attached: function () {
+      this.setWidth(this.data.width)
+      this.setHeight(this.data.height)
+      this.initData(this.data.vtabs)
+    }
   },
   methods: {
     setWidth(width) {
@@ -163,11 +162,11 @@ Component({
       let res = wx.getSystemInfoSync()
       if (height == 0 || height == '0px' || height == '0rpx') {
         this.setData({
-          vtabsH:res.windowHeight + 'px'
+          vtabsH: res.windowHeight + 'px'
         })
       } else {
         this.setData({
-          vtabsH:height
+          vtabsH: height
         })
       }
     },
@@ -194,8 +193,8 @@ Component({
           })
         }
         this.setData({
-          vals:vals
-        },()=>{
+          vals: vals
+        }, () => {
           if (this.data.linkage) {
             setTimeout(() => {
               this.setDefaultTab(this.data.activeTab, true);
@@ -212,12 +211,12 @@ Component({
       index = index < 6 ? 0 : index - 5;
       if (index >= len) index = len - 1;
       this.setData({
-        scrollInto:`fui_vtabs_bar_${index}`
+        scrollInto: `fui_vtabs_bar_${index}`
       })
     },
-    handleSwitchTab(e){
-        let index = Number(e.currentTarget.dataset.index)
-        this.switchTab(index)
+    handleSwitchTab(e) {
+      let index = Number(e.currentTarget.dataset.index)
+      this.switchTab(index)
     },
     switchTab(index, init) {
       index = Number(index)
@@ -227,11 +226,11 @@ Component({
       if (item.disable) return;
       if (this.data.linkage) {
         this.setData({
-          contentScrollTop:this.data.heightRecords[this.data.current - 1] || 0
-        },()=>{
+          contentScrollTop: this.data.heightRecords[this.data.current - 1] || 0
+        }, () => {
           setTimeout(() => {
             this.setData({
-              current:index,
+              current: index,
               contentScrollTop: this.data.heightRecords[index - 1] || 0
             })
           }, 50)
@@ -243,7 +242,7 @@ Component({
       }
       if (!init) {
         this.setData({
-          isTap:true
+          isTap: true
         })
         this.triggerEvent('click', {
           index: index,
@@ -269,7 +268,7 @@ Component({
         }
         this.data.scrollTimer = setTimeout(() => {
           this.setData({
-            isTap:false
+            isTap: false
           })
         }, 50)
         return;

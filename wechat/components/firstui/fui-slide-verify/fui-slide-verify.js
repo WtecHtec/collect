@@ -1,29 +1,28 @@
-// 本文件由FirstUI授权予车永钊（手机号：     1 82  76453 0 19，身份证尾号：2 27  0 1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     range: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 3
     },
     error: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 3
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 640,
-      observer(val){
+      observer(val) {
         this.setData({
-          totalWidth:this.getPx(val)
+          totalWidth: this.getPx(val)
         })
       }
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 80
     },
     background: {
@@ -36,11 +35,11 @@ Component({
     },
     sliderWidth: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 80,
-      observer(val){
+      observer(val) {
         this.setData({
-          sliderW:this.getPx(val)
+          sliderW: this.getPx(val)
         })
       }
     },
@@ -58,7 +57,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     color: {
@@ -71,7 +70,7 @@ Component({
     },
     iconSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 48
     },
     arrowColor: {
@@ -91,19 +90,19 @@ Component({
     resetNum: 0,
     times: 0
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.setData({
-        totalWidth:this.getPx(this.data.width),
-        sliderW:this.getPx(this.data.sliderWidth),
-      },()=>{
+        totalWidth: this.getPx(this.data.width),
+        sliderW: this.getPx(this.data.sliderWidth),
+      }, () => {
         this.changeTargetPosi()
       })
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getPx(value) {
@@ -116,21 +115,21 @@ Component({
       let width = this.rpx2px(parseInt((this.data.width * (range[index] || 100)) / 100))
       width = width <= this.data.sliderW ? this.data.sliderW + 20 : width
       this.setData({
-        targetWidth:parseInt(width)
+        targetWidth: parseInt(width)
       })
     },
     reset() {
       this.setData({
-        resetNum:this.data.resetNum+1,
-        isPass:false,
+        resetNum: this.data.resetNum + 1,
+        isPass: false,
         times: 0
-      },()=>{
+      }, () => {
         this.changeTargetPosi()
       })
     },
     success() {
       this.setData({
-        isPass:true
+        isPass: true
       })
       this.triggerEvent('success', {})
     },

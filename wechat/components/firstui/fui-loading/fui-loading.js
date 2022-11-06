@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 82 76    4  530 19，身份证尾号：  22701   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     type: {
@@ -19,7 +18,7 @@ Component({
     },
     size: {
       type: Number,
-      optionalTypes:[String],
+      optionalTypes: [String],
       value: 26
     },
     backgroundColor: {

@@ -1,18 +1,17 @@
-// 本文件由FirstUI授权予车永钊（手机号：18  2764 5 3     01 9，身份证尾号：2   27 0 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     options: {
       type: Array,
-      value:[],
-      observer(vals){
+      value: [],
+      observer(vals) {
         this.initData(vals)
       }
     },
     value: {
       type: Array,
-      optionalTypes:[String,Number],
-      value:[],
-      observer(vals){
+      optionalTypes: [String, Number],
+      value: [],
+      observer(vals) {
         this.modelChange(vals)
       }
     },
@@ -22,42 +21,42 @@ Component({
     },
     min: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 1
     },
     //最大选择数
     max: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: -1
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0
     },
     padding: {
       type: String,
-      value:'16rpx 32rpx'
+      value: '16rpx 32rpx'
     },
     gap: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 20
     },
     radius: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 6
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 24
     },
     color: {
@@ -87,7 +86,7 @@ Component({
     },
     markSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 52
     },
     markColor: {
@@ -95,8 +94,8 @@ Component({
       value: '#465CFF'
     }
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.initData(this.data.options)
     }
   },
@@ -127,7 +126,7 @@ Component({
           })
         }
         this.setData({
-          dataList:vals
+          dataList: vals
         })
         this.modelChange(this.data.value)
       }
@@ -155,7 +154,7 @@ Component({
         }
       })
       this.setData({
-        val:val,
+        val: val,
         dataList: this.data.dataList
       })
       let e = {
@@ -186,7 +185,7 @@ Component({
         }
       })
       this.setData({
-        vals:vals
+        vals: vals
       })
       let e = {
         value: vals
@@ -204,8 +203,8 @@ Component({
           }
         })
         this.setData({
-          vals:vals,
-          dataList:this.data.dataList
+          vals: vals,
+          dataList: this.data.dataList
         })
 
       } else {
@@ -217,8 +216,8 @@ Component({
           }
         })
         this.setData({
-          val:vals,
-          dataList:this.data.dataList
+          val: vals,
+          dataList: this.data.dataList
         })
       }
     },

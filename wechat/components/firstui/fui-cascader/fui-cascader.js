@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：18   276  4   53 01 9，身份证尾号：  2   27010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     options: {
@@ -197,7 +196,7 @@ Component({
               this.setData({
                 defCurrent: current,
                 current: current,
-                scrollViewId: `fui_cr_${current> 1?current - 1:0}`
+                scrollViewId: `fui_cr_${current > 1 ? current - 1 : 0}`
               })
             }, 50)
           })
@@ -206,7 +205,7 @@ Component({
             this.setData({
               defCurrent: current,
               current: current,
-              scrollViewId: `fui_cr_${current> 1?current - 1:0}`
+              scrollViewId: `fui_cr_${current > 1 ? current - 1 : 0}`
             })
           }, 100)
         }
@@ -360,7 +359,7 @@ Component({
       })
 
       this.setData({
-        scrollViewId: `fui_cr_${current > 1?current - 1:0}`
+        scrollViewId: `fui_cr_${current > 1 ? current - 1 : 0}`
       })
     },
     switchTab(e) {

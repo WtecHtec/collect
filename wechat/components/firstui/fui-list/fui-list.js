@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1827 6453   0  1 9，身份证尾号：22 701    0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //fui-list margin-top值,单位rpx

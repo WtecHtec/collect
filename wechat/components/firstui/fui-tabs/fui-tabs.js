@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：  1 8 2  76   45301 9，身份证尾号：22   7 0 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true
@@ -198,11 +197,11 @@ Component({
       }
       if (this.data.tabIndex === index || item.disabled) return;
       let scrollIndex = index - 1 < 0 ? 0 : index - 1;
-      if(!this.data.vals[scrollIndex]) return;
+      if (!this.data.vals[scrollIndex]) return;
       this.setData({
         tabIndex: index,
         scrollInto: this.data.vals[scrollIndex].fui_s_id
-      },()=>{
+      }, () => {
         delete item.fui_s_id;
         this.triggerEvent('change', {
           index: index,

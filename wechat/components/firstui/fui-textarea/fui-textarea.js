@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 182 7 64 5 30    1 9，身份证尾号：  2  2701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   behaviors: ['wx://form-field-group'],
   options: {
@@ -250,7 +249,7 @@ Component({
   },
   lifetimes: {
     attached: function () {
-      let val =this.getVal(this.data.value);
+      let val = this.getVal(this.data.value);
       const len = this.getCount(String(val).length)
       this.setData({
         count: len,
@@ -283,7 +282,7 @@ Component({
     },
     getCount(len) {
       const max = Number(this.data.maxlength)
-      return len > max && max!==-1 ? max : len
+      return len > max && max !== -1 ? max : len
     },
     onInput(event) {
       let value = event.detail.value;

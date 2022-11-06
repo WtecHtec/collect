@@ -1,119 +1,118 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18 27 6 4    5 301 9，身份证尾号： 22 7  01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     virtualHost: true,
     multipleSlots: true
   },
   properties: {
-     //样式类型：primary，success， warning，danger，purple，gray，black
-			type: {
-				type: String,
-				value: 'black'
-			},
-			text: {
-        type: String,
-        optionalTypes:[Number],
-				value: ''
-			},
-			size: {
-        type: String,
-        optionalTypes:[Number],
-				value: 32
-			},
-			//rpx | px
-			unit: {
-				type: String,
-				value: 'rpx'
-			},
-			color: {
-				type: String,
-				value: ''
-			},
-			fontWeight: {
-        type: String,
-        optionalTypes:[Number],
-				value: 400
-			},
-			//left、center、right
-			align: {
-				type: String,
-				value: 'left'
-			},
-			//none、 underline、line-through
-			decoration: {
-				type: String,
-				value: 'none'
-			},
-			//是否将行高设置与字体大小一致
-			lineHeight: {
-				type: Boolean,
-				value: false
-			},
-			padding: {
-				type: String,
-				value:'0'
-			},
-			block: {
-				type: Boolean,
-				value: false
-			},
-			//文本类型：text、mobile、amount、name
-			textType: {
-				type: String,
-				value: 'text'
-			},
-			//是否格式化，仅mobile、amount时有效
-			format: {
-				type: Boolean,
-				value: false
-			},
-			call: {
-				type: Boolean,
-				value: false
-			},
-			//文本是否可选
-			userSelect: {
-				type: Boolean,
-				value: false
-			},
-			//是否解码：微信小程序
-			decode: {
-				type: Boolean,
-				value: false
-			},
-			//是否有点击效果
-			highlight: {
-				type: Boolean,
-				value: false
-			},
-			disable: {
-				type: Boolean,
-				value: false
-			},
-			param: {
-        type: String,
-        optionalTypes:[Number],
-				value: ''
-			}
+    //样式类型：primary，success， warning，danger，purple，gray，black
+    type: {
+      type: String,
+      value: 'black'
+    },
+    text: {
+      type: String,
+      optionalTypes: [Number],
+      value: ''
+    },
+    size: {
+      type: String,
+      optionalTypes: [Number],
+      value: 32
+    },
+    //rpx | px
+    unit: {
+      type: String,
+      value: 'rpx'
+    },
+    color: {
+      type: String,
+      value: ''
+    },
+    fontWeight: {
+      type: String,
+      optionalTypes: [Number],
+      value: 400
+    },
+    //left、center、right
+    align: {
+      type: String,
+      value: 'left'
+    },
+    //none、 underline、line-through
+    decoration: {
+      type: String,
+      value: 'none'
+    },
+    //是否将行高设置与字体大小一致
+    lineHeight: {
+      type: Boolean,
+      value: false
+    },
+    padding: {
+      type: String,
+      value: '0'
+    },
+    block: {
+      type: Boolean,
+      value: false
+    },
+    //文本类型：text、mobile、amount、name
+    textType: {
+      type: String,
+      value: 'text'
+    },
+    //是否格式化，仅mobile、amount时有效
+    format: {
+      type: Boolean,
+      value: false
+    },
+    call: {
+      type: Boolean,
+      value: false
+    },
+    //文本是否可选
+    userSelect: {
+      type: Boolean,
+      value: false
+    },
+    //是否解码：微信小程序
+    decode: {
+      type: Boolean,
+      value: false
+    },
+    //是否有点击效果
+    highlight: {
+      type: Boolean,
+      value: false
+    },
+    disable: {
+      type: Boolean,
+      value: false
+    },
+    param: {
+      type: String,
+      optionalTypes: [Number],
+      value: ''
+    }
   },
   data: {
-     textValue:''
+    textValue: ''
   },
-  observers:{
-     'text,textType,format':function(){
-        this.getText()
-     }
+  observers: {
+    'text,textType,format': function () {
+      this.getText()
+    }
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.getText()
     }
   },
   methods: {
     getText() {
       let text = this.data.text || ''
-      let textType=this.data.textType
-      let format=this.data.format
+      let textType = this.data.textType
+      let format = this.data.format
       let _text = text
       if (format) {
         if (textType === 'mobile') {
@@ -124,9 +123,9 @@ Component({
           _text = this.nameFormatter(text)
         }
       }
-     this.setData({
-       textValue: _text
-     })
+      this.setData({
+        textValue: _text
+      })
     },
     numberFormatter(num) {
       return num.length === 11 ? num.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2') : num;

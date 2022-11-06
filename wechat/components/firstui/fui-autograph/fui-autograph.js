@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1  8   27    64 53019，身份证尾号： 2 2  701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 const canvasId = `fui_ag_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
   properties: {

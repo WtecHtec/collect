@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18 276  45    30  19，身份证尾号：  2   27010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //是否显示操作菜单
@@ -100,6 +99,6 @@ Component({
     handleClickCancel() {
       this.triggerEvent('cancel');
     },
-    stop() {}
+    stop() { }
   }
 })

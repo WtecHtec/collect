@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 1 8 2  7 6 4530 1  9，身份证尾号：22 70   1 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   behaviors: ['wx://form-field-button'],
   properties: {
@@ -125,7 +124,7 @@ Component({
         })
       }, 150);
     },
-    handleTap(){
+    handleTap() {
       if (this.disabled) return;
       this.triggerEvent('click', {
         index: Number(this.data.index)

@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：18  2   76   4 530 19，身份证尾号：  22701   0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   options: {
     multipleSlots: true
@@ -6,7 +5,7 @@ Component({
   properties: {
     paddingTop: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 96
     },
     //success，warning，fail, waiting
@@ -33,7 +32,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 44
     },
     color: {
@@ -46,7 +45,7 @@ Component({
     },
     descrSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 32
     },
     descrColor: {

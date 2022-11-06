@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号：1 82 7 64    5 3  019，身份证尾号：   22 701 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 const elId = `fui_${Math.ceil(Math.random() * 10e5).toString(36)}`
 Component({
   options: {

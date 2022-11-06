@@ -1,68 +1,67 @@
-// 本文件由FirstUI授权予车永钊（手机号：1   8 276 4   53 0 19，身份证尾号：22  70   10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //外层元素class值
-			outerClass: {
-				type: String,
-				value: "fui-skeleton"
-			},
-			//需要在骨架元素添加以下class值，也可传入自定义class值
-			//需要做骨架的元素class值，包含round表示处理成圆形，其他为矩形
-			selector: {
-				type: Array,
-				value:['fui-round', 'fui-rect']
-			},
-			//骨架屏背景色
-			background: {
-				type: String,
-				value: "transparent"
-			},
-			//骨架屏预载数据，如果传入数据则不动态获取节点信息
-			preloadList: {
-				type: Array,
-				value:[]
-			},
-			//是否展示动画效果
-			active: {
-				type: Boolean,
-				value: true
-			},
-			//light、dark
-			theme: {
-				type: String,
-				value: 'light'
-			}
+    outerClass: {
+      type: String,
+      value: "fui-skeleton"
+    },
+    //需要在骨架元素添加以下class值，也可传入自定义class值
+    //需要做骨架的元素class值，包含round表示处理成圆形，其他为矩形
+    selector: {
+      type: Array,
+      value: ['fui-round', 'fui-rect']
+    },
+    //骨架屏背景色
+    background: {
+      type: String,
+      value: "transparent"
+    },
+    //骨架屏预载数据，如果传入数据则不动态获取节点信息
+    preloadList: {
+      type: Array,
+      value: []
+    },
+    //是否展示动画效果
+    active: {
+      type: Boolean,
+      value: true
+    },
+    //light、dark
+    theme: {
+      type: String,
+      value: 'light'
+    }
   },
   data: {
     //round、rect
     elList: [],
     height: 0
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       const res = wx.getSystemInfoSync();
       this.setData({
-        height:res.windowHeight
+        height: res.windowHeight
       })
-			if (this.data.preloadList && this.data.preloadList.length > 0) {
+      if (this.data.preloadList && this.data.preloadList.length > 0) {
         this.setData({
-          elList:this.data.preloadList
+          elList: this.data.preloadList
         })
-			}
+      }
     },
-    ready:function(){
-			 setTimeout(() => {
+    ready: function () {
+      setTimeout(() => {
         this.nodesRef(this.data.outerClass).then((res) => {
-					if (res && res[0]) {
+          if (res && res[0]) {
             this.setData({
-              height:res[0].height
+              height: res[0].height
             })
-					}
-				});
-				if (!this.data.preloadList || this.data.preloadList.length === 0) {
-					this.selectorQuery()
-				}
-       }, 50);
+          }
+        });
+        if (!this.data.preloadList || this.data.preloadList.length === 0) {
+          this.selectorQuery()
+        }
+      }, 50);
     }
   },
   methods: {
@@ -78,8 +77,8 @@ Component({
         })
       }
       this.setData({
-        elList:nodes
-      },()=>{
+        elList: nodes
+      }, () => {
         this.triggerEvent('change', {
           nodes: nodes
         })

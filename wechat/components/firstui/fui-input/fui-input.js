@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18  2 76   45 3  019，身份证尾号：  22 7 01 0）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   behaviors: ['wx://form-field-group'],
   options: {
@@ -96,7 +95,7 @@ Component({
       optionalTypes: [String],
       value: 140
     },
-    min:{
+    min: {
       type: Number,
       optionalTypes: [String],
       value: 'NaN'
@@ -270,7 +269,7 @@ Component({
       let value = event.detail.value;
       if (this.data.trim) value = this.trimStr(value);
       if (this.data.type === 'digit' || this.data.type === 'number') {
-        const eVal= Number(value)
+        const eVal = Number(value)
         value = this.data.type === 'digit' ? value : eVal
         if (typeof eVal === 'number') {
           const min = Number(this.data.min)
@@ -278,18 +277,18 @@ Component({
           if (typeof min === 'number' && eVal < min) {
             value = min
             this.setData({
-              value:value
+              value: value
             })
           } else if (typeof max === 'number' && max < eVal) {
             value = max
             this.setData({
-              value:value
+              value: value
             })
           }
         }
       }
       //如果为空时返回0 ，当双向绑定会将输入框赋值0
-			const inputValue = event.detail.value !== '' ? value : ''
+      const inputValue = event.detail.value !== '' ? value : ''
       this.triggerEvent('input', inputValue);
     },
     onFocus(event) {
@@ -302,7 +301,7 @@ Component({
       this.triggerEvent('confirm', e.detail);
     },
     onClear(event) {
-      if(this.data.disabled) return;
+      if (this.data.disabled) return;
       wx.hideKeyboard()
       this.triggerEvent('input', '');
       this.setData({

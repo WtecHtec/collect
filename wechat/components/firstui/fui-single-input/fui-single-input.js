@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 182 76    45 3  0 19，身份证尾号： 2  2 7 010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     //组件外层左右padding值
@@ -21,11 +20,11 @@ Component({
       type: String,
       value: '',
       observer(val) {
-          this.setData({
-            focus: true
-          })
-          val = val.replace(/\s+/g, "")
-          this.getVals(val)
+        this.setData({
+          focus: true
+        })
+        val = val.replace(/\s+/g, "")
+        this.getVals(val)
       }
     },
     //native为true时有效，H5不支持动态切换type类型
@@ -138,7 +137,7 @@ Component({
     inputVal: [],
     focus: false,
     activeIndex: -1,
-    val:''
+    val: ''
   },
   lifetimes: {
     attached: function () {
@@ -253,17 +252,17 @@ Component({
     },
     onConfirm(e) {
       this.setData({
-        focus:false
+        focus: false
       })
       wx.hideKeyboard()
       this.triggerEvent('confirm', e.detail)
     },
     clear() {
       this.setData({
-        val:'',
-        inputVal:[],
-        activeIndex:-1
-      },()=>{
+        val: '',
+        inputVal: [],
+        activeIndex: -1
+      }, () => {
         this.onTap()
       })
     }

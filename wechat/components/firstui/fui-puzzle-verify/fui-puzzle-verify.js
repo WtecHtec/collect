@@ -1,38 +1,37 @@
-// 本文件由FirstUI授权予车永钊（手机号：182  76  4 530   1  9，身份证尾号： 2 27  0 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     src: {
       type: String,
       value: '',
-      observer(val){
+      observer(val) {
         this.reset()
       }
     },
     cutSrc: {
       type: String,
       value: '',
-      observer(val){
+      observer(val) {
         this.reset()
       }
     },
     x: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 10
     },
     y: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 10
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 300
     },
     height: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 150
     },
     background: {
@@ -49,7 +48,7 @@ Component({
     },
     size: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 28
     },
     descrColor: {
@@ -58,7 +57,7 @@ Component({
     },
     descrSize: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 36
     },
     closeColor: {
@@ -75,7 +74,7 @@ Component({
     },
     zIndex: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 996
     },
     maskBgColor: {
@@ -88,28 +87,28 @@ Component({
     }
   },
   data: {
-      isShow: false,
-      w: 300,
-      h: 150,
-      sliderH: 0,
-      resetNum: 0,
-      isPass: false,
-      disabled: false
+    isShow: false,
+    w: 300,
+    h: 150,
+    sliderH: 0,
+    resetNum: 0,
+    isPass: false,
+    disabled: false
   },
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       this.setData({
-        sliderH:this.getPx(64)
+        sliderH: this.getPx(64)
       })
-			this.triggerEvent('init', {
-				//切割图片的宽高，固定为44px
-				cutGraphWidth: 44
-			})
+      this.triggerEvent('init', {
+        //切割图片的宽高，固定为44px
+        cutGraphWidth: 44
+      })
     }
   },
   methods: {
-    rpx2px(value){
-      let sys=wx.getSystemInfoSync()
+    rpx2px(value) {
+      let sys = wx.getSystemInfoSync()
       return sys.windowWidth / 750 * value
     },
     getPx(value) {
@@ -119,7 +118,7 @@ Component({
     verify(e) {
       //验证中禁止操作
       this.setData({
-        disabled:true
+        disabled: true
       })
       this.triggerEvent('verify', {
         slipDistance: e.slip
@@ -127,14 +126,14 @@ Component({
     },
     success() {
       this.setData({
-        isPass:true
+        isPass: true
       })
     },
     reset() {
       this.setData({
-        resetNum:this.data.resetNum+1,
-        isPass:false,
-        disabled:false
+        resetNum: this.data.resetNum + 1,
+        isPass: false,
+        disabled: false
       })
     },
     maskClose() {
@@ -144,14 +143,14 @@ Component({
     closeVerify() {
       this.reset();
       this.setData({
-        isShow:false
+        isShow: false
       })
     },
     show() {
       this.setData({
-        isShow:true
+        isShow: true
       })
     },
-    stop() {}
+    stop() { }
   }
 })

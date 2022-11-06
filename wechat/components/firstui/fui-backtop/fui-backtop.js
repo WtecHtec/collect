@@ -1,32 +1,31 @@
-// 本文件由FirstUI授权予车永钊（手机号：   1 827 645 3 0  1 9，身份证尾号：2 27    010）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 Component({
   properties: {
     scrollTop: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 0,
-      observer(val){
+      observer(val) {
         this.scrollChange();
       }
     },
     threshold: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 320
     },
     width: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 80
     },
     bottom: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 160
     },
     right: {
       type: String,
-      optionalTypes:[Number],
+      optionalTypes: [Number],
       value: 40
     },
     background: {
@@ -48,12 +47,12 @@ Component({
   },
   data: {
     isShow: false,
-		visible: true
+    visible: true
   },
   methods: {
-    goBacktop: function() {
+    goBacktop: function () {
       this.setData({
-        visible:false
+        visible: false
       })
       wx.pageScrollTo({
         scrollTop: 0,
@@ -61,7 +60,7 @@ Component({
       });
       setTimeout(() => {
         this.setData({
-          visible:true
+          visible: true
         })
       }, 220);
       this.triggerEvent('click', {})
@@ -70,7 +69,7 @@ Component({
       let show = this.data.scrollTop > this.data.threshold;
       if ((show && this.data.isShow) || (!show && !this.data.isShow)) return;
       this.setData({
-        isShow:show
+        isShow: show
       })
     }
   }

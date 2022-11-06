@@ -1,4 +1,3 @@
-// 本文件由FirstUI授权予车永钊（手机号： 18  2 7   64 5  3019，身份证尾号：   2 270 10）专用，请尊重知识产权，勿私下传播，违者追究法律责任。
 import form from './fui-validator.js'
 Component({
   properties: {
@@ -75,11 +74,11 @@ Component({
       clearTimeout(this.data.timer)
       this.data.timer = null;
     },
-   /*
-			 @param model 表单数据对象
-			 @param rules 表单验证规则
-			 @param checkAll 校验所有元素
-			*/
+    /*
+        @param model 表单数据对象
+        @param rules 表单验证规则
+        @param checkAll 校验所有元素
+       */
     validator(model, rules, checkAll = false) {
       return new Promise((resolve, reject) => {
         try {
