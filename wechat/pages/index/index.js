@@ -1,14 +1,15 @@
 import {postCheckLogin, getLoginCode, postLogin, getUserInfo} from '../servers/login'
 import { setStorage, getStorage } from '../../utils/util';
 import { USERINFO_KEY, MINIKET_KEY } from '../../utils/storage-keys'
-import { PAGE_STATUS } from '../../utils/config'
+import { PAGE_STATUS, RE_OPT } from '../../utils/config'
 const app = getApp()
 Page({
   data: {
     pageStatus: PAGE_STATUS.loading,
   },
 	onLoad() {
-    this.checkLoin()
+		this.optNums = 0
+		this.checkLoin()
   },
 	async checkLoin() {
 		this.setData({ pageStatus: PAGE_STATUS.loading })
@@ -25,7 +26,7 @@ Page({
 			  await this.handLogin(code, info.avatarUrl,info.nickName);
       } else {
         // 拒绝授权，进入兜底页
-				this.setData({ pageStatus: PAGE_STATUS.noright })
+				this.setData({ pageStatus: this.optNums >= RE_OPT ? PAGE_STATUS.reopt : PAGE_STATUS.noright })
       }
 		} else {
 			this.setData({ pageStatus: PAGE_STATUS.nonetwork })
@@ -39,13 +40,8 @@ Page({
 			app.globalData.userInfo = res.info;
 		}
 	},
-  onClose() {
-    this.setData({ show: false })
-  },
-  getPhoneNumber (e) {
-    console.log(e.detail.code)
-  },
 	bindRight() {
+		this.optNums += 1 
 		this.checkLoin()
 	}
 })

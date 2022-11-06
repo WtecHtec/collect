@@ -3,4 +3,5 @@ export const IMG_MAP = {
 	1: '../../static/img/empty/error.png',
 	2: '../../static/img/empty/noright.png',
 	3: '../../static/img/empty/nonetwork.png',
+	5: '../../static/img/empty/reopt.png',
 }
