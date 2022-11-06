@@ -23,7 +23,7 @@
 .fui-empty__desc {
   text-align: center;
   font-weight: normal;
-  padding-top: 8rpx;
+  margin-top: 24rpx;
 }
 
 .fui-empty__title-color {

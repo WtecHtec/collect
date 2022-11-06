@@ -13,12 +13,12 @@ Component({
     width: {
       type: String,
       optionalTypes:[Number],
-      value: 576
+      value: 128
     },
     height: {
       type: String,
       optionalTypes:[Number],
-      value: 318
+      value: 128
     },
     title: {
       type: String,
