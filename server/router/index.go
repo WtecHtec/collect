@@ -2,6 +2,7 @@ package router
 
 import (
 	"collect/middleware"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,6 +13,8 @@ func InitRouter(r *gin.Engine) {
 	r.POST("/login", authMiddleware.LoginHandler)
 	// 跨域中间件
 	r.Use(middleware.Cors())
+	//加载静态资源，一般是上传的资源，例如用户上传的图片
+	r.StaticFS("/upload", http.Dir("upload"))
 	auth := r.Group("/auth")
 	//退出登录
 	auth.POST("/logout", authMiddleware.LogoutHandler)
@@ -23,6 +26,7 @@ func InitRouter(r *gin.Engine) {
 		AuthHelloHander(auth)
 		InitAuthGroupRouter(auth)
 		InitMember(auth)
+		UpLoadFile(auth)
 	}
 	TestHello(r)
 

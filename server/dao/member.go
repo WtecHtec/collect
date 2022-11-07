@@ -16,6 +16,7 @@ func CreateMemer(name string, groupId string, openId string) (bool, int) {
 		GroupId: groupId,
 		Name:    name,
 		Enable:  true,
+		UserId:  openId,
 	}
 	ok, _ := datasource.Engine.Where("user_id = ? ", openId).And("group_id = ?", groupId).Get(&model.Member{})
 	if ok == true {
