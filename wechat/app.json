@@ -1,18 +1,23 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/home/home"
   ],
   "usingComponents": {
     "loading": "components/loading/index",
-		"empty": "components/empty/index",
-		"ui-button": "components/ui-button/index"
+    "empty": "components/empty/index",
+    "ui-button": "components/ui-button/index",
+    "fui-text": "components/firstui/fui-text/fui-text",
+    "fui-icon": "components/firstui/fui-icon/fui-icon",
+    "fui-row": "components/firstui/fui-row/fui-row",
+    "fui-col": "components/firstui/fui-col/fui-col"
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

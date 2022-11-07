@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "fui-grid": "/components/firstui/fui-grid/fui-grid",
+    "fui-grid-item": "/components/firstui/fui-grid-item/fui-grid-item",
+    "fui-swiper-dot": "/components/firstui/fui-swiper-dot/fui-swiper-dot",
+    "fui-avatar": "/components/firstui/fui-avatar/fui-avatar"
+  }
+}
