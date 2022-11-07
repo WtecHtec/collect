@@ -1,6 +1,7 @@
 project.private.config.json
 server/server_config.yml
 server_config.yml
+*.yml
 logs
 upload
 test
