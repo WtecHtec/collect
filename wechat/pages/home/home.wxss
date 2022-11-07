@@ -1,0 +1,45 @@
+/* pages/home/home.wxss */
+.view-text {
+  margin-top: 20rpx;
+}
+
+.view-margin {
+  margin-top: 100rpx;
+}
+
+.fui-item__scale {
+  transform: scale3d(.9, .9, 1);
+}
+
+.fui-banner__wrap {
+  height: 450rpx;
+}
+
+.fui-banner__item {
+  width: 100%;
+  height: 460rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  font-weight: 600;
+  border-radius: 24rpx;
+}
+
+.fui-col__style {
+  border-radius: 24rpx;
+  width: 98%;
+  height: 240rpx;
+  background-color: #f1ecec;
+  display: flex;
+}
+
+.fui-icon__viewstyle {
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+
+.fui-icon__style {
+  margin-left: 180rpx;
+}

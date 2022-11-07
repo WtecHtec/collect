@@ -1,0 +1,71 @@
+<!--pages/home/home.wxml-->
+<view>
+  <!--顶部-->
+  <view>
+    <fui-row marginTop="20px" margin-bottom="24rpx">
+      <fui-col offset="2" span="{{5}}">
+        <fui-avatar size="large" src="{{profile_icture_src}}"></fui-avatar>
+      </fui-col>
+      <fui-col span="{{17}}">
+        <view>
+          <fui-text text="{{name}}" size="{{48}}"></fui-text>
+        </view>
+        <view class="view-text">
+          <fui-text text="{{tel}}" size="{{30}}" text-type="mobile" format></fui-text>
+        </view>
+
+      </fui-col>
+    </fui-row>
+  </view>
+
+  <!--中部-->
+  <view class="view-margin">
+    <fui-swiper-dot items="{{items}}" current="{{current}}">
+      <swiper class="fui-banner__wrap" bindchange="" circular indicator-dots="{{false}}" autoplay interval="{{4000}}" duration="{{150}}">
+        <swiper-item wx:for="{{items}}" wx:key="index">
+          <view class="fui-banner__item fui-item__scale" style="background:{{item.background}}">我的爱车</view>
+        </swiper-item>
+      </swiper>
+    </fui-swiper-dot>
+  </view>
+
+  <!--底部-->
+  <view class="view-margin">
+    <fui-row margin-bottom="24rpx">
+      <fui-col span="{{11}}" pushLeft="1">
+        <view class="fui-col__style">
+          <view>
+            <view>
+              <view class="fui-icon__viewstyle">
+                <fui-icon name="edit-fill" color="#59d429" size="{{80}}"></fui-icon>
+              </view>
+              <view class="fui-icon__viewstyle">
+                <fui-text text="创建" size="{{35}}"></fui-text>
+                <fui-icon name="arrowright" size="{{38}}" class="fui-icon__style"></fui-icon>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </fui-col>
+      <fui-col span=" {{11}}" pushLeft="1">
+        <view class="fui-col__style">
+          <view class="fui-col__style">
+            <view>
+              <view>
+                <view class="fui-icon__viewstyle">
+                  <fui-icon name="classify-fill" color="#59d429" size="{{80}}"></fui-icon>
+                </view>
+                <view class="fui-icon__viewstyle">
+                  <fui-text text="更多" size="{{35}}"></fui-text>
+                  <fui-icon name="arrowright" size="{{38}}" class="fui-icon__style"></fui-icon>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </fui-col>
+    </fui-row>
+
+  </view>
+</view>
