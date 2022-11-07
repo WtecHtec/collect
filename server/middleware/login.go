@@ -4,6 +4,8 @@ import (
 	"collect/config"
 	"collect/dao"
 	"collect/logger"
+	"collect/model"
+	"collect/uitls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -26,13 +28,14 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	if openId != "" {
 		loginStatus := dao.CreateUser(openId, loginVals.AvatarUrl, loginVals.NickName)
 		if loginStatus {
-			return &User{
+			return &model.User{
 				OpenId: openId,
 			}, nil
 		} else {
 			return nil, jwt.ErrFailedAuthentication
 		}
 	}
+	logger.Logger.Error(fmt.Sprintf("登陆失败, OpenId %v", openId))
 	return nil, jwt.ErrFailedAuthentication
 }
 
@@ -46,7 +49,7 @@ func getWXOpen(code string, nickName string) string {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	user := &User{}
+	user := &model.User{}
 	json.Unmarshal([]byte(body), user)
 	if resp.StatusCode == 200 {
 		logger.Logger.Info(fmt.Sprintf("获取openId 成功：%v", nickName))
@@ -57,7 +60,7 @@ func getWXOpen(code string, nickName string) string {
 }
 
 func handleLoginResponse(c *gin.Context, code int, message string, time time.Time) {
-	openId := paserToken(message)
+	openId := uitls.PaserToken(message, AuthMiddleware)
 	info, ok := dao.GetUserInfoByOpenId(openId)
 	if ok == false {
 		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
@@ -68,15 +71,4 @@ func handleLoginResponse(c *gin.Context, code int, message string, time time.Tim
 		"code":    http.StatusOK,
 		"info":    info,
 	})
-}
-
-// 解析token
-func paserToken(token string) string {
-	tk, ok := AuthMiddleware.ParseTokenString(token)
-	if ok != nil {
-		logger.Logger.Error("paserToken error")
-		return ""
-	}
-	claims := jwt.ExtractClaimsFromToken(tk)
-	return claims[Identity_Key].(string)
 }

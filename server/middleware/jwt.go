@@ -5,12 +5,12 @@ import (
 	"time"
 
 	"collect/logger"
+	"collect/model"
+	"collect/uitls"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 )
-
-var Identity_Key = "info"
 
 var AuthMiddleware *jwt.GinJWTMiddleware
 
@@ -23,11 +23,11 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		Key:              []byte("qweronexkfc"), //密钥
 		Timeout:          7 * 24 * time.Hour,    // 过期时间
 		MaxRefresh:       time.Hour,             //刷新最大延长时间
-		IdentityKey:      Identity_Key,          //指定cookie的id
+		IdentityKey:      uitls.Identity_Key,    //指定cookie的id
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载，这里可以定义返回jwt中的payload数据
-			if v, ok := data.(*User); ok {
+			if v, ok := data.(*model.User); ok {
 				return jwt.MapClaims{
-					Identity_Key: v.OpenId,
+					uitls.Identity_Key: v.OpenId,
 				}
 			}
 			logger.Logger.Error(fmt.Sprintf("JWT PayloadFunc"))
@@ -35,17 +35,17 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} {
 			claims := jwt.ExtractClaims(c)
-			openId, err := claims[Identity_Key].(string)
+			openId, err := claims[uitls.Identity_Key].(string)
 			if !err {
 				logger.Logger.Error(fmt.Sprintf("JWT IdentityHandler %v", claims))
 			}
-			return &User{
+			return &model.User{
 				OpenId: openId,
 			}
 		},
 		Authenticator: Authenticator, //在这里可以写我们的登录验证逻辑
 		Authorizator: func(data interface{}, c *gin.Context) bool { //当用户通过token请求受限接口时，会经过这段逻辑
-			if _, ok := data.(*User); ok {
+			if _, ok := data.(*model.User); ok {
 				return true
 			}
 			return false

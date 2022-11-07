@@ -14,7 +14,11 @@ Page({
 	async checkLoin() {
 		this.setData({ pageStatus: PAGE_STATUS.loading })
 		const [err, res] = await postCheckLogin();
-		if (!err && res && res.code === 401) {
+		if (!err && res) {
+      if (res.code === 200) {
+        this.setData({ pageStatus: PAGE_STATUS.normal })
+        return
+      }
       const [e, info]  = await getUserInfo();
       if (!e && info) {
         const code = await getLoginCode();

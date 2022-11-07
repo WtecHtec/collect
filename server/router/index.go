@@ -21,6 +21,8 @@ func InitRouter(r *gin.Engine) {
 	auth.Use(authMiddleware.MiddlewareFunc())
 	{
 		AuthHelloHander(auth)
+		InitAuthGroupRouter(auth)
+		InitMember(auth)
 	}
 	TestHello(r)
 

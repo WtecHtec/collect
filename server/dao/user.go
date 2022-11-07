@@ -4,21 +4,20 @@ import (
 	"collect/datasource"
 	"collect/logger"
 	"collect/model"
-	"collect/units"
+	"collect/uitls"
 	"fmt"
 )
 
 //  注册新用户
 func CreateUser(openId string, avatarUrl string, nickName string) bool {
 	user := &model.User{
-		Id:       units.GetUUID(),
+		Id:       uitls.GetUUID(),
 		Name:     nickName,
 		HeadeImg: avatarUrl,
 		OpenId:   openId,
 		Enable:   true,
 	}
 	has, e := datasource.Engine.Where("wx_openid = ?", openId).Get(&model.User{})
-	fmt.Print(openId)
 	if e != nil {
 		logger.Logger.Error(fmt.Sprintf("查询用户失败%v, error: %v", openId, e.Error()))
 		return false

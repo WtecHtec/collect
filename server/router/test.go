@@ -2,7 +2,7 @@ package router
 
 import (
 	"collect/logger"
-	"collect/middleware"
+	"collect/uitls"
 	"fmt"
 	"net/http"
 
@@ -23,10 +23,10 @@ func AuthHelloHander(r *gin.RouterGroup) {
 
 func helloHandler(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
-	user, _ := c.Get(middleware.Identity_Key)
-	logger.Logger.Error(fmt.Sprintf("helloHandler====%v %v", user, middleware.Identity_Key))
+	user, _ := c.Get(uitls.Identity_Key)
+	logger.Logger.Error(fmt.Sprintf("helloHandler====%v %v", user, uitls.Identity_Key))
 	c.JSON(200, gin.H{
-		"userID": claims[middleware.Identity_Key],
+		"userID": claims[uitls.Identity_Key],
 		"text":   "Hello World.",
 	})
 }
