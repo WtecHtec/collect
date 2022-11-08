@@ -21,6 +21,8 @@ type RedisData struct {
 	Port     string `yaml:"port"`
 	DataBase string `yaml:"dataBase"`
 	Timeout  string `yaml:"timeout"`
+	Password string `yaml:"password"`
+	PoolSize int    `yaml:"poolsize"`
 }
 
 type MySQLData struct {

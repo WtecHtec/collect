@@ -27,6 +27,7 @@ func InitRouter(r *gin.Engine) {
 		InitAuthGroupRouter(auth)
 		InitMember(auth)
 		UpLoadFile(auth)
+		InitAuthFeebBackRouter(auth)
 	}
 	TestHello(r)
 
