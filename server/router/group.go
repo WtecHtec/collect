@@ -13,6 +13,7 @@ import (
 func InitAuthGroupRouter(r *gin.RouterGroup) {
 	r.POST("/creategroup", authHandleCreateGroup)
 	r.POST("/findowngroup", authHandleFindGroupByOwn)
+	r.POST("/findgroupusersbyid", authGroupUserById)
 }
 
 func authHandleCreateGroup(c *gin.Context) {
@@ -46,4 +47,18 @@ func authHandleFindGroupByOwn(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "data": classGroups})
+}
+
+func authGroupUserById(c *gin.Context) {
+	var memGroup model.RequestMemGroup
+	if err := c.ShouldBind(&memGroup); err != nil {
+		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
+		return
+	}
+	users, ok := dao.FindGroupUsers(memGroup.GroupId, memGroup.NoticeId)
+	if ok == false {
+		c.JSON(config.STATUS_ERROR, gin.H{"code": config.STATUS_ERROR, "message": config.STATUS_MSG[config.STATUS_ERROR]})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "data": users})
 }

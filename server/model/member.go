@@ -17,3 +17,16 @@ type RequestMember struct {
 	Name    string `form:"name" json:"name" binding:"required"`
 	GroupId string `form:"group_id" json:"group_id" binding:"required"`
 }
+
+type MemberGroups struct {
+	GroupId   string `form:"group_id" json:"group_id"`
+	GroupName string `form:"group_name" json:"group_name" `
+	UserName  string `form:"user_name" json:"user_name" `
+	Level     int8   `form:"level" json:"level" `
+	ImgUrls   string `form:"img_urls" json:"img_urls" `
+}
+
+type RequestMemGroup struct {
+	GroupId  string `form:"group_id" json:"group_id" binding:"required"`
+	NoticeId string `form:"notice_id" json:"notice_id" binding:"required"`
+}
