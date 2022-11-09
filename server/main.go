@@ -7,6 +7,7 @@ import (
 	"collect/middleware"
 	"collect/model"
 	"collect/router"
+	"collect/uitls"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -25,6 +26,9 @@ func main() {
 	model.InitModel()
 	// 初始化JWT
 	middleware.InitJWT()
+
+	// 任务调度初始化
+	uitls.InitTimeTask()
 	// 1.创建路由
 	r := gin.Default()
 	// 加载路由

@@ -40,7 +40,7 @@ func CreateUser(openId string, avatarUrl string, nickName string) bool {
 func GetUserInfoByOpenId(openId string) (model.User, bool) {
 	userInfo := make([]model.User, 0)
 	err := datasource.Engine.Cols("user_id", "user_name", "user_phone", "user_head", "create_time").Where("wx_openid = ?", openId).Find(&userInfo)
-	if err != nil {
+	if err != nil || len(userInfo) == 0 {
 		logger.Logger.Error(fmt.Sprintf("获取用户信息失败, Openid: %v", openId))
 		return model.User{}, false
 	}

@@ -11,9 +11,8 @@ import (
 )
 
 func CreateNotice(openId string, groupId string, title string, desc string, endTime string) (bool, int) {
-	timeTemplate1 := "2006-01-02"                                        //常规类型
-	stamp, _ := time.ParseInLocation(timeTemplate1, endTime, time.Local) //使用parseInLocation将字符串格式化返回本地时区时间
-	fmt.Println(stamp.Unix())                                            //输出：1546926630
+	timeTemplate1 := "2006-01-02 15:04:05"                                                           //常规类型
+	stamp, _ := time.ParseInLocation(timeTemplate1, fmt.Sprintf("%v 23:59:59", endTime), time.Local) //使用parseInLocation将字符串格式化返回本地时区时间
 	notice := &model.NoticeCollect{
 		Id:       uitls.GetUUID(),
 		Title:    title,
