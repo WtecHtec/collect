@@ -4,7 +4,7 @@
 }
 
 .view-margin {
-  margin-top: 100rpx;
+  margin-top: 32rpx;
 }
 
 .fui-item__scale {

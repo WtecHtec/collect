@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/uppage/uppage"
   ],
   "usingComponents": {
     "loading": "components/loading/index",
@@ -11,7 +12,8 @@
     "fui-text": "components/firstui/fui-text/fui-text",
     "fui-icon": "components/firstui/fui-icon/fui-icon",
     "fui-row": "components/firstui/fui-row/fui-row",
-    "fui-col": "components/firstui/fui-col/fui-col"
+    "fui-col": "components/firstui/fui-col/fui-col",
+    "fui-form-item": "components/firstui/fui-form-item/fui-form-item"
   },
   "window": {
     "backgroundTextStyle": "light",

@@ -1,21 +1,14 @@
-// pages/home/home.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    profile_icture_src: "/static/img/test/img_logo.jpg",
-    name: "BeanC",
-    tel: "13471422178",
-    current: 0,
-    items: [{
-      background: '#39b778'
-    }, {
-      background: '#FFB703'
-    }, {
-      background: '#B2B2B2'
-    }],
+    name: '',
+    tel: '',
+    remarks: '',
+    uploadImgUrl: ''
+
   },
 
   /**
@@ -72,21 +65,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-
-  /**
-   * 轮播图三个点的切换
-   * @param {*} e 
-   */
-  change(e) {
-    this.setData({
-      current: e.detail.current
-    })
-  },
-  /**
-   * 轮播图点击事件
-   */
-  onClickSwiper() {
-    console.log('我是轮播图');
   }
 })

@@ -21,7 +21,7 @@
   <!--中部-->
   <view class="view-margin">
     <fui-swiper-dot items="{{items}}" current="{{current}}">
-      <swiper class="fui-banner__wrap" bindchange="" circular indicator-dots="{{false}}" autoplay interval="{{4000}}" duration="{{150}}">
+      <swiper class="fui-banner__wrap" bindchange="change" circular indicator-dots="{{false}}" autoplay interval="{{4000}}" duration="{{150}}">
         <swiper-item wx:for="{{items}}" wx:key="index">
           <view class="fui-banner__item fui-item__scale" style="background:{{item.background}}">我的爱车</view>
         </swiper-item>
@@ -37,7 +37,7 @@
           <view>
             <view>
               <view class="fui-icon__viewstyle">
-                <fui-icon name="edit-fill" color="#59d429" size="{{80}}"></fui-icon>
+                <fui-icon name="edit-fill" color="#39b778" size="{{80}}"></fui-icon>
               </view>
               <view class="fui-icon__viewstyle">
                 <fui-text text="创建" size="{{35}}"></fui-text>
@@ -54,7 +54,7 @@
             <view>
               <view>
                 <view class="fui-icon__viewstyle">
-                  <fui-icon name="classify-fill" color="#59d429" size="{{80}}"></fui-icon>
+                  <fui-icon name="classify-fill" color="#39b778" size="{{80}}"></fui-icon>
                 </view>
                 <view class="fui-icon__viewstyle">
                   <fui-text text="更多" size="{{35}}"></fui-text>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "fui-input": "/components/firstui/fui-input/fui-input",
+    "fui-upload": "/components/firstui/fui-upload/fui-upload",
+    "fui-textarea": "/components/firstui/fui-textarea/fui-textarea"
+  }
+}
