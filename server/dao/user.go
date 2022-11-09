@@ -47,3 +47,17 @@ func GetUserInfoByOpenId(openId string) (model.User, bool) {
 	logger.Logger.Info(fmt.Sprintf("获取用户信息成功, Openid: %v; Info: %v", openId, userInfo[0]))
 	return userInfo[0], true
 }
+
+type MemberGroups struct {
+	model.Member     `xorm:"extends"`
+	model.ClassGroup `xorm:"extends"`
+}
+
+// 获取团体人数总人，已收集人
+func FindGroupAndCollectCount(groupId string, noticeId string) {
+	users := make([]MemberGroups, 0)
+	datasource.Engine.Table("member").Alias("m").
+		Join("LEFT", []string{"class_group", "cg"}, "cg.group_id = m.group_id").Cols("m.group_id, m.member_name, m.level, cg.group_name").
+		Where("cg.group_id =  ?", groupId).And("m.enable = ?", 1).Find(&users, &model.ClassGroup{})
+	fmt.Println(users)
+}

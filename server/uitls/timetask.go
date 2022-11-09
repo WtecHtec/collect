@@ -13,7 +13,7 @@ import (
 // 任务调度
 func InitTimeTask() {
 	c := cron.New()
-	logger.Logger.Info("任务调度启动")
+	logger.Logger.Info("任务调度初始化")
 	// 添加一个任务，每 天凌晨0:0:0（0 0 * * *） 执行一次
 	// */1 * * * * ? 每1分钟
 	// @every 2s 每2秒
