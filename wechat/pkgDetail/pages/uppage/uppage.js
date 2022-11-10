@@ -9,18 +9,26 @@ const rules = [{
   msg: ["请输入手机号", "请输入正确的手机号"]
 }];
 
-let form;
+let form, upload;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    /*== formData 数据start ==*/
     name: '',
     mobile: '',
     remarks: '',
-    uploadImgUrl: ''
+    /*== formData 数据end ==*/
 
+    //上传状态，用于保存或其他操作时做判断
+    status: '',
+    //上传的图片地址列表
+    urls: [],
+    //上传图片接口地址------------> 改，暂用默认
+    uploadUrl: 'https://ffa.firstui.cn/api/example/upload-file'
   },
 
   /**
@@ -36,6 +44,7 @@ Page({
   onReady() {
     //获取表单信息
     form = this.selectComponent("#form")
+    upload = this.selectComponent("#upload")
   },
 
   /**
@@ -81,19 +90,74 @@ Page({
   },
 
   /**
-   * 上传
+   * 上传表单信息
    */
   upload_submit() {
     console.log(this.data)
     if (form) {
       form.validator(this.data, rules).then(res => {
         console.log(res)
-        if (res.isPassed) {
-          //wx.fui.toast('校验通过！')
+        //this.status === 'success'判断图片是否有上传
+        if (res.isPassed && this.status === 'success') {
+          //校验成功后拿相关数据上传
+          postData(this.data);
         }
       }).catch(err => {
         console.log(err)
+        this.toast('校验失败！')
+      })
+    } else {
+      this.toast('无法校验！')
+    }
+  },
+  /*== 图片上传，具体使用请查看上传组件start ==*/
+  success(e) {
+    console.log(e.detail)
+    let res = JSON.parse(e.detail.res.data.replace(/\ufeff/g, "") || "{}")
+    this.setData({
+      status: e.detail.status
+    })
+    if (res.data.url) {
+      upload && upload.result(res.data.url, e.detail.index)
+    }
+  },
+  error(e) {
+    console.log(e.detail)
+    this.setData({
+      status: e.detail.status
+    })
+    this.toast('上传失败')
+  },
+  complete(e) {
+    this.setData({
+      status: e.detail.status,
+      urls: e.detail.urls
+    })
+    if (e.detail.status === 'success' && e.detail.action === 'upload') {
+      this.toast('上传完成')
+      console.log(e.detail.urls)
+      this.setData({
+        img: e.detail.urls.join(',')
       })
     }
   },
+  //Toast轻提示
+  toast(text) {
+    wx.showToast({
+      title: text,
+      icon: 'none'
+    })
+  },
+  /*== 图片上传，具体使用请查看上传组件End ==*/
+
+  /**
+   * 
+   * @param {表单数据} data 
+   */
+  postData(data) {
+    //接口
+    data.then(res => {
+
+    })
+  }
 });

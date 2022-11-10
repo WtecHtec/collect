@@ -8,10 +8,9 @@
       <!-- <view class="fui-section__title">备注</view> -->
       <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
       <fui-form-item label="" padding="28rpx 24rpx 8rpx">
-        <fui-upload max="{{2}}" immediate url="{{uploadUrl}}" id="upload" bindsuccess="success" bindcomplete="complete">
+        <fui-upload max="{{2}}" immediate url="{{uploadUrl}}" id="upload" bindsuccess="success" binderror="error" bindcomplete="complete">
         </fui-upload>
       </fui-form-item>
-
       <view class="fui-btn__box">
         <ui-button text="上 传" bold bindclick="upload_submit" background="#39b778"></ui-button>
       </view>

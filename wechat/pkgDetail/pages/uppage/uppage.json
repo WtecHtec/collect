@@ -1,7 +1,9 @@
 {
   "usingComponents": {
+    "fui-form": "/components/firstui/fui-form/fui-form",
     "fui-input": "/components/firstui/fui-input/fui-input",
     "fui-upload": "/components/firstui/fui-upload/fui-upload",
-    "fui-textarea": "/components/firstui/fui-textarea/fui-textarea"
+    "fui-textarea": "/components/firstui/fui-textarea/fui-textarea",
+    "fui-toast": "/components/firstui/fui-toast/fui-toast"
   }
 }
