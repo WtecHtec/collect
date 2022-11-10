@@ -1,9 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/home/home",
-    "pages/uppage/uppage"
+    "pages/home/home"
+  ],
+  "subpackages": [
+    {
+      "root": "pkgDetail",
+      "pages": [
+        "pages/uppage/uppage"
+      ]
+    }
   ],
   "usingComponents": {
     "loading": "components/loading/index",
