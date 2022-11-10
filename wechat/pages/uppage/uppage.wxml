@@ -3,21 +3,17 @@
   <view class="fui-page__bd">
     <fui-form id="form" top="0">
       <view class="fui-section__title">基本信息</view>
-      <fui-form-item label="姓名" asterisk>
-        <fui-input borderBottom="{{false}}" padding="0" placeholder="请输入姓名" model:value="{{name}}"></fui-input>
-      </fui-form-item>
-      <fui-form-item label="手机号码" asterisk>
-        <input class="fui-page__input" placeholder="请输入手机号码" model:value="{{tel}}" placeholder-style=" color:#ccc;" />
-      </fui-form-item>
+      <fui-input required label="姓名" borderTop placeholder="请输入姓名" model:value="{{name}}"></fui-input>
+      <fui-input required label="手机号码" placeholder="请输入手机号码" model:value="{{mobile}}"></fui-input>
       <!-- <view class="fui-section__title">备注</view> -->
       <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
-      <fui-form-item label="" padding="28rpx 32rpx 8rpx">
+      <fui-form-item label="" padding="28rpx 24rpx 8rpx">
         <fui-upload max="{{2}}" immediate url="{{uploadUrl}}" id="upload" bindsuccess="success" bindcomplete="complete">
         </fui-upload>
       </fui-form-item>
 
       <view class="fui-btn__box">
-        <ui-button text="上传" bold bindclick="upload_submit"></ui-button>
+        <ui-button text="上 传" bold bindclick="upload_submit" background="#39b778"></ui-button>
       </view>
     </fui-form>
   </view>
