@@ -6,9 +6,10 @@ const app = getApp()
 Page({
   data: {
     pageStatus: PAGE_STATUS.loading,
+    from: 'init',
   },
 	onLoad() {
-		this.optNums = 0
+    this.optNums = 0
 		this.checkLoin()
   },
 	async checkLoin() {
@@ -17,6 +18,8 @@ Page({
 		if (!err && res) {
       if (res.code === 200) {
         this.setData({ pageStatus: PAGE_STATUS.normal })
+        app.globalData.userInfo = getStorage(USERINFO_KEY)
+        this.NavToPage()
         return
       }
       const [e, info]  = await getUserInfo();
@@ -41,11 +44,18 @@ Page({
 		if (!err && res && res.code === 200) {
 			setStorage(MINIKET_KEY, res.minikey)
       setStorage(USERINFO_KEY, res.info)
-			app.globalData.userInfo = res.info;
+      app.globalData.userInfo = res.info;
+      this.NavToPage()
 		}
 	},
 	bindRight() {
 		this.optNums += 1 
 		this.checkLoin()
-	}
+  },
+  NavToPage() {
+    const { from } = this.data;
+    if (from === 'init') {
+      wx.redirectTo({ url: '/pages/home/home' });
+    }
+  }
 })

@@ -14,6 +14,7 @@ func InitAuthGroupRouter(r *gin.RouterGroup) {
 	r.POST("/creategroup", authHandleCreateGroup)
 	r.POST("/findowngroup", authHandleFindGroupByOwn)
 	r.POST("/findgroupusersbyid", authGroupUserById)
+	r.POST("/findgroupralebyid", authGroupRaleById)
 }
 
 func authHandleCreateGroup(c *gin.Context) {
@@ -61,4 +62,18 @@ func authGroupUserById(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "data": users})
+}
+
+func authGroupRaleById(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	ok, datas := dao.FindRaletionGroupByOwn(openId)
+	if ok == false {
+		c.JSON(config.STATUS_ERROR, gin.H{"code": config.STATUS_ERROR, "message": config.STATUS_MSG[config.STATUS_ERROR]})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": http.StatusOK, "data": datas})
 }

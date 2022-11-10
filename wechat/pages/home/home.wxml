@@ -2,35 +2,49 @@
 <view>
   <!--顶部-->
   <view>
-    <fui-row marginTop="20px" margin-bottom="24rpx">
-      <fui-col offset="2" span="{{5}}">
-        <fui-avatar size="large" src="{{profile_icture_src}}"></fui-avatar>
+    <fui-row marginTop="30rpx" margin-bottom="24rpx">
+      <fui-col offset="1" span="{{5}}">
+        <fui-avatar size="large" src="{{userInfo.HeadeImg}}"></fui-avatar>
       </fui-col>
       <fui-col span="{{17}}">
         <view>
-          <fui-text text="{{name}}" size="{{48}}"></fui-text>
+          <fui-text text="{{userInfo.Name}}" size="{{48}}" fontWeight="500"></fui-text>
         </view>
         <view class="view-text">
-          <fui-text text="{{tel}}" size="{{30}}" text-type="mobile" format></fui-text>
+          <fui-text text="注册时间：{{userInfo.registerTime}}" size="{{24}}" color="#333333" ></fui-text>
         </view>
-
       </fui-col>
     </fui-row>
   </view>
+  <loading wx:if="{{pageStatus === -1}}"  type="col" />
+  <empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="暂无数据"> 
+    <ui-button bindclick="bindRight" text="去创建一个组" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
+  </empty>
+  <empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
+  <block wx:else>
+    <view class="view-margin">
+      <swiper circular indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
+        <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item">
+          <!-- <view class="fui-banner__item fui-item__scale" style="background:{{item.background}}">我的爱车</view> -->
+          <view wx:if="{{item.type === 'info'}}" class="card">
+            <view class="card-hd" >
+              <image class="card-hd-l" src="../../static/img/home/{{item.level === '1' ? 'lead' : 'staff'}}.png"  mode="widthFix"/>
+              <view class="card-hd-t">{{item.user_name}}</view>
+              <image wx:if="{{item.level === '1'}}" class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
+            </view>
+            <view class="group-name">{{item.group_name}}</view>
+            <view class="group-desc">{{item.group_desc}}</view>
+          </view>
 
-  <!--中部-->
-  <view class="view-margin">
-    <fui-swiper-dot items="{{items}}" current="{{current}}">
-      <swiper class="fui-banner__wrap" bindchange="change" circular indicator-dots="{{false}}" autoplay interval="{{4000}}" duration="{{150}}">
-        <swiper-item wx:for="{{items}}" wx:key="index">
-          <view class="fui-banner__item fui-item__scale" style="background:{{item.background}}">我的爱车</view>
         </swiper-item>
       </swiper>
-    </fui-swiper-dot>
-  </view>
+    </view>
+  </block>
+  <!--中部-->
+  
 
   <!--底部-->
-  <view class="view-margin">
+  <!-- <view class="view-margin">
     <fui-row margin-bottom="24rpx">
       <fui-col span="{{11}}" pushLeft="1">
         <view class="fui-col__style">
@@ -67,5 +81,5 @@
       </fui-col>
     </fui-row>
 
-  </view>
+  </view> -->
 </view>

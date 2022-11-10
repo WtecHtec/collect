@@ -21,8 +21,8 @@ func InitJWT() *jwt.GinJWTMiddleware {
 		Realm:            "wtechtec zone",       //标识
 		SigningAlgorithm: "HS256",               //加密算法
 		Key:              []byte("qweronexkfc"), //密钥
-		Timeout:          148 * time.Hour,       // 过期时间
-		MaxRefresh:       time.Hour,             //刷新最大延长时间
+		Timeout:          7 * 24 * time.Hour,    // 过期时间
+		MaxRefresh:       7 * 24 * time.Hour,    //刷新最大延长时间
 		IdentityKey:      uitls.Identity_Key,    //指定cookie的id
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载，这里可以定义返回jwt中的payload数据
 			if v, ok := data.(*model.User); ok {
