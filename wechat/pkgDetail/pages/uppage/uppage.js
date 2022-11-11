@@ -28,7 +28,7 @@ Page({
     //上传的图片地址列表
     urls: [],
     //上传图片接口地址------------> 改，暂用默认
-    uploadUrl: 'https://ffa.firstui.cn/api/example/upload-file'
+    imgUrl: 'https://ffa.firstui.cn/api/example/upload-file',
   },
 
   /**
@@ -48,48 +48,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
-  /**
    * 上传表单信息
    */
   upload_submit() {
@@ -97,14 +55,15 @@ Page({
     if (form) {
       form.validator(this.data, rules).then(res => {
         console.log(res)
-        //this.status === 'success'判断图片是否有上传
-        if (res.isPassed && this.status === 'success') {
+        if (res.isPassed) {
+          //上传照片
+          this.startUpload()
           //校验成功后拿相关数据上传
-          postData(this.data);
+          this.postData(this.data);
         }
       }).catch(err => {
         console.log(err)
-        this.toast('校验失败！')
+        this.toast('校验失败：' + err)
       })
     } else {
       this.toast('无法校验！')
@@ -113,33 +72,44 @@ Page({
   /*== 图片上传，具体使用请查看上传组件start ==*/
   success(e) {
     console.log(e.detail)
+    //上传成功回调，处理服务器返回数据【此处根据实际返回数据进行处理】
     let res = JSON.parse(e.detail.res.data.replace(/\ufeff/g, "") || "{}")
     this.setData({
       status: e.detail.status
     })
     if (res.data.url) {
+      //处理结果返回给组件
+      //data.url为上传成功后返回的图片地址
+      //e.detail.index为图片索引值
       upload && upload.result(res.data.url, e.detail.index)
     }
   },
   error(e) {
-    console.log(e.detail)
     this.setData({
       status: e.detail.status
     })
-    this.toast('上传失败')
+    wx.showModal({
+      content: JSON.stringify(e.detail)
+    })
   },
   complete(e) {
     this.setData({
       status: e.detail.status,
       urls: e.detail.urls
     })
-    if (e.detail.status === 'success' && e.detail.action === 'upload') {
-      this.toast('上传完成')
-      console.log(e.detail.urls)
-      this.setData({
-        img: e.detail.urls.join(',')
-      })
+    if (this.data.status === 'success' && e.detail.action === 'upload') {
+      this.toast('上传完成！')
+      //已上传完成的图片列表 this.data.urls
+      console.log(this.data.urls)
     }
+  },
+  startUpload() {
+    if (!this.data.status || this.data.status !== 'preupload') {
+      this.toast('请选择需要上传的图片！')
+      return
+    }
+    //开始上传
+    upload && upload.start()
   },
   //Toast轻提示
   toast(text) {
@@ -151,13 +121,10 @@ Page({
   /*== 图片上传，具体使用请查看上传组件End ==*/
 
   /**
-   * 
+   * 接口
    * @param {表单数据} data 
    */
   postData(data) {
-    //接口
-    data.then(res => {
 
-    })
   }
 });
