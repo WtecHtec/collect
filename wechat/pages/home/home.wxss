@@ -228,3 +228,36 @@
 .more_txt {
   margin-right: 8rpx;
 }
+
+.bottom-main {
+	padding: 0 24rpx;
+	display: flex;
+}
+.bottom-item {
+	box-sizing: border-box;
+	padding: 24rpx;
+	margin-right: 12rpx;
+	flex: 1;
+	background-color: #c8ccdb;
+	border-radius: 16rpx;
+}
+.bottom-item:last-child {
+	margin-right: 0;
+}
+
+.bottom-item-i {
+	width: 88rpx;
+	height: 88rpx;
+}
+
+.bottom-item-t {
+	font-size: 24rpx;
+	color: #1f2129;
+	margin-top: 16rpx;
+}
+
+.feebback-c {
+	font-size: 22rpx;
+	text-align: center;
+	color: #2657F0;
+}

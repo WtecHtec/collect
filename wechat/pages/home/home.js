@@ -1,5 +1,5 @@
 
-import { getGroups, getCountNotice, getCountGroupNum, getOwnNotices } from '../servers/home'
+import { getGroups, getCountNotice } from '../servers/home'
 import { PAGE_STATUS } from '../../utils/config.js';
 const dayjs = require('../../utils/day.min.js');
 const app = getApp();
@@ -11,6 +11,7 @@ Page({
     isMoreGroup: false,
     noticeCounts: [],
     loadNotice: true,
+		moreNotice: false,
   },
 
   /**
@@ -43,7 +44,11 @@ Page({
           res.data.forEach(item => {
             item.type = 'info'
           });
-          this.setData({ pageStatus: PAGE_STATUS.normal, groups: res.data })
+          this.setData({ 
+						pageStatus: PAGE_STATUS.normal, 
+						groups: res.data.slice(0, 3),
+						isMoreGroup: res.data.length > 3,
+					})
           this._setCountNotice()
           return 
         }
@@ -56,46 +61,30 @@ Page({
     }
   },
   async _setCountNotice() {
-    const notices = await this._getOwnNotices()
-    if (notices.length) {
-      const countNotices = await this._getCountNotice();
-      if (countNotices.length) {
-
-      }
-      const groups = await this._getCountGroupNum()
-    }
-    
-      // if (groups.length === 0) return
-      // const gMap  = {}
-      // groups.forEach(g => {
-      //   gMap[g.group_id] = g
-      // })
-      // const nDatas = res.data.filter(item => gMap[item.group_id])
-      // if (nDatas.length === 0) return
-      // nDatas.forEach(item => {
-      //   const gInfo = gMap[item.group_id]
-      //   item.group_total = Number(gInfo.group_total) || 0
-      //   const clNum = Number(item.collect_total) || 0
-      //   if (item.group_total === 0 || clNum === 0) {
-      //     item.percent = 0
-      //     return
-      //   }
-      //   item.percent = clNum / item.group_total * 100
-      //   item.pColor = this.formatPerColor(item.percent)
-      //   item.un_total = Math.abs(item.group_total - clNum)
-      //   item.createTime = dayjs(item.create_time).format('YYYY-MM-DD')
-      // })
-      // this.setData({ noticeCounts: nDatas, loadNotice: false });
+		const countNotices = await this._getCountNotice();
+		if (countNotices.length) {
+			countNotices.forEach(item => {
+				item.createTime = dayjs(item.create_time).format('YYYY-MM-DD')
+        item.group_total = Number(item.group_total) || 0
+        item.collect_total = Number(item.collect_total) || 0
+        if (item.group_total === 0 || item.collect_total === 0) {
+					item.un_total = 0
+          item.percent = 0
+          return
+        }
+        item.percent = item.collect_total / item.group_total * 100
+        item.pColor = this.formatPerColor(item.percent)
+        item.un_total = Math.abs(item.group_total - item.collect_total)
+      })
+		}
+    this.setData({ 
+			noticeCounts: countNotices.slice(0, 1),
+			loadNotice: false,
+			moreNotice: countNotices.length > 1
+		 });
   },
   async _getCountNotice() {
     const [err, res] = await getCountNotice()
-    if (!err && res && res.code === 200 && Array.isArray(res.data) && res.data.length) {
-      return res.data
-    } 
-    return []
-  },
-  async _getCountGroupNum() {
-    const [err, res] = await getCountGroupNum()
     if (!err && res && res.code === 200 && Array.isArray(res.data) && res.data.length) {
       return res.data
     }
@@ -106,11 +95,4 @@ Page({
     else if (value < 100) return '#F57221'
     return '#12c194';
   },
-  async _getOwnNotices() {
-    const [err, res] = await getOwnNotices()
-    if (!err && res && res.code === 200 && Array.isArray(res.data) && res.data.length) {
-      return res.data
-    }
-    return []
-  }
 })

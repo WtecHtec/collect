@@ -13,20 +13,5 @@ export function getGroups() {
  * @returns
  */
 export function getCountNotice() {
-  return Request('/auth/authcountnotice')
-}
-
-/**
- * 获取本人创建群的总人数
- * @returns
- */
-export function getCountGroupNum() {
-  return Request('/auth/countgrouptotal')
-}
-
-/**
- * 获取本人发起收集数量
- */
- export function getOwnNotices() {
-  return Request('/auth/authownnotice')
+  return Request('/auth/getcountnotice')
 }

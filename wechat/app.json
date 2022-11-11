@@ -20,7 +20,8 @@
     "fui-row": "components/firstui/fui-row/fui-row",
     "fui-col": "components/firstui/fui-col/fui-col",
     "fui-form-item": "components/firstui/fui-form-item/fui-form-item",
-    "fui-circle":"/components/firstui/fui-circle/fui-circle"
+    "fui-circle": "/components/firstui/fui-circle/fui-circle",
+		"fui-notice-bar": "/components/firstui/fui-notice-bar/fui-notice-bar"
   },
   "window": {
     "backgroundTextStyle": "light",
