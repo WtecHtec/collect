@@ -95,3 +95,24 @@ func FindRaletionGroupByOwn(openId string) (bool, []RaleGroup) {
 	}
 	return true, infos
 }
+
+type CountGroupNum struct {
+	GroupTotal int    `json:"group_total"`
+	GroupId    string `json:"group_id"`
+}
+
+// 获取本人创建群的 各个群总人数
+func CountGroupPerson(openId string) (bool, int, []CountGroupNum) {
+	datas := make([]CountGroupNum, 0)
+	err := datasource.Engine.SQL(fmt.Sprintf(`select count(*) as group_total, m.group_id
+	from class_group cg
+	left join member m  on cg.group_id = m.group_id
+	where cg.create_id = '%v'
+	group by m.group_id`, openId)).Find(&datas)
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("拉取本人创建群总人数失败 %v", err))
+		return false, config.STATUS_ERROR, nil
+	}
+	logger.Logger.Info("拉取本人创建群总人数成功")
+	return true, config.STATUS_SUE, datas
+}

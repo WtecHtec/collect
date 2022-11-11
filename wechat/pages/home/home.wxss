@@ -3,8 +3,8 @@
   margin-top: 20rpx;
 }
 
-.view-margin {
-  margin-top: 32rpx;
+.mt-24 {
+  margin-top: 24rpx;
 }
 
 .fui-item__scale {
@@ -94,8 +94,137 @@
 }
 
 .group-desc {
+  box-sizing: border-box;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
   margin-top: 12rpx;
   color: #333333;
   font-size: 24rpx;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp: 2;
+}
+
+.more_opt {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 16rpx;
+}
+
+.more_opt::after {
+  pointer-events: none;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  content: "";
+  border: 2rpx  solid  #12c194;
+  transform: scale(0.5);
+  transform-origin: left top;
+}
+
+.count-main {
+  position: relative;
+  margin: 0 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+
+.count-main::after {
+  pointer-events: none;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  content: "";
+  border: 2rpx  solid  #e5e5e6;
+  transform: scale(0.5);
+  transform-origin: left top;
+}
+
+.count-hd {
+  padding-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.count-hd::after {
+  pointer-events: none;
+  box-sizing: border-box;
+  position: absolute;
+  height: 2rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border-bottom: 2rpx  solid   #e5e5e6;
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+}
+.count-time {
+  font-size: 22rpx;
+  color: #999999;
+  flex-shrink: 0;
+  margin-right: 4rpx;
+}
+
+.count-hd-t {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  flex: 1;
+}
+
+.count-content {
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.count-c-item {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  color: #1f2129;
+}
+
+.count-c-item-v {
+  font-size: 30rpx;
+}
+
+.count-c-item-d {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+}
+
+.more_notice {
+  display: flex;
+  align-items: center;
+  color: #2657F0;
+  font-size: 24rpx;
+  justify-content: center;
+}
+
+.more_txt {
+  margin-right: 8rpx;
 }

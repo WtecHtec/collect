@@ -38,6 +38,15 @@ Component({
       type: String,
       value: '#465CFF'
     },
+    descSize: {
+      type: String,
+      optionalTypes: [Number],
+      value: 12
+    },
+    descColor: {
+      type: String,
+      value: '#1f2129'
+    },
     show: {
       type: Boolean,
       value: true
@@ -70,6 +79,18 @@ Component({
     activeMode: {
       type: String,
       value: 'forwards'
+    },
+    peroffset: {
+      type: Number,
+      value: 0
+    },
+    descoffset: {
+      type: Number,
+      value: 0
+    },
+    descTxt: {
+      type: String,
+      value: ''
     }
   },
   observers: {
@@ -148,7 +169,7 @@ Component({
       let radius = this.data.w / 2;
       percent = this.data.counterclockwise ? 100 - percent : percent;
       percent = percent.toFixed(0) + "%"
-      ctx.fillText(percent, radius, radius);
+      ctx.fillText(percent, radius, radius + this.data.peroffset);
       ctx.stroke();
       ctx.restore();
     },
@@ -176,7 +197,12 @@ Component({
           that.drawDefaultCircle(ctx, canvas)
         }
         if (that.data.show) {
+          console.log('ddd', that.data.descTxt)
           that.drawpercent(ctx, start);
+        }
+        if (that.data.descTxt) {
+          console.log('ddd')
+          that.drawDesc(ctx);
         }
         let isEnd = (percent == 0 || (that.data.counterclockwise && start == 100));
         if (!isEnd) {
@@ -216,6 +242,18 @@ Component({
       ctx.stroke();
       ctx.closePath();
       ctx.restore();
-    }
+    },
+    drawDesc(ctx) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.fillStyle = this.data.descColor;
+      ctx.font = this.data.descSize + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      let radius = this.data.w / 2;
+      ctx.fillText(this.data.descTxt, radius, radius + this.data.descoffset);
+      ctx.stroke();
+      ctx.restore();
+    },
   }
 })

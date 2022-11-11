@@ -12,6 +12,8 @@ import (
 
 func InitNotice(r *gin.RouterGroup) {
 	r.POST("/authcreatenotice", authCreateNotice)
+	r.POST("/authcountnotice", authCountNotice)
+	r.POST("/authownnotice", authOwnNotice)
 }
 func authCreateNotice(c *gin.Context) {
 	openId := uitls.GetLoginOpenId(c)
@@ -30,4 +32,32 @@ func authCreateNotice(c *gin.Context) {
 		return
 	}
 	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE]})
+}
+
+func authCountNotice(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	ok, status, datas := dao.CountNoticeOwn(openId)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
+}
+
+func authOwnNotice(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	ok, status, datas := dao.CountNoticeOwn(openId)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
 }

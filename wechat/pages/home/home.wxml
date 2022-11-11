@@ -22,10 +22,41 @@
   </empty>
   <empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
   <block wx:else>
-    <view class="view-margin">
+    <loading wx:if="{{loadNotice}}"  isFixed="{{false}}"  type="row" />
+    <view wx:elif="{{ noticeCounts && noticeCounts.length}}" class="mt-24 count-block">
+      <view wx:for="{{noticeCounts}}" wx:key="index" class="count-main">
+        <view class="count-hd" >
+          <image class="card-hd-l" src="../../static/img/home/count.png"  mode="widthFix"/>
+          <view class="count-hd-t">{{item.notice_title}}</view>
+          <view class="count-time">{{item.createTime}}</view>
+          <image class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
+        </view>
+        <view class="count-content">
+          <view class="count-c-item">
+            <view class="count-c-item-v" >{{item.group_total}}</view>
+            <view class="count-c-item-d">全部</view>
+          </view>
+          <view class="count-c-item">
+            <view class="count-c-item-v">{{item.collect_total}}</view>
+            <view class="count-c-item-d">已上传</view>
+          </view>
+          <view class="count-c-item">
+            <view class="count-c-item-v">{{item.un_total}}</view>
+            <view class="count-c-item-d">未上传</view>
+          </view>
+          <view >
+            <fui-circle percent="{{item.percent}}" width="140" foreground="{{item.pColor}}" color="{{item.pColor}}" size="16" descTxt="完成" descSize="10" peroffset="-5" descoffset="10"/>
+          </view>
+        </view>
+      </view>
+      <view class="more_notice"> 
+       <view class="more_txt" >更多收集信息</view> 
+       <image class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
+      </view>
+    </view>
+    <view class="mt-24">
       <swiper circular indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
         <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item">
-          <!-- <view class="fui-banner__item fui-item__scale" style="background:{{item.background}}">我的爱车</view> -->
           <view wx:if="{{item.type === 'info'}}" class="card">
             <view class="card-hd" >
               <image class="card-hd-l" src="../../static/img/home/{{item.level === '1' ? 'lead' : 'staff'}}.png"  mode="widthFix"/>
@@ -35,51 +66,16 @@
             <view class="group-name">{{item.group_name}}</view>
             <view class="group-desc">{{item.group_desc}}</view>
           </view>
-
+        </swiper-item>
+        <swiper-item class="swiper-item">
+          <view  class="more_opt">
+            <ui-button wx:if="{{isMoreGroup}}" bindclick="bindRight" height="56rpx" text="查看更多" size="{{24}}"  radius="100rpx" background="#fff" margin="0 24rpx" borderColor="#2657F0" color="#2657F0"/>
+            <ui-button wx:else bindclick="bindRight" height="56rpx" text="去创建一个组" size="{{24}}"  radius="100rpx"  margin="0 24rpx" />
+          </view>
         </swiper-item>
       </swiper>
     </view>
   </block>
   <!--中部-->
   
-
-  <!--底部-->
-  <!-- <view class="view-margin">
-    <fui-row margin-bottom="24rpx">
-      <fui-col span="{{11}}" pushLeft="1">
-        <view class="fui-col__style">
-          <view>
-            <view>
-              <view class="fui-icon__viewstyle">
-                <fui-icon name="edit-fill" color="#39b778" size="{{80}}"></fui-icon>
-              </view>
-              <view class="fui-icon__viewstyle">
-                <fui-text text="创建" size="{{35}}"></fui-text>
-                <fui-icon name="arrowright" size="{{38}}" class="fui-icon__style"></fui-icon>
-              </view>
-            </view>
-
-          </view>
-        </view>
-      </fui-col>
-      <fui-col span=" {{11}}" pushLeft="1">
-        <view class="fui-col__style">
-          <view class="fui-col__style">
-            <view>
-              <view>
-                <view class="fui-icon__viewstyle">
-                  <fui-icon name="classify-fill" color="#39b778" size="{{80}}"></fui-icon>
-                </view>
-                <view class="fui-icon__viewstyle">
-                  <fui-text text="更多" size="{{35}}"></fui-text>
-                  <fui-icon name="arrowright" size="{{38}}" class="fui-icon__style"></fui-icon>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </fui-col>
-    </fui-row>
-
-  </view> -->
 </view>
