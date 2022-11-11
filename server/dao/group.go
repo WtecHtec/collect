@@ -73,3 +73,25 @@ func FindGroupUsers(groupId string, noticeId string) ([]model.MemberGroups, bool
 	logger.Logger.Info("获取群全人数")
 	return users, true
 }
+
+type RaleGroup struct {
+	GroupName string `json:"group_name"`
+	GroupDesc string `json:"group_desc"`
+	Level     string `json:"level"`
+	GroupId   string `json:"group_id"`
+	UserName  string `json:"user_name"`
+}
+
+// 获取与自己相关的群
+func FindRaletionGroupByOwn(openId string) (bool, []RaleGroup) {
+	infos := make([]RaleGroup, 0)
+	err := datasource.Engine.Table("member").Alias("m").
+		Select("m.group_id, m.member_name as user_name, m.level, cg.group_desc, cg.group_name").
+		Join("LEFT", []string{"class_group", "cg"}, "cg.group_id = m.group_id").
+		Where("m.user_id = ?", openId).Desc("m.level").Find(&infos)
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("获取与自己相关群信息失败 %v", err))
+		return false, nil
+	}
+	return true, infos
+}

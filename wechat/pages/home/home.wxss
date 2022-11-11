@@ -43,3 +43,59 @@
 .fui-icon__style {
   margin-left: 180rpx;
 }
+
+.swiper-main {
+  height: 288rpx;
+}
+
+.swiper-item {
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: #12c194;
+  height: 100%;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.card-hd {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+}
+
+.card-hd-l {
+  width: 36rpx; 
+  height: 36rpx;
+  margin-right: 8rpx;
+}
+
+.card-hd-t {
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: bold;
+  flex: 1;
+}
+
+.card-hd-r {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.group-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30rpx;
+  color: #1f2129;
+}
+
+.group-desc {
+  margin-top: 12rpx;
+  color: #333333;
+  font-size: 24rpx;
+  text-align: center;
+}
