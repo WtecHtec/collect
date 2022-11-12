@@ -1,5 +1,5 @@
 
-import { getGroups, getCountNotice } from '../servers/home'
+import { getGroups, getCountNotice, getNewNotice } from '../servers/home'
 import { PAGE_STATUS } from '../../utils/config.js';
 const dayjs = require('../../utils/day.min.js');
 const app = getApp();
@@ -18,7 +18,7 @@ Page({
     loadNotice: true,
 		moreNotice: false,
     mt: 24,
-
+    hasNews: false,
   },
 
   /**
@@ -33,6 +33,7 @@ Page({
       userInfo,
     })
     this._getGroups()
+   
   },
 
 
@@ -57,6 +58,7 @@ Page({
 						isMoreGroup: res.data.length > 3,
 					})
           this._setCountNotice()
+          this._getNewNotice()
           return 
         }
         this.setData({ pageStatus: PAGE_STATUS.empty })
@@ -152,5 +154,11 @@ Page({
       updataObj[`noticeCounts[${index}].cls`] = item.cls
     })
     this.setData(updataObj)
+  },
+  async _getNewNotice() {
+    const [err, res] = await getNewNotice()
+    if (!err && res && res.code === 200) {
+      this.setData({ hasNews: res.data })
+    }
   }
 })

@@ -15,3 +15,7 @@ export function getGroups() {
 export function getCountNotice() {
   return Request('/auth/getcountnotice')
 }
+
+export function getNewNotice() {
+  return Request('/auth/hasnewnotice')
+}

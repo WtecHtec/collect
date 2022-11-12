@@ -102,5 +102,20 @@ func GeCountNotices(openId string) (bool, int, []CountNotice) {
 	}
 	logger.Logger.Info("拉取本人创建通知收集情况成功")
 	return true, config.STATUS_SUE, datas
+}
 
+// 获取与本人相关的未上传过信息的收集通知
+func GetNewNotice(openId string) (bool, int, bool) {
+	has, err := datasource.Engine.SQL(fmt.Sprintf(`
+		select m.group_id, nc.notice_id, nc.notice_title  FROM  member m 
+	left  join  notice_collect nc on nc.group_id  = m.group_id and nc.enable = 1
+	left join msg_collect mc on mc.group_id  = m.group_id and mc.create_id  = '%v' 
+	WHERE   m.level = 0  and  ISNULL(mc.img_urls)  and  m.user_id  = '%v' ORDER  by nc.create_time 
+	`, openId, openId)).Get(&model.Member{})
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("获取与本人相关的未上传过信息的收集通知失败 %v", err))
+		return false, config.STATUS_ERROR, false
+	}
+	logger.Logger.Info("获取与本人相关的未上传过信息的收集通知成功")
+	return true, config.STATUS_SUE, has
 }
