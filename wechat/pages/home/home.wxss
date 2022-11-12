@@ -35,15 +35,6 @@
   display: flex;
 }
 
-.fui-icon__viewstyle {
-  margin-top: 40rpx;
-  margin-left: 40rpx;
-}
-
-.fui-icon__style {
-  margin-left: 180rpx;
-}
-
 .swiper-main {
   height: 288rpx;
 }
@@ -296,4 +287,12 @@
   flex-basis: 140rpx;
   width: 140rpx;
   flex-shrink: 0;
+}
+
+.main-hd {
+  background-color: #FFFFFF;
+}
+
+.n-main {
+  margin-top: 12rpx;
 }

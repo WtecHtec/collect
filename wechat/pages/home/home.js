@@ -1,6 +1,8 @@
 
 import { getGroups, getCountNotice, getNewNotice } from '../servers/home'
 import { PAGE_STATUS } from '../../utils/config.js';
+import { FEEBBACK_KEY } from '../../utils/storage-keys'
+import { getStorage, setStorage } from '../../utils/util'
 const dayjs = require('../../utils/day.min.js');
 const app = getApp();
 let startY = 0, startTime = 0;
@@ -19,6 +21,8 @@ Page({
 		moreNotice: false,
     mt: 24,
     hasNews: false,
+    loadGroup: true,
+    showFb: false,
   },
 
   /**
@@ -33,7 +37,7 @@ Page({
       userInfo,
     })
     this._getGroups()
-   
+    this.changeFeebBack()
   },
 
 
@@ -52,7 +56,8 @@ Page({
           res.data.forEach(item => {
             item.type = 'info'
           });
-          this.setData({ 
+          this.setData({
+            loadGroup: false, 
 						pageStatus: PAGE_STATUS.normal, 
 						groups: res.data.slice(0, 3),
 						isMoreGroup: res.data.length > 3,
@@ -160,5 +165,26 @@ Page({
     if (!err && res && res.code === 200) {
       this.setData({ hasNews: res.data })
     }
+  },
+  navFeebBack() {
+    wx.navigateTo({
+      url: '/pkgDetail/pages/feebback/index',})
+  },
+  changeFeebBack() {
+    const cacheInfo = getStorage(FEEBBACK_KEY)
+    let showFb = false
+    if (!cacheInfo) {
+      showFb = true
+    } else {
+      const nowTime = new Date().getTime()
+      const nDiff = nowTime - cacheInfo.time
+      if (nDiff > 24 * 60 * 60 * 1000) {
+        showFb = true
+        setStorage(FEEBBACK_KEY, null)
+      } else {
+        showFb = cacheInfo.num < 2
+      }
+    }
+    this.setData({ showFb })
   }
 })

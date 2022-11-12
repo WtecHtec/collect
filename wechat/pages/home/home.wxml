@@ -1,8 +1,8 @@
 <!--pages/home/home.wxml-->
 <view>
   <!--顶部-->
-  <view>
-    <fui-row marginTop="30rpx" margin-bottom="24rpx">
+  <view class="main-hd">
+    <fui-row>
       <fui-col offset="1" span="{{5}}">
         <fui-avatar size="large" src="{{userInfo.HeadeImg}}"></fui-avatar>
       </fui-col>
@@ -60,7 +60,8 @@
       </view>
     </view>
     <view class="mt-24">
-      <swiper circular indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
+      <loading wx:if="{{loadGroup}}"  isFixed="{{false}}"  type="row" />
+      <swiper wx:else indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
         <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item">
           <view wx:if="{{item.type === 'info'}}" class="card">
             <view class="card-hd" >
@@ -92,5 +93,5 @@
 		</view>
   </block>
   <!--中部-->
-  <view wx:if="{{pageStatus !== -1}}" class="mt-24 feebback-c">问题反馈</view>
+  <view wx:if="{{pageStatus !== -1 && showFb}}" bindtap="navFeebBack" class="mt-24 feebback-c">问题反馈</view>
 </view>
