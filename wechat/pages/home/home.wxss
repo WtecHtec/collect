@@ -1,38 +1,6 @@
-/* pages/home/home.wxss */
-.view-text {
-  margin-top: 20rpx;
-}
 
 .mt-24 {
   margin-top: 24rpx;
-}
-
-.fui-item__scale {
-  transform: scale3d(.9, .9, 1);
-}
-
-.fui-banner__wrap {
-  height: 450rpx;
-}
-
-.fui-banner__item {
-  width: 100%;
-  height: 460rpx;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34rpx;
-  font-weight: 600;
-  border-radius: 24rpx;
-}
-
-.fui-col__style {
-  border-radius: 24rpx;
-  width: 98%;
-  height: 240rpx;
-  background-color: #f1ecec;
-  display: flex;
 }
 
 .swiper-main {
@@ -101,7 +69,7 @@
 }
 
 .more_opt {
-  background-color: #FFFFFF;
+  background-color: #c8ccdb;
   width: 100%;
   height: 100%;
   box-sizing: border-box;

@@ -13,7 +13,7 @@ const Request = (url, data) => {
       },
 			method: 'POST',
       success (res) {
-				if (res && res.data) {
+				if (res && res.data && typeof res.data === 'object') {
 					return resolve(['', res.data]);
 				}
 			  resolve([`post ${url} response error `, null]);
