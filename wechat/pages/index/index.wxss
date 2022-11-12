@@ -1,0 +1,30 @@
+.m {
+	position: relative;
+	padding-top: 40rpx;
+}
+
+.item {
+	position: absolute;
+	transition: all 0.4s ease-in;
+}
+.a0 {
+	transform: scaleX(1) translateY(0);
+	z-index: 3;
+}
+.a1 {
+	transform: scaleX(0.98) translateY(-10px);
+	z-index: 2;
+}
+.a2 {
+	transform : scaleX(0.96) translateY(-20px);
+	z-index: 1;
+}
+
+.av {
+	z-index: 1;
+	transform: scaleX(1) translateY(0);
+}
+
+.hide {
+	transform : scaleX(0.96) translateY(-20px)
+}
