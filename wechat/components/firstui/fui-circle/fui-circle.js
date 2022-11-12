@@ -197,11 +197,9 @@ Component({
           that.drawDefaultCircle(ctx, canvas)
         }
         if (that.data.show) {
-          console.log('ddd', that.data.descTxt)
           that.drawpercent(ctx, start);
         }
         if (that.data.descTxt) {
-          console.log('ddd')
           that.drawDesc(ctx);
         }
         let isEnd = (percent == 0 || (that.data.counterclockwise && start == 100));

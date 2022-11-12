@@ -94,7 +94,7 @@ func GeCountNotices(openId string) (bool, int, []CountNotice) {
 		where cg.create_id = '%v'
 		group by m.group_id ) as gt
 	on gt.group_id = wg.group_id 
-	ORDER  by wg.create_time LIMIT 2`, openId, openId, openId)).Find(&datas)
+	ORDER  by wg.create_time LIMIT 4`, openId, openId, openId)).Find(&datas)
 
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("拉取本人创建通知收集情况失败 %v", err))

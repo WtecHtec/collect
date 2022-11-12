@@ -52,6 +52,7 @@
   padding-left: 24rpx;
   padding-right: 24rpx;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .card {
@@ -109,6 +110,7 @@
 }
 
 .more_opt {
+  background-color: #FFFFFF;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -133,12 +135,30 @@
   transform: scale(0.5);
   transform-origin: left top;
 }
-
 .count-main {
-  position: relative;
-  margin: 0 24rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: absolute;
   padding: 24rpx;
-  margin-bottom: 24rpx;
+  width: calc(100% - 48rpx);
+  transition: all 0.3s ease-in;
+  background-color: #FFFFFF;
+}
+
+.count-av-0 {
+  transform: scale(1) translateY(0);
+  z-index: 3;
+}
+
+.count-av-1 {
+  transform: scale(0.98) translateY(-24rpx);
+  z-index: 2;
+}
+
+.count-av-2 {
+  transform: scale(0.96) translateY(-48rpx);
+  z-index: 1;
 }
 
 
@@ -218,6 +238,7 @@
 }
 
 .more_notice {
+  margin-top: 12rpx;
   display: flex;
   align-items: center;
   color: #2657F0;
@@ -260,4 +281,19 @@
 	font-size: 22rpx;
 	text-align: center;
 	color: #2657F0;
+}
+
+.count-block {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  height: 278rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+}
+
+.count-c-r {
+  flex-basis: 140rpx;
+  width: 140rpx;
+  flex-shrink: 0;
 }

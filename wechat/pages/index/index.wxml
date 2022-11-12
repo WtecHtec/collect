@@ -1,14 +1,3 @@
-	<view style="height: 300rpx; width: 100%;" class="m">
-		<!-- <view class="item a1 {{acI == 1 && 'av'}} " style="height: 200rpx; width: 480rpx;background: green; "></view>
-		<view class="item a2 {{acI == 2 && 'av'}} " style="height: 200rpx; width: 480rpx;background: red; "></view> -->
-		<block wx:for="{{items}}" wx:key="index">
-		<view class="item {{item.anmcls}}" style="padding-top: 26rpx; height: 200rpx; width: 480rpx;background: {{item.bgcolor}}; ">
-			<button data-item="{{item}}" data-index="{{index}}" bindtap="bindUp">up </button>
-			<button data-item="{{item}}"  data-index="{{index}}"  bindtap="bindDown">down</button>
-		</view>
-		</block>
-	</view>
-
 <loading wx:if="{{pageStatus === -1}}"  type="col" />
 <empty wx:elif="{{pageStatus === 1}}" type="1" marginTop="200"  descr="糟糕，有bug！！"/>
 <empty wx:elif="{{pageStatus === 2}}" type="2" marginTop="200"  descr="您没有授权哦！"> 

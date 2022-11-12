@@ -7,58 +7,11 @@ Page({
   data: {
     pageStatus: PAGE_STATUS.loading,
     from: 'init',
-		acI: 0,
-		lastac: 0,
-		items : [
-			 {
-			pos: 0,
-			bgcolor: 'green',
-			anmcls: 'a0'
-		},
-		{
-			pos: 1,
-			bgcolor: 'red',
-			anmcls: 'a1'
-		},
-		{
-			pos: 2,
-			bgcolor: 'blue',
-			anmcls: 'a2'
-		},
-	]
   },
 	onLoad() {
     this.optNums = 0
 		this.checkLoin()
   },
-	bindDown({currentTarget}) {
-		const { item, index } = currentTarget.dataset
-		const { pos } = item
-		const { items } = this.data
-		const updataobj = {}
-		items.forEach( (i, idx) => {
-			let pos = i.pos - 1 
-			pos = pos < 0  ? items.length - 1 :  pos
-			updataobj[`items[${idx}].anmcls`] = `a${pos}`
-			i.pos = pos
-		})
-    this.setData(updataobj)
-		// console.log(item, updataobj, this.data.items)
-	},
-	bindUp({currentTarget}) {
-		const { item, index } = currentTarget.dataset
-		const { pos } = item
-		const { items } = this.data
-		const updataobj = {}
-		items.forEach( (i, idx) => {
-			let pos = i.pos + 1 
-			pos = pos > items.length - 1  ? 0:  pos
-			updataobj[`items[${idx}].anmcls`] = `a${pos}`
-			i.pos = pos
-		})
-    this.setData(updataobj)
-		// console.log(item, updataobj, this.data.items)
-	},
 	async checkLoin() {
 		this.setData({ pageStatus: PAGE_STATUS.loading })
 		const [err, res] = await postCheckLogin();
