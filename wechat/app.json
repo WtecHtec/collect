@@ -9,7 +9,8 @@
       "pages": [
         "pages/uppage/uppage",
         "pages/feebback/index",
-        "pages/notice_msg/index"
+        "pages/notice_msg/index",
+        "pages/create_group/create_group"
       ]
     }
   ],

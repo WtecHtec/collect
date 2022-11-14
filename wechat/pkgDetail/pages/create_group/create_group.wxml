@@ -1,0 +1,23 @@
+<!--pkgDetail/pages/create_group/create_group.wxml-->
+<view class="fui-wrap">
+  <view class="fui-page__bd">
+    <fui-form id="form" top="0">
+      <fui-input required label="团体名称" borderTop placeholder="请输入团体名称" model:value="{{name}}"></fui-input>
+      <fui-list-cell highlight="{{false}}" padding="0rpx 30rpx 0rpx 0rpx">
+        <view class="fui-cells">
+          <fui-input required label="是否可用" borderTop disabled></fui-input>
+          <fui-switch checked bindchange="switch_change" color="#39b778"></fui-switch>
+        </view>
+      </fui-list-cell>
+      <fui-textarea flexStart isCounter autoHeight label="团体介绍" placeholder="请输入介绍内容"></fui-textarea>
+
+      <fui-form-item label="" padding="28rpx 24rpx 8rpx">
+        <fui-upload max="{{2}}" url="{{imgUrl}}" id="upload" bindsuccess="success" binderror="error" bindcomplete="complete">
+        </fui-upload>
+      </fui-form-item>
+      <view class="fui-btn__box">
+        <ui-button text="创 建" bold bindclick="create_group_submit" background="#39b778"></ui-button>
+      </view>
+    </fui-form>
+  </view>
+</view>

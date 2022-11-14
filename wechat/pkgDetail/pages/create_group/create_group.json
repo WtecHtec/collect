@@ -2,8 +2,9 @@
   "usingComponents": {
     "fui-form": "/pkgDetail/firstui/fui-form/fui-form",
     "fui-input": "/pkgDetail/firstui/fui-input/fui-input",
-    "fui-upload": "/pkgDetail/firstui/fui-upload/fui-upload",
+    "fui-switch": "/pkgDetail/firstui/fui-switch/fui-switch",
     "fui-textarea": "/pkgDetail/firstui/fui-textarea/fui-textarea",
-    "fui-toast": "/pkgDetail/firstui/fui-toast/fui-toast"
+    "fui-toast": "/pkgDetail/firstui/fui-toast/fui-toast",
+    "fui-list-cell": "/pkgDetail/firstui/fui-list-cell/fui-list-cell"
   }
 }

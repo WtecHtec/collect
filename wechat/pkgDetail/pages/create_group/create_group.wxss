@@ -1,0 +1,13 @@
+/* pkgDetail/pages/create_group/create_group.wxss */
+.fui-cells {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fui-btn__box {
+  width: 100%;
+  padding: 64rpx 32rpx;
+  box-sizing: border-box;
+}
