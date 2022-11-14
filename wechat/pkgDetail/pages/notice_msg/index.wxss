@@ -30,6 +30,7 @@
   padding: 24rpx;
   background-color: #ffffff;
   font-size: 28rpx;
+	border-radius: 16rpx;
 }
 
 .r-t {

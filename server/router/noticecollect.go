@@ -16,6 +16,7 @@ func InitNotice(r *gin.RouterGroup) {
 	r.POST("/authownnotice", authOwnNotice)
 	r.POST("/getcountnotice", authGetCountNotice)
 	r.POST("/hasnewnotice", authGetNewNotice)
+	r.POST("/getnotices", authGetNotices)
 }
 func authCreateNotice(c *gin.Context) {
 	openId := uitls.GetLoginOpenId(c)
@@ -85,6 +86,20 @@ func authGetNewNotice(c *gin.Context) {
 		return
 	}
 	ok, status, datas := dao.GetNewNotice(openId)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
+}
+
+func authGetNotices(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	ok, status, datas := dao.FindRaleOwnNotice(openId)
 	if ok == false {
 		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
 		return

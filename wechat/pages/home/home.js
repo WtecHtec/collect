@@ -186,5 +186,8 @@ Page({
       }
     }
     this.setData({ showFb })
-  }
+  },
+	bindNavNotice() {
+		wx.navigateTo({ url: '/pkgDetail/pages/notice_msg/index'})
+	}
 })

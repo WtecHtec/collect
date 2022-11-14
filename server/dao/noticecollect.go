@@ -119,3 +119,29 @@ func GetNewNotice(openId string) (bool, int, bool) {
 	logger.Logger.Info("获取与本人相关的未上传过信息的收集通知成功")
 	return true, config.STATUS_SUE, has
 }
+
+type RaleOwnNotice struct {
+	Notice_title string `json:"notice_title"`
+	Notice_desc  string `json:"notice_desc"`
+	End_time     string `json:"end_time"`
+	Update_time  string `json:"update_time"`
+	Enable       string `json:"enable"`
+	Group_name   string `json:"group_name"`
+	Group_id     string `json:"group_id"`
+}
+
+//  下发给本人的通知
+func FindRaleOwnNotice(openId string) (bool, int, []RaleOwnNotice) {
+	datas := make([]RaleOwnNotice, 0)
+	err := datasource.Engine.Sql(fmt.Sprintf(`SELECT  nc.notice_title , nc.notice_desc, nc.end_time , nc.update_time , nc.enable , cg.group_name , cg.group_id
+	FROM  notice_collect nc 
+	left join class_group cg on cg.group_id  = nc.group_id AND  cg.create_id  != '%v'
+	left JOIN  member m  on m.group_id = nc.group_id AND m.group_id  = cg.group_id  and m.level  = 0 AND  m.user_id  = '%v'
+	WHERE nc.create_id !='%v'   and NOT ISNULL(cg.group_id)  ORDER  by  nc.update_time DESC `, openId, openId, openId)).Find(&datas)
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("拉取本人创建通知收集情况失败 %v", err))
+		return false, config.STATUS_ERROR, nil
+	}
+	logger.Logger.Info("拉取本人创建通知收集情况成功")
+	return true, config.STATUS_SUE, datas
+}
