@@ -23,7 +23,7 @@
   <empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
   <block wx:else>
 		<view wx:if="{{hasNews}}" class="n-main">
-			<fui-notice-bar padding="8rpx 24rpx"  content="通知:您有最新收集通知【点击查看】" background="#ffffff"/>
+			<fui-notice-bar padding="8rpx 24rpx" bindtap="bindNavNotice" content="通知:您有最新收集通知【点击查看】" background="#ffffff"/>
 		</view>
     <loading wx:if="{{loadNotice}}"  isFixed="{{false}}"  type="row" />
     <view wx:elif="{{ noticeCounts && noticeCounts.length}}" >
@@ -86,7 +86,7 @@
 				 <image class="bottom-item-i" src="../../static/img/home/icon-01.png"  mode="widthFix"/>
 				 <view class="bottom-item-t">收集</view>
 			</view>
-			<view class="bottom-item">
+			<view class="bottom-item" bindtap="bindNavNotice">
 				 <image class="bottom-item-i" src="../../static/img/home/icon-02.png"  mode="widthFix"/>
 				 <view class="bottom-item-t">通知</view>
 			</view>
