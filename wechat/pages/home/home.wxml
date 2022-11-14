@@ -84,7 +84,7 @@
 		<view class="mt-24 bottom-main">
 			<view class="bottom-item">
 				 <image class="bottom-item-i" src="../../static/img/home/icon-01.png"  mode="widthFix"/>
-				 <view class="bottom-item-t">创建收集</view>
+				 <view class="bottom-item-t">收集</view>
 			</view>
 			<view class="bottom-item">
 				 <image class="bottom-item-i" src="../../static/img/home/icon-02.png"  mode="widthFix"/>

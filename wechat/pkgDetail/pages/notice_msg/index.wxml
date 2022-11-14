@@ -1,0 +1,16 @@
+<view class="page-m">
+    <view class="nt-m" >
+      <view class="hd">
+        <view class="hd-img">
+          <fui-avatar size="small" src="../../../static/img/home/icon-04.png"></fui-avatar>
+        </view>
+        <view class="hd-title">
+          <view class="-line-clamp">某谋谟</view>
+          <view class="hd-time">发布：2022-02-02</view>
+        </view>
+      </view>
+      <view class="n-c out-time" >
+        【 <text class="r-b" > 点击上传 </text> 】「标题」<text class="r-t"> 截止结束</text> 内容
+      </view>
+    </view>
+</view>

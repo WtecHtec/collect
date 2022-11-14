@@ -138,7 +138,7 @@ Page({
         this._changeNoticeItem()
         setTimeout(() => {
           changeStatus = true
-        }, 1000)
+        }, 500)
       }
     } else {
       console.log('点击事件', event)

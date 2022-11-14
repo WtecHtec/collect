@@ -1,0 +1,49 @@
+.page-m {
+  box-sizing: border-box;
+  width: 100%;
+  padding:  0 24rpx;
+}
+.nt-m {
+  margin-top: 24rpx;
+}
+
+.hd {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.hd-title {
+  margin-left: 8rpx;
+  flex: 1;
+  font-size: 22rpx;
+  color: #1f2129;
+}
+
+.hd-time {
+  margin-top: 4rpx;
+  color: #666666;
+}
+
+.n-c {
+  margin-left: 64rpx;
+  margin-top: 12rpx;
+  padding: 24rpx;
+  background-color: #ffffff;
+  font-size: 28rpx;
+}
+
+.r-t {
+  color: #ED4343;
+}
+
+.r-b {
+  color: #2657F0;
+}
+
+.out-time {
+  color: #666666;
+}
+
+.out-time .r-b {
+  color: #666666;
+}

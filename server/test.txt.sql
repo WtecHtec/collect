@@ -90,3 +90,10 @@ left join
 on gt.group_id = wg.group_id 
 ORDER  by wg.create_time LIMIT 3
 
+
+
+// 下发给本人的通知
+SELECT  nc.notice_title , nc.notice_desc, nc.end_time , nc.update_time , nc.enable , cg.group_name , cg.group_id  FROM  notice_collect nc 
+left join class_group cg on cg.group_id  = nc.group_id AND  cg.create_id  != 'otrlc5XUmCRfBsYHd7lLlg3uAOUs'
+left JOIN  `member` m  on m.group_id = nc.group_id AND m.group_id  = cg.group_id  and m.`level`  = 0 AND  m.user_id  = 'otrlc5XUmCRfBsYHd7lLlg3uAOUs'
+WHERE nc.create_id !='otrlc5XUmCRfBsYHd7lLlg3uAOUs'   and NOT ISNULL(cg.group_id)  ORDER  by  nc.update_time DESC 
