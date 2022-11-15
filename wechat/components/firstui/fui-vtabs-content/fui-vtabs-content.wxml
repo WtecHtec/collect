@@ -1,3 +1,0 @@
-<view class="fui-vtabs-content__wrap" id="fui-vtabs-content__{{tabIndex}}">
-		<slot></slot>
-	</view>
