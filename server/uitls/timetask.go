@@ -18,7 +18,7 @@ func InitTimeTask() {
 	// */1 * * * * ? 每1分钟
 	// @every 2s 每2秒
 	// @daily 每天凌晨0点
-	_, ok := c.AddFunc("@daily", func() {
+	_, ok := c.AddFunc("@every 30s", func() {
 		logger.Logger.Info("任务调度启动")
 		updateNoticeEnable()
 	})
@@ -51,7 +51,7 @@ func updateNoticeEnable() {
 	if len(updateParmas) == 0 {
 		return
 	}
-	_, uerr := datasource.Engine.In("notice_id", updateParmas).Cols("enable").Update(&model.NoticeCollect{Enable: false})
+	_, uerr := datasource.Engine.In("notice_id", updateParmas).Cols("enable,update_time").Update(&model.NoticeCollect{Enable: false})
 	if uerr != nil {
 		fmt.Println(fmt.Sprintf("更新通知失败 %v", uerr))
 		logger.Logger.Error(fmt.Sprintf("更新通知失败 %v", uerr))

@@ -12,8 +12,8 @@ type NoticeCollect struct {
 	GroupId    string    `xorm:"varchar(64) notnull  'group_id' comment('组织id')"  form:"group_id" json:"group_id" binding:"required"`
 	Enable     bool      `xorm:"Bool notnull  'enable' default 1 comment('是否可用')"`
 	EndTime    time.Time `xorm:"DateTime notnull  'end_time' comment('结束时间')" form:"end_time" json:"end_time" binding:"required"`
-	CreateTime time.Time `xorm:"DateTime notnull created unique 'create_time' comment('创建时间')"`
-	UpdateTime time.Time `xorm:"DateTime notnull updated unique 'update_time' comment('更新时间')"`
+	CreateTime time.Time `xorm:"DateTime notnull created  'create_time' comment('创建时间')"`
+	UpdateTime time.Time `xorm:"DateTime notnull updated  'update_time' comment('更新时间')"`
 }
 
 type RequestNotice struct {

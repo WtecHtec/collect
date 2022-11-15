@@ -10,6 +10,6 @@ type MsgCollect struct {
 	RelaId     string    `xorm:"varchar(64) notnull  'rela_id' comment('关系id')"`
 	Desc       string    `xorm:"varchar(255) notnull  'collect_desc' comment('备注')" form:"desc" json:"desc" binding:"required"`
 	ImgUrls    string    `xorm:"varchar(255) notnull  'img_urls' comment('图片路径')" form:"img_urls" json:"img_urls" binding:"required"`
-	CreateTime time.Time `xorm:"DateTime notnull created unique 'create_time' comment('创建时间')"`
-	UpdateTime time.Time `xorm:"DateTime notnull updated unique 'update_time' comment('更新时间')"`
+	CreateTime time.Time `xorm:"DateTime notnull created  'create_time' comment('创建时间')"`
+	UpdateTime time.Time `xorm:"DateTime notnull updated  'update_time' comment('更新时间')"`
 }

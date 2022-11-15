@@ -60,7 +60,6 @@ Page({
             loadGroup: false, 
 						pageStatus: PAGE_STATUS.normal, 
 						groups: res.data.slice(0, 3),
-						isMoreGroup: res.data.length > 3,
 					})
           this._setCountNotice()
           this._getNewNotice()
@@ -189,5 +188,8 @@ Page({
   },
 	bindNavNotice() {
 		wx.navigateTo({ url: '/pkgDetail/pages/notice_msg/index'})
-	}
+	},
+  navGroupInfo() {
+    wx.navigateTo({ url: '/pkgDetail/pages/groups_info/index'})
+  }
 })

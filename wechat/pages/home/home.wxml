@@ -62,7 +62,7 @@
     <view class="mt-24">
       <loading wx:if="{{loadGroup}}"  isFixed="{{false}}"  type="row" />
       <swiper wx:else indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
-        <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item">
+        <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item" bindtap="navGroupInfo">
           <view wx:if="{{item.type === 'info'}}" class="card">
             <view class="card-hd" >
               <image class="card-hd-l" src="../../static/img/home/{{item.level === '1' ? 'lead' : 'staff'}}.png"  mode="widthFix"/>

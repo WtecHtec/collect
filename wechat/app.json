@@ -10,7 +10,8 @@
         "pages/uppage/uppage",
         "pages/feebback/index",
         "pages/notice_msg/index",
-        "pages/create_group/create_group"
+        "pages/create_group/create_group",
+        "pages/groups_info/index"
       ]
     }
   ],
