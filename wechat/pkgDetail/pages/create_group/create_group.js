@@ -1,4 +1,6 @@
 // pkgDetail/pages/create_group/create_group.js
+import { createGroup } from '../../server/dataserver'
+
 //校验规则
 const rules = [{
   name: "name",
@@ -19,13 +21,6 @@ Page({
     enable_status: true,
     desc: '',
     /*== formData 数据end ==*/
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
   },
 
   /**
@@ -56,7 +51,7 @@ Page({
         console.log(res)
         if (res.isPassed) {
           //接口
-          this.postData(this.data);
+          this._createGroup(this.data);
         }
       }).catch(err => {
         console.log(err)
@@ -76,10 +71,31 @@ Page({
 
   /**
    * 接口
-   * @param {表单数据} data 
+   * @param {表单数据} desc 
    */
-  postData(data) {
-
+  async _createGroup(desc) {
+    const [err, res] = await createGroup(desc)
+    if (!err && res) {
+      if (res.code === 200) {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      } else if (res.code === 203) {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      return
+    }
+    wx.showToast({
+      title: res.message,
+      icon: 'none',
+      duration: 2000
+    })
   }
 
 })

@@ -1,3 +1,5 @@
+import { upPage } from '../../server/dataserver'
+
 //校验规则
 const rules = [{
   name: "name",
@@ -32,13 +34,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
@@ -59,7 +54,7 @@ Page({
           //上传照片
           this.startUpload()
           //校验成功后拿相关数据上传
-          this.postData(this.data);
+          this._upPage(this.data);
         }
       }).catch(err => {
         console.log(err)
@@ -122,9 +117,30 @@ Page({
 
   /**
    * 接口
-   * @param {表单数据} data 
+   * @param {表单数据} desc 
    */
-  postData(data) {
-
+  async _upPage(desc) {
+    const [err, res] = await upPage(desc)
+    if (!err && res) {
+      if (res.code === 200) {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      } else if (res.code === 201) {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      return
+    }
+    wx.showToast({
+      title: res.message,
+      icon: 'none',
+      duration: 2000
+    })
   }
 });
