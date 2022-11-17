@@ -1,0 +1,6 @@
+<view >
+  <fui-textarea isCounter placeholder="反馈内容" model:value="{{fbInfo}}"></fui-textarea>
+  <view class="fb-bt">
+    <ui-button text="提交反馈"  bindclick="fbSubmit" background="#39b778"></ui-button>
+  </view>
+</view>

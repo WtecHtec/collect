@@ -1,0 +1,22 @@
+<view wx:if="{{pageStatus === 4}}" class="fui-wrap">
+  <view class="fui-page__bd">
+    <fui-form id="form" top="0">
+      <fui-input required label="标题" borderTop placeholder="请输入标题" model:value="{{title}}"></fui-input>
+      <fui-input required label="总人数" type="number" min="1" placeholder="请输入总人数" model:value="{{targetnum}}"></fui-input>
+      <fui-form-item  label="结束时间">
+        <picker mode="date" value="{{date}}" start="{{date}}"  bindchange="bindDateChange">
+            <view class="picker-txt">
+              {{date}}
+            </view>
+        </picker>
+      </fui-form-item>
+      <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
+      <view class="fui-btn__box">
+        <ui-button text="确定" bold bindclick="bindSubmit" background="#39b778"></ui-button>
+      </view>
+    </fui-form>
+  </view>
+</view>
+<empty wx:elif="{{pageStatus === 200}}" type="200" marginTop="200"  descr="创建成功"> 
+  <ui-button openType="share" text="转发好友或群收集" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
+</empty>

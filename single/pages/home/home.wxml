@@ -1,0 +1,72 @@
+<!--pages/home/home.wxml-->
+<view>
+  <!--顶部-->
+  <view class="main-hd">
+    <fui-row>
+      <fui-col offset="1" span="{{5}}">
+        <fui-avatar size="large" src="{{userInfo.HeadeImg}}"></fui-avatar>
+      </fui-col>
+      <fui-col span="{{17}}">
+        <view>
+          <fui-text text="{{userInfo.Name}}" size="{{48}}" fontWeight="500"></fui-text>
+        </view>
+        <view class="view-text">
+          <fui-text text="{{userInfo.PhoneNumer}}" size="{{24}}" color="#333333" textType="mobile" call format></fui-text>
+        </view>
+      </fui-col>
+    </fui-row>
+  </view>
+  <loading wx:if="{{pageStatus === -1}}"  type="col" />
+  <empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="暂无数据"> 
+    <ui-button bindclick="bindToCollect" text="去收集" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
+  </empty>
+  <empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
+  <block wx:else>
+    <loading wx:if="{{loadNotice}}"  isFixed="{{false}}"  type="row" />
+    <view wx:elif="{{ noticeCounts && noticeCounts.length}}" >
+      <view style="margin-top: {{mt}}rpx" class="count-block">
+        <view wx:for="{{noticeCounts}}" wx:key="index" catchtouchstart="catchTouchStart" catchtouchend="catchTouchEnd" data-item="{{item}}"  class="count-main {{item.cls}}">
+          <view class="count-hd" >
+            <image class="card-hd-l" src="../../static/img/home/count.png"  mode="widthFix"/>
+            <view class="count-hd-t">{{item.notice_title}}</view>
+            <view class="count-time">结束：{{item.createTime}}</view>
+            <image class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
+          </view>
+          <view class="count-content">
+            <view class="count-c-item">
+              <view class="count-c-item-v" >{{item.group_total}}</view>
+              <view class="count-c-item-d">总数</view>
+            </view>
+            <view class="count-c-item">
+              <view class="count-c-item-v">{{item.collect_total}}</view>
+              <view class="count-c-item-d">已收集</view>
+            </view>
+            <view class="count-c-item">
+              <view class="count-c-item-v">{{item.un_total}}</view>
+              <view class="count-c-item-d">未收集</view>
+            </view>
+            <view class="count-c-r" >
+              <fui-circle percent="{{item.percent}}" width="140" foreground="{{item.pColor}}" color="{{item.pColor}}" size="16" descTxt="完成" descSize="10" peroffset="-5" descoffset="10"/>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{moreNotice}}" class="more_notice"> 
+        <view class="more_txt" >更多收集信息</view> 
+        <image class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
+      </view>
+    </view>
+		<view class="mt-24 bottom-main">
+			<view class="bottom-item" bindtap="bindToCollect">
+				 <image class="bottom-item-i" src="../../static/img/home/icon-01.png"  mode="widthFix"/>
+				 <view class="bottom-item-t">收集</view>
+			</view>
+			<view class="bottom-item" bindtap="bindNavNotice">
+				 <image class="bottom-item-i" src="../../static/img/home/icon-02.png"  mode="widthFix"/>
+				 <view class="bottom-item-t">历史</view>
+			</view>
+		</view>
+  </block>
+  <!--中部-->
+  <view wx:if="{{pageStatus !== -1 && showFb}}" bindtap="navFeebBack" class="mt-24 feebback-c">问题反馈</view>
+</view>

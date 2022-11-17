@@ -1,12 +1,11 @@
   <empty wx:if="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
   <view wx:else>
-    <swiper wx:else indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
+    <swiper indicator-dots="{{true}}" class="swiper-main" indicator-active-color="#fcce1c"> 
       <swiper-item wx:for="{{groups}}" wx:key="index" class="swiper-item" bindtap="navGroupInfo">
         <view wx:if="{{item.type === 'info'}}" class="card">
           <view class="card-hd" >
             <image class="card-hd-l" src="../../static/img/home/{{item.level === '1' ? 'lead' : 'staff'}}.png"  mode="widthFix"/>
             <view class="card-hd-t">{{item.user_name}}</view>
-            <image wx:if="{{item.level === '1'}}" class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
           </view>
           <view class="group-name">{{item.group_name}}</view>
           <view class="group-desc">{{item.group_desc}}</view>

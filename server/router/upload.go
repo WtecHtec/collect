@@ -13,7 +13,7 @@ import (
 )
 
 type UploadParam struct {
-	GroupId string `form:"group_id" json:"group_id" binding:"required"`
+	GroupId string `form:"group_id" json:"group_id"`
 }
 
 func UpLoadFile(r *gin.RouterGroup) {

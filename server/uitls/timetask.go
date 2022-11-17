@@ -18,7 +18,7 @@ func InitTimeTask() {
 	// */1 * * * * ? 每1分钟
 	// @every 2s 每2秒
 	// @daily 每天凌晨0点
-	_, ok := c.AddFunc("@every 30s", func() {
+	_, ok := c.AddFunc("@daily", func() {
 		logger.Logger.Info("任务调度启动")
 		updateNoticeEnable()
 	})

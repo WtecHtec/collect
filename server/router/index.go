@@ -30,6 +30,8 @@ func InitRouter(r *gin.Engine) {
 		InitAuthFeebBackRouter(auth)
 		InitNotice(auth)
 		InitMsgCollect(auth)
+		InitAuthUserRouter(auth)
+		InitSgNotice(auth)
 	}
 	TestHello(r)
 }

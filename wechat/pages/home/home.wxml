@@ -67,7 +67,6 @@
             <view class="card-hd" >
               <image class="card-hd-l" src="../../static/img/home/{{item.level === '1' ? 'lead' : 'staff'}}.png"  mode="widthFix"/>
               <view class="card-hd-t">{{item.user_name}}</view>
-              <image wx:if="{{item.level === '1'}}" class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
             </view>
             <view class="group-name">{{item.group_name}}</view>
             <view class="group-desc">{{item.group_desc}}</view>

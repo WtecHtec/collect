@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"collect/config"
 	"collect/datasource"
 	"collect/logger"
 	"collect/model"
@@ -39,11 +40,26 @@ func CreateUser(openId string, avatarUrl string, nickName string) bool {
 // 获取用户信息
 func GetUserInfoByOpenId(openId string) (model.User, bool) {
 	userInfo := make([]model.User, 0)
-	err := datasource.Engine.Cols("user_id", "user_name", "user_phone", "user_head", "create_time").Where("wx_openid = ?", openId).Find(&userInfo)
+	err := datasource.Engine.Cols("user_id", "user_name", "user_phone", "user_gender", "user_head", "create_time").Where("wx_openid = ?", openId).Find(&userInfo)
 	if err != nil || len(userInfo) == 0 {
 		logger.Logger.Error(fmt.Sprintf("获取用户信息失败, Openid: %v", openId))
 		return model.User{}, false
 	}
 	logger.Logger.Info(fmt.Sprintf("获取用户信息成功, Openid: %v; Info: %v", openId, userInfo[0]))
 	return userInfo[0], true
+}
+
+// 修改数据
+func UpdateUser(openId string, info *model.UserUpdate) (bool, int) {
+	_, err := datasource.Engine.Cols("user_name", "user_phone", "user_gender").Update(&model.User{
+		Name:       info.Name,
+		PhoneNumer: info.PhoneNumer,
+		Gender:     info.Gender,
+	})
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("更新用户信息失败, Openid: %v", openId))
+		return false, config.STATUS_ERROR
+	}
+	logger.Logger.Error("更新用户信息成功")
+	return true, config.STATUS_SUE
 }

@@ -1,0 +1,32 @@
+<view class="tip-c">
+  <fui-text text="{{text}}" size="{{28}}" type="danger"></fui-text>
+</view>
+<view class="fui-wrap">
+  <view class="fui-page__bd">
+    <fui-form id="form" top="0">
+      <fui-input required label="姓名" borderTop placeholder="请输入姓名" model:value="{{name}}"></fui-input>
+      <fui-input required label="手机号码" placeholder="请输入手机号码" model:value="{{mobile}}"></fui-input>
+      <fui-form-item  label="性别">
+        <fui-radio-group name="radio" model:value="{{gender}}" bindchange="change">
+          <view class="g-c">
+            <fui-label>
+              <view class="fui-align__center">
+                <fui-radio value="M"></fui-radio>
+                <text class="g-text">男</text>
+              </view>
+            </fui-label>
+            <fui-label margin="0 0 0 40rpx">
+              <view class="fui-align__center">
+                <fui-radio value="W"></fui-radio>
+                <text class="g-text">女</text>
+              </view>
+            </fui-label>
+          </view>
+        </fui-radio-group>
+      </fui-form-item>
+      <view class="fui-btn__box">
+        <ui-button text="确定" bold bindclick="bindSubmit" background="#39b778"></ui-button>
+      </view>
+    </fui-form>
+  </view>
+</view>

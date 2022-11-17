@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "fui-textarea": "/pkgDetail/components/firstui/fui-textarea/fui-textarea"
+  },
+  "navigationBarTitleText": "问题反馈"
+}

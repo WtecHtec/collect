@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/registe/index"
+  ],
+  "subpackages": [
+    {
+      "root": "pkgDetail",
+      "pages": [
+        "pages/feebback/index",
+        "pages/notice_opt/index",
+        "pages/notice_info/index"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "loading": "components/loading/index",
+    "empty": "components/empty/index",
+    "ui-button": "components/ui-button/index",
+    "fui-text": "components/firstui/fui-text/fui-text",
+    "fui-row": "components/firstui/fui-row/fui-row",
+    "fui-col": "components/firstui/fui-col/fui-col",
+    "fui-form-item": "components/firstui/fui-form-item/fui-form-item",
+    "fui-circle": "/components/firstui/fui-circle/fui-circle",
+    "fui-notice-bar": "/components/firstui/fui-notice-bar/fui-notice-bar",
+    "fui-avatar": "/components/firstui/fui-avatar/fui-avatar",
+    "fui-form": "components/firstui/fui-form/fui-form",
+    "fui-input": "components/firstui/fui-input/fui-input",
+    "fui-radio": "/components/firstui/fui-radio/fui-radio",
+    "fui-radio-group": "components/firstui/fui-radio-group/fui-radio-group",
+    "fui-label": "components/firstui/fui-label/fui-label"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "收集码",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

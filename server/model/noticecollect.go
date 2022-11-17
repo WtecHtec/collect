@@ -8,6 +8,7 @@ type NoticeCollect struct {
 	Id         string    `xorm:"varchar(64) pk notnull unique 'notice_id' comment('通知id')"`
 	Title      string    `xorm:"varchar(64) pk notnull  'notice_title' comment('通知标题')" form:"title" json:"title" binding:"required"`
 	Desc       string    `xorm:"varchar(255) notnull  'notice_desc' comment('通知内容')" form:"desc" json:"desc" binding:"required"`
+	TargetNum  int       `xorm:"Int notnull  'target_num' comment('目标人数')"`
 	CreateId   string    `xorm:"varchar(64) notnull  'create_id' comment('创建用户id')"`
 	GroupId    string    `xorm:"varchar(64) notnull  'group_id' comment('组织id')"  form:"group_id" json:"group_id" binding:"required"`
 	Enable     bool      `xorm:"Bool notnull  'enable' default 1 comment('是否可用')"`
@@ -21,4 +22,19 @@ type RequestNotice struct {
 	Desc    string `form:"desc" json:"desc" binding:"required"`
 	GroupId string `form:"group_id" json:"group_id" binding:"required"`
 	EndTime string `form:"end_time" json:"end_time" binding:"required"`
+}
+
+type SgReqNotice struct {
+	Title     string `form:"title" json:"title" binding:"required"`
+	Desc      string `form:"desc" json:"desc"`
+	EndTime   string `form:"end_time" json:"end_time" binding:"required"`
+	TargetNum int    `form:"target_num" json:"target_num" binding:"required"`
+}
+
+type SgUpNotice struct {
+	NoticeId  string `form:"notice_id" json:"notice_id" binding:"required"`
+	Title     string `form:"title" json:"title" binding:"required"`
+	Desc      string `form:"desc" json:"desc"`
+	EndTime   string `form:"end_time" json:"end_time" binding:"required"`
+	TargetNum int    `form:"target_num" json:"target_num" binding:"required"`
 }
