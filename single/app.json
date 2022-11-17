@@ -10,7 +10,8 @@
       "pages": [
         "pages/feebback/index",
         "pages/notice_opt/index",
-        "pages/notice_info/index"
+        "pages/notice_info/index",
+        "pages/msg_collect/index"
       ]
     }
   ],

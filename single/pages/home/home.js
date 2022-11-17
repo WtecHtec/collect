@@ -159,7 +159,10 @@ Page({
     this.setData({ showFb })
   },
   bindToNotice() {
-    wx.navigateTo({ url: '/pkgDetail/pages/notice_info/index'})
+    // wx.navigateTo({ url: '/pkgDetail/pages/notice_info/index'})
+    const notice_id = "54799366-1ef4-4589-9f62-8614d2da5f96"
+    wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeid=${notice_id}`})
+    
   },
   bindToCollect() {
     wx.navigateTo({ url: '/pkgDetail/pages/notice_opt/index'})

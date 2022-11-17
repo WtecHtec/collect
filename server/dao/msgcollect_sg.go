@@ -19,6 +19,7 @@ func CreateSgMsgCollect(openId string, noticeId string, imgUrls string, desc str
 		logger.Logger.Info(fmt.Sprintf("查询通知已过期 %v", noticeId))
 		return false, config.STATUS_TIMEOUT
 	}
+
 	msg := &model.MsgCollect{
 		Id:       uitls.GetUUID(),
 		NoticeId: noticeId,
@@ -49,6 +50,6 @@ func UpdateSgMsgCollect(openId string, collectId string, imgUrls string, desc st
 	return true, config.STATUS_SUE
 }
 
-func GetSgMsgCollectInfos(openId string, collectId string, order string) {
+func GetSgMsgCollectByOwn(openId string, collectId string, order string) {
 
 }

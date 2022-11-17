@@ -1,0 +1,19 @@
+<loading wx:if="{{pageStatus === -1}}"  type="col" />
+<empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="无收集数据"> </empty>
+<view class="fui-wrap">
+  <view class="fui-page__bd">
+    <fui-form id="form" top="24">
+      <fui-input required label="姓名" borderTop placeholder="请输入姓名" model:value="{{userInfo.Name}}" disabled></fui-input>
+      <fui-input required label="手机号码" placeholder="请输入手机号码" model:value="{{userInfo.PhoneNumer}}" disabled></fui-input>
+      <!-- <view class="fui-section__title">备注</view> -->
+      <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
+      <fui-form-item label="" padding="28rpx 24rpx 8rpx">
+        <fui-upload max="{{2}}" url="{{imgUrl}}" id="upload" bindsuccess="success" binderror="error" bindcomplete="complete">
+        </fui-upload>
+      </fui-form-item>
+      <view class="fui-btn__box">
+        <ui-button text="上 传" bold bindclick="upload_submit" background="#39b778"></ui-button>
+      </view>
+    </fui-form>
+  </view>
+</view>

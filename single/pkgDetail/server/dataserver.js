@@ -9,3 +9,8 @@ export function subitFeebBack(desc) {
 export function createNotice(info) {
 	return Request('/auth/authcreatenotice_sg', {...info})
 }
+
+export function getBaseNoticeInfos(info) {
+  return  Request('/auth/authnoticeinfos_sg', {...info})
+  
+}

@@ -96,3 +96,12 @@ func GetSgNotices(openId string, noticeId string, enable string, order string) (
 	logger.Logger.Info("获取收集通知详情成功")
 	return true, config.STATUS_SUE, datas
 }
+
+func GetSgNoticeById(noticeId string) (bool, int, *model.NoticeCollect) {
+	datas := make([]model.NoticeCollect, 0)
+	err := datasource.Engine.Where("notice_id = ?", noticeId).Cols("notice_id, notice_title, notice_desc, update_time, end_time, target_num ").Find(&datas)
+	if err != nil || len(datas) == 0 {
+		return false, config.STATUS_ERROR, nil
+	}
+	return true, config.STATUS_SUE, &datas[0]
+}
