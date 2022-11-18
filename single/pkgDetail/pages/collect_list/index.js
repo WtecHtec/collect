@@ -97,7 +97,7 @@ Page({
     if (current === 1) {
       notice_id && wx.navigateTo({ url: `/pkgDetail/pages/notice_info/index?noticeId=${notice_id}`})
     } else {
-      if (enable === '0') {
+      if (enable === '1') {
         wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeId=${notice_id}`})
       } else {
         wx.navigateTo({ url: `/pkgDetail/pages/preview/index?collectId=${collect_id}`})
