@@ -53,14 +53,16 @@ func UpdateSgNotice(openId string, noticeId string, targetNum int, title string,
 type NoticeSg struct {
 	NoticeId    string `json:"notice_id"`
 	NoticeTitle string `json:"notice_title"`
+	NoticeDesc  string `json:"notice_desc"`
 	EndTime     string `json:"end_time"`
 	TargetNum   int    `json:"target_num"`
 	NoticeTotal int    `json:"notice_total"`
+	Enable      int    `json:"enable"`
 }
 
 func GetHomeSgNotice(openId string) (bool, int, []NoticeSg) {
 	datas := make([]NoticeSg, 0)
-	err := datasource.Engine.SQL(fmt.Sprintf(`select nc.notice_id, nc.notice_title, nc.end_time , nc.target_num , tmc.notice_total   FROM  notice_collect nc 
+	err := datasource.Engine.SQL(fmt.Sprintf(`select nc.notice_id, nc.notice_desc,  nc.notice_title, nc.end_time , nc.target_num , tmc.notice_total   FROM  notice_collect nc 
 	left join (select count(mc.notice_id) as notice_total, mc.notice_id from msg_collect mc group by  mc.notice_id) tmc  on tmc.notice_id = nc.notice_id
 	WHERE  nc.create_id = '%v' and nc.enable = 1 ORDER BY  nc.update_time DESC LIMIT 4 `, openId)).Find(&datas)
 	if err != nil {
@@ -79,14 +81,14 @@ func GetSgNotices(openId string, noticeId string, enable string, order string) (
 	if enable != "-1" {
 		enableExp = fmt.Sprintf("and nc.enable = %v", enable)
 	}
-	if order == "-1" {
+	if order != "-1" {
 		oderTime = "ORDER BY  nc.update_time DESC "
 	}
 	if noticeId != "-1" {
-		noticeIdExp = fmt.Sprintf("and nc.notice_id = %v", noticeId)
+		noticeIdExp = fmt.Sprintf("and nc.notice_id = '%v'", noticeId)
 	}
 
-	err := datasource.Engine.SQL(fmt.Sprintf(`select nc.notice_id, nc.notice_title,  nc.notice_desc, nc.update_time,  nc.end_time , nc.target_num , tmc.notice_total   FROM  notice_collect nc 
+	err := datasource.Engine.SQL(fmt.Sprintf(`select nc.enable, nc.notice_id, nc.notice_title,  nc.notice_desc, nc.update_time,  nc.end_time , nc.target_num , tmc.notice_total   FROM  notice_collect nc 
 	left join (select count(mc.notice_id) as notice_total, mc.notice_id from msg_collect mc group by  mc.notice_id) tmc  on tmc.notice_id = nc.notice_id
 	WHERE  nc.create_id = '%v' %v %v %v`, openId, noticeIdExp, enableExp, oderTime)).Find(&datas)
 	if err != nil {

@@ -13,7 +13,8 @@ func InitSgMsgCollect(r *gin.RouterGroup) {
 	r.POST("/createcollect_sg", authCreateSgMsgCollect)
 	r.POST("/getmsgcollectbyid_sg", authGetMsgCollectById)
 	r.POST("/updatecollect_sg", authUpdateSgMsgCollect)
-
+	r.POST("/getmsgcollectbynotice_sg", authGetSgMsgCollectByNotice)
+	r.POST("/getnoticeraleown_sg", authGetSgNoticeRaleOwn)
 }
 
 type AddMsg struct {
@@ -87,4 +88,42 @@ func authUpdateSgMsgCollect(c *gin.Context) {
 		return
 	}
 	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE]})
+}
+
+func authGetSgMsgCollectByNotice(c *gin.Context) {
+	var notice MsgId
+	if err := c.ShouldBind(&notice); err != nil {
+		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
+		return
+	}
+	ok, status, datas := dao.GetSgMsgCollects(notice.NoticeId)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
+}
+
+type ReqColInfo struct {
+	CollectId string `json:"collect_id"`
+	Order     string `json:"order"`
+}
+
+func authGetSgNoticeRaleOwn(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	var notice ReqColInfo
+	if err := c.ShouldBind(&notice); err != nil {
+		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
+		return
+	}
+	ok, status, datas := dao.GetSgMsgCollectRaleOwn(openId, notice.CollectId, notice.Order)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
 }
