@@ -1,0 +1,4 @@
+<fui-tabs tabs="{{tabs}}" bindchange="bindChange" current="{{current}}" short="{{false}}"></fui-tabs>
+<loading wx:if="{{pageStatus === -1}}"  type="col" />
+<empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="暂无数据"> </empty>
+<fui-panel wx:else panelData="{{panelDatas}}" highlight="{{true}}" bindclick="bindClick" background="#ffffff" padding="{{24}}" size="{{32}}" ></fui-panel>

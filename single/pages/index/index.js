@@ -7,9 +7,11 @@ Page({
   data: {
     pageStatus: PAGE_STATUS.loading,
     from: 'init',
+    noticeId: '',
   },
 	onLoad(options) {
     options.from && (this.data.from = options.from);
+    options.noticeId && (this.data.noticeId = options.noticeId)
     this.optNums = 0
 		this.checkLoin()
   },
@@ -50,19 +52,18 @@ Page({
 		this.checkLoin()
   },
   async _postUserInfo() {
-    const { from } = this.data;
+    const { from, noticeId } = this.data;
     const [err, res] = await postUserInfo();
     if (!err && res && res.code === 200 && res.data) {
       const { PhoneNumer } = res.data || {}
       this.setData({ pageStatus: PAGE_STATUS.normal })
-      console.log(PhoneNumer)
       if ( PhoneNumer ) {
         setStorage(USERINFO_KEY, res.data)
         app.globalData.userInfo = res.data
-        NavToPage(from)
+        NavToPage(from, noticeId)
       } else {
         // 注册页
-        wx.redirectTo({ url: `/pages/registe/index?from=${from}` });
+        wx.redirectTo({ url: `/pages/registe/index?from=${from}&noticeId=${noticeId}` });
       }
     } else {
       // 进入兜底

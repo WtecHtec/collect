@@ -17,6 +17,6 @@
     </fui-form>
   </view>
 </view>
-<empty wx:elif="{{pageStatus === 200}}" type="200" marginTop="200"  descr="创建成功"> 
+<empty wx:elif="{{pageStatus === 200}}" type="200" marginTop="200"  descr="{{ optType === 'update' ? '修改成功' : '创建成功'}} "> 
   <ui-button openType="share" text="转发好友或群收集" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
 </empty>

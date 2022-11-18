@@ -25,6 +25,7 @@ Page({
     mobile: '',
     gender: 'M',
     from: 'init',
+    noticeId: '',
   },
 
   /**
@@ -32,6 +33,7 @@ Page({
    */
   onLoad(options) {
     options.form && (this.data.from = options.form);
+    options.noticeId && (this.data.noticeId = options.noticeId)
   },
 
     /**
@@ -76,7 +78,7 @@ Page({
     }
   },
   async _postUserInfo() {
-    const { from } = this.data
+    const { from, noticeId } = this.data
     const [err, res] = await postUserInfo();
     if (!err && res && res.code === 200 && res.data) {
       const { PhoneNumer } = res.data || {}
@@ -84,10 +86,10 @@ Page({
       if ( PhoneNumer ) {
         setStorage(USERINFO_KEY, res.data)
         app.globalData.userInfo = res.data
-        NavToPage(from)
+        NavToPage(from, noticeId)
       } else {
         // 注册页
-        wx.redirectTo({ url: `/pages/registe/index?from=${from}` });
+        wx.redirectTo({ url: `/pages/registe/index?from=${from}&noticeId=${noticeId}` });
       }
     } else {
       this._showError();

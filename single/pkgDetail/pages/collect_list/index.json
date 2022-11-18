@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "fui-tabs": "/pkgDetail/components/firstui/fui-tabs/fui-tabs",
+    "fui-panel": "/pkgDetail/components/firstui/fui-panel/fui-panel"
+  }
+}

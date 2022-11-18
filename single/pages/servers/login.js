@@ -62,9 +62,12 @@ export function getUserInfo() {
  * 登录成功后页面跳转逻辑
  * @param {*} from 
  */
-export function  NavToPage(from) {
+export function  NavToPage(from, noticeId) {
   if (from === 'init') {
     wx.redirectTo({ url: '/pages/home/home' });
+  } else if (from === 'collect') {
+    // 转发收集
+    wx.redirectTo({ url: `/pkgDetail/pages/msg_collect/index?noticeId=${noticeId}` });
   }
 }
 /**

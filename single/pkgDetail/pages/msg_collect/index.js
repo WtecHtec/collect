@@ -3,8 +3,8 @@ import { getBaseNoticeById, getMsgCollectById, createMsgCollectsg, updateMsgColl
 import { BASE_URL, mode } from "../../../config";
 import { getStorage } from "../../../utils/util";
 import { MINIKET_KEY } from '../../../utils/storage-keys'
+const dayjs = require('../../../utils/day.min.js');
 const minikey = getStorage(MINIKET_KEY) || '';
-// pkgDetail/pages/msg_collect/index.js
 const app = getApp();
 Page({
 
@@ -27,6 +27,7 @@ Page({
 		uploadLen: -1,
 		msgCollect: {},
 		uploadImgs: [],
+    noticeInfo: {},
   },
 
   /**
@@ -44,6 +45,10 @@ Page({
 			this._redirecResult(PAGE_STATUS.empty)
       return
 		}
+    if (noticeInfo.end_time) {
+      noticeInfo.source = '结束时间'
+      noticeInfo.time = dayjs(noticeInfo.end_time).format('YYYY-MM-DD HH:mm:ss')
+    } 
 		const [ok, msgCollect] = await this._getMsgCollectById()
 		let updObj = {}
 		const { baseUrl, optType} = this.data
@@ -62,10 +67,12 @@ Page({
 					fileList,
 					remarks: msgCollect.desc,
 				}
+        this.data.imgUrls = fileList;
 			}
 		}
     const userInfo = app.globalData.userInfo || {};
     this.setData({
+      noticeInfo,
       userInfo,
 			pageStatus: PAGE_STATUS.normal,
 			...updObj,
@@ -95,7 +102,7 @@ Page({
 		return [false, null]
 	},
 	upload_submit() {
-		const { uploadLen, optType, fileList, baseUrl } = this.data;
+		const { uploadLen, optType, imgUrls, baseUrl } = this.data;
 		if ((optType === 'create' && uploadLen === -1 )
 			|| (optType === 'update' && uploadLen === 0)) {
 			wx.showToast({
@@ -109,7 +116,7 @@ Page({
 			title: '上传中',
 			mask: true,
 		})
-		const uploadData  = fileList.find(item => item.indexOf(baseUrl) === -1);
+		const uploadData  = imgUrls.find(item => item.indexOf(baseUrl) === -1);
 		if (optType === 'update' && !uploadData) {
 			this._updateMsgCollect()
 			return
@@ -157,12 +164,12 @@ Page({
 		this.data.uploadImgs = [];
 	},
 	_getImgUrls() {
-		const { uploadImgs, imgUrls, optType } = this.data
-		const imgs = [...imgUrls]
-		if (optType === 'update') {
-			console.log(imgUrls, fileList)
-			return 
-		}
+		const { uploadImgs, imgUrls, baseUrl } = this.data
+    const baseUrls = imgUrls.filter(item => item.indexOf(baseUrl) != -1).map(item => {
+      return item.replace(baseUrl, '');
+    });
+		const imgs = [...baseUrls, ...uploadImgs]
+    console.log('imgs====', imgs)
 		return imgs.join(';');
 	},
 	async _createMsgCollect() {

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "fui-preview": "/pkgDetail/components/firstui/fui-preview/fui-preview"
+  }
+}

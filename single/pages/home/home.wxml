@@ -18,7 +18,8 @@
   </view>
   <loading wx:if="{{pageStatus === -1}}"  type="col" />
   <empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="暂无数据"> 
-    <ui-button bindclick="bindToCollect" text="去收集" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
+    <view bindtap="bindNavNotice" class="mt-24 feebback-c">历史记录</view>
+    <ui-button bindclick="bindToCollect" text="去收集" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="24rpx 0" borderColor="#12c194" color="#12c194"/>
   </empty>
   <empty wx:elif="{{pageStatus === 3}}" type="3" marginTop="200"  descr="网络信号找不着路了！"/>
   <block wx:else>
@@ -51,7 +52,7 @@
           </view>
         </view>
       </view>
-      <view wx:if="{{moreNotice}}" class="more_notice"> 
+      <view wx:if="{{moreNotice}}" bindtap="bindNavNotice" data-tab="1" class="more_notice"> 
         <view class="more_txt" >更多收集信息</view> 
         <image class="card-hd-r"  src="../../static/img/home/icon-right.png"  mode="widthFix"/>
       </view>

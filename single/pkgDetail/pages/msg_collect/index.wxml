@@ -1,5 +1,6 @@
-<loading wx:if="{{pageStatus === -1}}"  type="col" />
+<loading wx:if="{{pageStatus === -1}}"  type="col" isMask />
 <view wx:else class="fui-wrap">
+  <fui-panel panelData="{{noticeInfo}}" padding="{{24}}" size="{{32}}" />
   <view class="fui-page__bd">
     <fui-form id="form" top="24">
       <fui-input required label="姓名" borderTop  model:value="{{userInfo.Name}}" disabled></fui-input>

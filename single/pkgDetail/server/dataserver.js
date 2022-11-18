@@ -45,3 +45,37 @@ export function getMsgCollectById(id) {
  export function updateMsgCollectsg(info) {
 	return  Request('/auth/updatecollect_sg', { ...info })
 }
+
+/**
+ * 获取收集通知 info
+ * notice_id：'-1' 不判断条件
+	enable ：'-1' 不判断条件（1, 0）
+	order：'-1' 不判断条件（）
+ * @param {*} id 
+ * @returns 
+ */
+export function getNoticeInfossg(info) {
+	return  Request('/auth/authnoticeinfos_sg', { ...info })
+}
+
+/**
+ * 更新收集通知
+ * @param {*} info 
+ * @returns 
+ */
+export function updateNoticeInfossg(info) {
+	return  Request('/auth/authupdatenotice_sg', { ...info })
+}
+
+/** 获取通知收集详情 */
+export function getMsgCollectsg(id) {
+	return  Request('/auth/getmsgcollectbynotice_sg',{ notice_id: id })
+}
+
+/** 获取我的上传收集详情 */
+export function getNoticeRaleOwnsg(collectId, order) {
+	return  Request('/auth/getnoticeraleown_sg', {
+    order: order || '1',
+    collect_id: collectId || '-1',
+  })
+}

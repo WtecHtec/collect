@@ -12,7 +12,9 @@
         "pages/notice_opt/index",
         "pages/notice_info/index",
         "pages/msg_collect/index",
-        "pages/notice_result/index"
+        "pages/notice_result/index",
+        "pages/collect_list/index",
+        "pages/preview/index"
       ]
     }
   ],

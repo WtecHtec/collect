@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "fui-textarea": "/pkgDetail/components/firstui/fui-textarea/fui-textarea",
-    "fui-upload": "/pkgDetail/components/firstui/fui-upload/fui-upload"
+    "fui-upload": "/pkgDetail/components/firstui/fui-upload/fui-upload",
+    "fui-panel": "/pkgDetail/components/firstui/fui-panel/fui-panel"
   },
   "navigationBarTitleText": "上传信息"
 }

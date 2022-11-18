@@ -29,14 +29,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad() {
     const userInfo = app.globalData.userInfo || {};
     this.setData({
       userInfo,
     })
     this._setCountNotice()
     this.changeFeebBack()
-    watch('opt_collect', () => {
+    watch('home_opt_collect', () => {
       this._setCountNotice()
     })
   },
@@ -117,8 +117,7 @@ Page({
         }, 500)
       }
     } else {
-      console.log('点击事件', event)
-      this.bindToNotice()
+      this.bindToNotice(event)
     }
   },
   _changeNoticeItem() {
@@ -158,13 +157,23 @@ Page({
     }
     this.setData({ showFb })
   },
-  bindToNotice() {
-    // wx.navigateTo({ url: '/pkgDetail/pages/notice_info/index'})
-    const notice_id = "54799366-1ef4-4589-9f62-8614d2da5f96"
-    wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeId=${notice_id}`})
-    
+  bindToNotice(event) {
+    let item = null;
+    if (event.currentTarget) {
+       item = event.currentTarget.dataset.item || {}
+    } 
+    wx.navigateTo({ url: `/pkgDetail/pages/notice_info/index?noticeId=${item.notice_id}`})
+    // const notice_id = "54799366-1ef4-4589-9f62-8614d2da5f96"
+    // wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeId=${notice_id}`})
   },
   bindToCollect() {
     wx.navigateTo({ url: '/pkgDetail/pages/notice_opt/index'})
+  },
+  bindNavNotice(event) {
+    let tab = '0'
+    if (event.currentTarget) {
+      tab = event.currentTarget.dataset.tab || {}
+    } 
+    wx.navigateTo({ url: `/pkgDetail/pages/collect_list/index?tabIndex=${tab}`})
   }
 })

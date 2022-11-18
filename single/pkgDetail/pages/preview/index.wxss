@@ -1,0 +1,16 @@
+.p-c {
+  background: #fff;
+}
+
+.fui-upload__item {
+  display: flex;
+  margin-left: 32rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+.fui-upload__img {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 8rpx;
+}

@@ -1,1 +1,44 @@
-/* pkgDetail/pages/notice_info/index.wxss */
+
+.fui-section__title {
+	font-size: 24rpx;
+	line-height: 24rpx;
+	font-weight: 600;
+	margin-bottom: 24rpx;
+	padding-left: 16rpx;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.fui-section__title::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	background: #465CFF;
+	border-radius: 2px;
+	left: 0;
+	top: 0;
+}
+.msg-c {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.fui-padding {
+  padding: 36rpx 0;
+}
+.fui-icon__2x {
+  width: 64rpx;
+  height: 64rpx;
+  margin-bottom: 16rpx;
+}
+
+
+.fui-grid__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 400;
+}

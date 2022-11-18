@@ -1,0 +1,23 @@
+<loading wx:if="{{pageStatus === -1}}"  type="col" />
+<empty wx:elif="{{pageStatus === 0}}" type="0" marginTop="200"  descr="暂无数据"> </empty>
+<view wx:else>
+  <fui-panel panelData="{{noticeInfo}}" background="#ffffff" padding="{{24}}" size="{{32}}" >
+  <view class="msg-c">
+    <view class="fui-section__title">已上传({{msgCollects.length}}人)</view>
+    <loading wx:if="{{loadMsg}}"  isFixed="{{false}}"  type="row" /> 
+    <empty wx:elif="{{!msgCollects.length}}" type="0" marginTop="24"  descr="暂无上传人员"> </empty>
+    <fui-grid wx:else square="{{false}}" bindclick="bindGrid">
+      <fui-grid-item wx:for="{{msgCollects}}" wx:key="index" index="{{index}}">
+        <view class="fui-grid__cell fui-padding">
+          <image src="/static/icons/icon-{{item.user_gender === 'M' ? '01' : '02'}}.png" class="fui-icon__2x" mode="widthFix">
+          </image>
+          <text>{{item.user_name}}({{item.imgNum}})</text>
+        </view>
+      </fui-grid-item>
+    </fui-grid>
+  </view>
+  </fui-panel>
+  <fui-fab position="right" fabs="{{fabs}}" bindclick="handleClick"></fui-fab>
+     
+</view>
+

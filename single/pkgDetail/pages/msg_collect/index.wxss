@@ -55,3 +55,14 @@ page {
 .fui-section__title:not(:first-child) {
   margin-top: 32rpx;
 }
+
+.nt-c {
+  padding: 24rpx;
+}
+
+.nt-txt {
+  margin-bottom: 12rpx;
+}
+.nt-txt:last-child {
+  margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-import { createNotice } from "../../server/dataserver";
+import { createNotice, getNoticeInfossg, updateNoticeInfossg } from "../../server/dataserver";
 import { PAGE_STATUS } from "../../../utils/config";
 import { dispatch } from "../../../utils/event_bus";
 const app = getApp();
@@ -27,35 +27,33 @@ Page({
     remarks: '',
     date: dayjs().add(2, 'day').format('YYYY-MM-DD'),
     noticeId: '',
+    optType: 'create',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('===', this.data.date)
+    if (options.optType === 'update') {
+      if (!options.noticeId) {
+        this._redirecResult(PAGE_STATUS.opt404)
+        return
+      }
+      this.data.noticeId = options.noticeId
+      this._getNoticeInfossg()
+      this.setData({ optType: options.optType })
+    }
   },
-
+  _redirecResult(errId) {
+		const { noticeId } = this.data;
+		wx.redirectTo({ url: `/pkgDetail/pages/notice_result/index?errId=${errId}&noticeId=${noticeId}` });
+	},
   /**
  * 生命周期函数--监听页面初次渲染完成
  */
   onReady() {
     //获取表单信息
     formCom = this.selectComponent("#form")
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
   },
 
   /**
@@ -70,12 +68,13 @@ Page({
     })
   },
   bindSubmit() {
+    const { optType } = this.data;
     if (formCom) {
       this.data.title = this.data.title.trim();
       this.data.remarks = this.data.remarks.trim();
       formCom.validator(this.data, rules).then(res => {
         if (res.isPassed) {
-          this._createNotice();
+          optType === 'update' ? this._updateNoticeInfossg() : this._createNotice();
         }
       }).catch(err => {
         console.log(err)
@@ -96,10 +95,36 @@ Page({
         pageStatus: PAGE_STATUS.sueopt,
         noticeId: res.data,
       })
-      dispatch('opt_collect')
+      dispatch('home_opt_collect')
     } else {
       wx.showToast({
         title: '创建失败',
+        icon: 'error',
+        duration: 2000
+      })
+    }
+  },
+  
+  async _updateNoticeInfossg() {
+    const { title, targetnum, date, remarks, noticeId } = this.data;
+    const params = {
+      title,
+      notice_id: noticeId,
+      desc: remarks,
+      end_time: date,
+      target_num: Number(targetnum),
+    }
+    const [err, res] = await updateNoticeInfossg(params)
+    if (!err && res && res.code === 200) {
+      this.setData({
+        pageStatus: PAGE_STATUS.sueopt,
+        noticeId: res.data,
+      })
+      dispatch('ino_opt_collect')
+      dispatch('home_opt_collect')
+    } else {
+      wx.showToast({
+        title: '修改失败',
         icon: 'error',
         duration: 2000
       })
@@ -115,7 +140,28 @@ Page({
     }
     return {
       title: `${Name}邀请您参加收集活动`,
-      path: `/pages/index/index?from=collect&noticeid=${noticeId}`,
+      path: `/pages/index/index?from=collect&noticeId=${noticeId}`,
     }
-  }
+  },
+  async _getNoticeInfossg() {
+    const { noticeId } = this.data;
+    const param = {
+      order: '-1',
+      enable: '-1',
+      notice_id: noticeId,
+    }
+    const [err, res] = await getNoticeInfossg(param)
+    if (!err && res && res.code === 200 && Array.isArray(res.data) && res.data.length) {
+        const info = res.data[0]
+        this.setData({
+          title: info.notice_title,
+          targetnum: info.target_num,
+          date: dayjs(info.end_time).format('YYYY-MM-DD'),
+          remarks: info.notice_desc,
+          pageStatus: PAGE_STATUS.normal,
+        })
+    } else {
+      this._redirecResult(PAGE_STATUS.opt404)
+    }
+  },
 })
