@@ -161,7 +161,7 @@ Page({
   bindToNotice() {
     // wx.navigateTo({ url: '/pkgDetail/pages/notice_info/index'})
     const notice_id = "54799366-1ef4-4589-9f62-8614d2da5f96"
-    wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeid=${notice_id}`})
+    wx.navigateTo({ url: `/pkgDetail/pages/msg_collect/index?noticeId=${notice_id}`})
     
   },
   bindToCollect() {

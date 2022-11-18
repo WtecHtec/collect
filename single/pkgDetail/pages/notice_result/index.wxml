@@ -1,0 +1,3 @@
+<empty  type="{{errInfo.errId}}" marginTop="200"  descr="{{errInfo.desc}}"> 
+	<ui-button wx:if="{{errInfo.btn}}"  bindclick="bindOpt" text="{{errInfo.btn}}" size="{{28}}" width="336rpx" height="84rpx" radius="100rpx" background="#fff" margin="64rpx 0" borderColor="#12c194" color="#12c194"/>
+</empty>

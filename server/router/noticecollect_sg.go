@@ -15,6 +15,8 @@ func InitSgNotice(r *gin.RouterGroup) {
 	r.POST("/authhomenotice_sg", authHomeSgNotice)
 	r.POST("/authnoticeinfos_sg", authSgNoticeInfos)
 	r.POST("/authupdatenotice_sg", authUpdateNotice)
+	r.POST("/authgetnoticebyid_sg", authGetNoticeById)
+
 }
 
 func authCreateSgNotice(c *gin.Context) {
@@ -87,6 +89,24 @@ func authSgNoticeInfos(c *gin.Context) {
 		return
 	}
 	ok, status, datas := dao.GetSgNotices(openId, notice.NoticeId, notice.Enable, notice.Order)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
+}
+
+type NotId struct {
+	NoticeId string `json:"notice_id" binding:"required"`
+}
+
+func authGetNoticeById(c *gin.Context) {
+	var notice NotId
+	if err := c.ShouldBind(&notice); err != nil {
+		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
+		return
+	}
+	ok, status, datas := dao.GetSgNoticeById(notice.NoticeId)
 	if ok == false {
 		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
 		return

@@ -337,7 +337,7 @@ Component({
       let urls = [...this.data.urls]
       const len = urls.length
       for (let i = 0; i < len; i++) {
-        if (urls[i].startsWith('https')) {
+        if (!urls[i].startsWith('http://tmp/') && (urls[i].startsWith('https') || urls[i].startsWith('http')) ) {
           continue;
         } else {
           let value = `status[${i}]`

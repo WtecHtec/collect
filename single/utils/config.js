@@ -9,4 +9,6 @@ export const PAGE_STATUS = {
 	normal: 4, // 正常操作
 	reopt: 5, // 重复操作
   sueopt: 200, // 操作成功
+	opt404: 404, // 没有数据
+	opt405: 405, // 已存在
 }

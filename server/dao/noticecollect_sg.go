@@ -101,7 +101,9 @@ func GetSgNoticeById(noticeId string) (bool, int, *model.NoticeCollect) {
 	datas := make([]model.NoticeCollect, 0)
 	err := datasource.Engine.Where("notice_id = ?", noticeId).Cols("notice_id, notice_title, notice_desc, update_time, end_time, target_num ").Find(&datas)
 	if err != nil || len(datas) == 0 {
+		logger.Logger.Error(fmt.Sprintf("GetSgNoticeById获取收集通知详情失败 %v", err))
 		return false, config.STATUS_ERROR, nil
 	}
+	logger.Logger.Info("GetSgNoticeById获取收集通知详情成功")
 	return true, config.STATUS_SUE, &datas[0]
 }

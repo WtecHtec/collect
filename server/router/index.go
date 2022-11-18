@@ -32,6 +32,7 @@ func InitRouter(r *gin.Engine) {
 		InitMsgCollect(auth)
 		InitAuthUserRouter(auth)
 		InitSgNotice(auth)
+		InitSgMsgCollect(auth)
 	}
 	TestHello(r)
 }

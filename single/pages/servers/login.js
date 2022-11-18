@@ -64,7 +64,6 @@ export function getUserInfo() {
  */
 export function  NavToPage(from) {
   if (from === 'init') {
-    console.log('ddd')
     wx.redirectTo({ url: '/pages/home/home' });
   }
 }
