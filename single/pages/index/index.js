@@ -69,6 +69,11 @@ Page({
       // 进入兜底
       this.setData({ pageStatus: PAGE_STATUS.error })
     }
+  },
+  bindReJoin() {
+    // 清除缓存
+    setStorage(USERINFO_KEY, null)
+    setStorage(MINIKET_KEY, null)
+    wx.redirectTo({ url: `/pages/index/index` });
   }
-
 })

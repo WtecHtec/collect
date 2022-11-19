@@ -6,7 +6,7 @@
     <view class="fui-section__title">已上传({{msgCollects.length}}人)</view>
     <loading wx:if="{{loadMsg}}"  isFixed="{{false}}"  type="row" /> 
     <empty wx:elif="{{!msgCollects.length}}" type="0" marginTop="24"  descr="暂无上传人员"> </empty>
-    <fui-grid wx:else square="{{false}}" bindclick="bindGrid">
+    <fui-grid wx:else showBorder="{{false}}" square="{{false}}" bindclick="bindGrid">
       <fui-grid-item wx:for="{{msgCollects}}" wx:key="index" index="{{index}}">
         <view class="fui-grid__cell fui-padding">
           <image src="/static/icons/icon-{{item.user_gender === 'M' ? '01' : '02'}}.png" class="fui-icon__2x" mode="widthFix">

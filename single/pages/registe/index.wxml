@@ -4,8 +4,8 @@
 <view class="fui-wrap">
   <view class="fui-page__bd">
     <fui-form id="form" top="0">
-      <fui-input required label="姓名" borderTop placeholder="请输入姓名" model:value="{{name}}"></fui-input>
-      <fui-input required label="手机号码" placeholder="请输入手机号码" model:value="{{mobile}}"></fui-input>
+      <fui-input required label="昵称" borderTop placeholder="请输入昵称" model:value="{{name}}"></fui-input>
+      <fui-input required label="帐号" placeholder="请输入帐号" model:value="{{mobile}}"></fui-input>
       <fui-form-item  label="性别">
         <fui-radio-group name="radio" model:value="{{gender}}" bindchange="change">
           <view class="g-c">

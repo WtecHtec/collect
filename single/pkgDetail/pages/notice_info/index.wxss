@@ -22,6 +22,7 @@
 .msg-c {
   padding: 24rpx;
   box-sizing: border-box;
+  width: 100%;
 }
 .fui-padding {
   padding: 36rpx 0;

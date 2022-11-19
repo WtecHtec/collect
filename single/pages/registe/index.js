@@ -1,15 +1,17 @@
 import { postUpdateUserInfo, postUserInfo, NavToPage } from "../servers/login";
 import { setStorage } from '../../utils/util';
 import { PAGE_STATUS } from '../../utils/config'
+import { USERINFO_KEY } from '../../utils/storage-keys'
+const app = getApp()
 //校验规则
 const rules = [{
   name: "name",
   rule: ["required", "isChinese", "minLength:2", "maxLength:6"],
-  msg: ["请输入姓名", "姓名必须全部为中文", "姓名必须2个或以上字符", "姓名不能超过6个字符"]
+  msg: ["请输入昵称", "昵称必须全部为中文", "昵称必须2个或以上字符", "昵称不能超过6个字符"]
 }, {
   name: "mobile",
   rule: ["required", "isMobile"],
-  msg: ["请输入手机号", "请输入正确的手机号"]
+  msg: ["请输入帐号", "请输入11位数帐号"]
 }];
 
 let formCom = null;
@@ -20,7 +22,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text: "*为了更好的体验小程序功能,请您完善真实信息",
+    text: "*为了更好的体验小程序功能,请您完善帐号信息",
     name: '',
     mobile: '',
     gender: 'M',
@@ -74,7 +76,11 @@ Page({
     if (!err && res && res.code === 200) {
       this._postUserInfo()
     } else {
-      this._showError();
+      wx.showToast({
+        title: '手机号已存在',
+        icon: 'error',
+        duration: 2000
+      })
     }
   },
   async _postUserInfo() {
