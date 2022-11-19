@@ -8,7 +8,7 @@
       <!-- <view class="fui-section__title">备注</view> -->
       <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
       <fui-form-item label="" padding="28rpx 24rpx 8rpx">
-        <fui-upload fileList="{{fileList}}" url="{{uploadUrl}}" header="{{header}}"  max="{{2}}" id="upload" bindsuccess="bindImgSuccess" binderror="bindError" bindcomplete="bindComplete">
+        <fui-upload fileList="{{fileList}}" formData="{{formData}}" url="{{uploadUrl}}" header="{{header}}"  max="{{2}}" id="upload" bindsuccess="bindImgSuccess" binderror="bindError" bindcomplete="bindComplete">
         </fui-upload>
       </fui-form-item>
       <view class="fui-btn__box">

@@ -28,6 +28,7 @@ Page({
 		msgCollect: {},
 		uploadImgs: [],
     noticeInfo: {},
+		formData: {},
   },
 
   /**
@@ -75,6 +76,7 @@ Page({
       noticeInfo,
       userInfo,
 			pageStatus: PAGE_STATUS.normal,
+			formData: { user_name: userInfo.Name},
 			...updObj,
     }, ()=> {
 			this.uploadCom = this.selectComponent("#upload")

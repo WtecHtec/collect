@@ -14,7 +14,7 @@ import (
 
 type UploadParam struct {
 	GroupId string `form:"group_id" json:"group_id"`
-	Name    string `form:"user_name" json:"user_name" binding:"required"`
+	Name    string `form:"user_name" json:"user_name"`
 }
 
 func UpLoadFile(r *gin.RouterGroup) {
@@ -61,7 +61,9 @@ func UpLoadFile(r *gin.RouterGroup) {
 			return
 		}
 		// 添加水印
-		uitls.DrawWaterMarker(imgId+filesuffix, group.Name)
+		if group.Name != "" {
+			uitls.DrawWaterMarker(imgId+filesuffix, group.Name)
+		}
 		ctx.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "data": filePath, "message": config.STATUS_MSG[config.STATUS_SUE]})
 	})
 }
