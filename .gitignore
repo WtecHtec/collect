@@ -5,3 +5,4 @@ server_config.yml
 logs
 upload
 test
+*.tar
