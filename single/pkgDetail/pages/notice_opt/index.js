@@ -7,7 +7,7 @@ const dayjs = require('../../../utils/day.min.js');
 const rules = [{
   name: "title",
   rule: ["required","minLength:2", "maxLength:24"],
-  msg: ["请输入标题",  "标题必须2个或以上字符", "姓名不能超过24个字符"]
+  msg: ["请输入标题",  "标题必须2个或以上字符", "标题不能超过24个字符"]
 }, {
   name: "targetnum",
   rule: ["required", "isNumber"],

@@ -77,7 +77,7 @@ Page({
       this._postUserInfo()
     } else {
       wx.showToast({
-        title: '手机号已存在',
+        title: '帐号已存在',
         icon: 'error',
         duration: 2000
       })

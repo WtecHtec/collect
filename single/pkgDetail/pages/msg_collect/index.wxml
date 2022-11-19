@@ -3,8 +3,8 @@
   <fui-panel panelData="{{noticeInfo}}" padding="{{24}}" size="{{32}}" />
   <view class="fui-page__bd">
     <fui-form id="form" top="24">
-      <fui-input required label="姓名" borderTop  model:value="{{userInfo.Name}}" disabled></fui-input>
-      <fui-input required label="手机号码"  model:value="{{userInfo.PhoneNumer}}" disabled></fui-input>
+      <fui-input required label="昵称" borderTop  model:value="{{userInfo.Name}}" disabled></fui-input>
+      <fui-input required label="帐号"  model:value="{{userInfo.PhoneNumer}}" disabled></fui-input>
       <!-- <view class="fui-section__title">备注</view> -->
       <fui-textarea isCounter placeholder="备注" model:value="{{remarks}}"></fui-textarea>
       <fui-form-item label="" padding="28rpx 24rpx 8rpx">
