@@ -13,7 +13,6 @@ import (
 func CreateUser(openId string, avatarUrl string, nickName string) bool {
 	user := &model.User{
 		Id:       uitls.GetUUID(),
-		Name:     nickName,
 		HeadeImg: avatarUrl,
 		OpenId:   openId,
 		Enable:   true,
@@ -30,7 +29,7 @@ func CreateUser(openId string, avatarUrl string, nickName string) bool {
 	_, err := datasource.Engine.Insert(*user)
 	fmt.Print(err)
 	if err != nil {
-		logger.Logger.Error("创建新用户失败")
+		logger.Logger.Error(fmt.Sprintf("创建新用户失败 %v", err))
 		return false
 	}
 	logger.Logger.Info("创建新用户成功")
