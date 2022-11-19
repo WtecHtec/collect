@@ -29,6 +29,8 @@ func main() {
 
 	// 任务调度初始化
 	uitls.InitTimeTask()
+	// 初始化字体
+	uitls.InitFontFace()
 	// 1.创建路由
 	r := gin.Default()
 	// 加载路由
@@ -36,3 +38,11 @@ func main() {
 	// 3.监听端口，默认在8080
 	r.Run(fmt.Sprintf(":%v", config.BASE_CONFIG.Port))
 }
+
+// package main
+
+// import "collect/test"
+
+// func main() {
+// 	test.DrawImg()
+// }
