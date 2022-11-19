@@ -51,13 +51,13 @@ func GetUserInfoByOpenId(openId string) (model.User, bool) {
 
 // 修改数据
 func UpdateUser(openId string, info *model.UserUpdate) (bool, int) {
-	_, err := datasource.Engine.Cols("user_name", "user_phone", "user_gender").Update(&model.User{
+	_, err := datasource.Engine.Cols("user_name", "user_phone", "user_gender").Where("wx_openid = ?", openId).Update(&model.User{
 		Name:       info.Name,
 		PhoneNumer: info.PhoneNumer,
 		Gender:     info.Gender,
 	})
 	if err != nil {
-		logger.Logger.Error(fmt.Sprintf("更新用户信息失败, Openid: %v", openId))
+		logger.Logger.Error(fmt.Sprintf("更新用户信息失败, Openid: %v, %v", openId, err))
 		return false, config.STATUS_ERROR
 	}
 	logger.Logger.Error("更新用户信息成功")
