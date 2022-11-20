@@ -17,6 +17,6 @@
     </fui-grid>
   </view>
   </fui-panel>
-  <fui-fab position="right" fabs="{{fabs}}" bindclick="handleClick"></fui-fab>
+  <fui-fab wx:if="{{noticeInfo.enable}}" position="right" fabs="{{fabs}}" bindclick="handleClick"></fui-fab>
 </view>
 
