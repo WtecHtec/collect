@@ -3,7 +3,6 @@ page {
 }
 
 .fui-wrap {
-  margin-top: 24rpx;
   width: 100%;
   display: flex;
   box-sizing: border-box;

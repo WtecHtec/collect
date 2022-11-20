@@ -5,7 +5,7 @@
   <fui-preview previewData="{{previewDataUp}}">
     <view class="fui-upload__item">
       <block wx:for="{{imgUrls}}" wx:key="index">
-        <image class="fui-upload__img"  src="{{item}}" mode="aspectFill" catchtap="previewImage" data-index="{{index}}"></image>
+        <image class="fui-upload__img" binderror="bindError" data-index="{{index}}"  src="{{item}}" mode="aspectFill" catchtap="previewImage" data-index="{{index}}"></image>
       </block>
     </view>
   </fui-preview>

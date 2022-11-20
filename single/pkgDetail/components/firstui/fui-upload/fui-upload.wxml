@@ -1,6 +1,6 @@
 <view class="fui-upload__wrap">
   <view class="fui-upload__item" style="width:{{width}}rpx;height:{{height}}rpx" wx:for="{{urls}}" wx:key="index">
-    <image class="fui-upload__img" style="width:{{width}}rpx;height:{{height}}rpx" src="{{item}}" mode="aspectFill" catchtap="previewImage" data-index="{{index}}"></image>
+    <image class="fui-upload__img" hidden="{{errData[index]}}" style="width:{{width}}rpx;height:{{height}}rpx" binderror="bindError"  src="{{errUrls[index] ? errUrls[index] : item}}" mode="aspectFill" catchtap="previewImage" data-index="{{index}}"></image>
     <view class="fui-upload__mask" wx:if="{{status[index]!=='success' && status[index]!=='preupload'}}">
       <fui-icon name="warning-fill" color="#fff" size="{{48}}" wx:if="{{status[index]==='error'}}"></fui-icon>
       <text class="fui-reupload__btn" catchtap="reUpload" wx:if="{{status[index]==='error'}}" data-index="{{index}}">重新上传</text>

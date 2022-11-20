@@ -19,6 +19,10 @@ const PAGE_MAPS = {
 		errId: PAGE_STATUS.sueopt,
 		desc: '上传数据成功'
 	},
+	[PAGE_STATUS.timeout]: {
+		errId: PAGE_STATUS.timeout,
+		desc: '通知已过期'
+	},
 }
 Page({
 

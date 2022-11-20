@@ -46,6 +46,10 @@ Page({
 			this._redirecResult(PAGE_STATUS.empty)
       return
 		}
+		if (!noticeInfo.Enable) {
+			this._redirecResult(PAGE_STATUS.timeout)
+      return
+		}
     if (noticeInfo.end_time) {
       noticeInfo.source = '结束时间'
       noticeInfo.time = dayjs(noticeInfo.end_time).format('YYYY-MM-DD HH:mm:ss')
@@ -171,7 +175,6 @@ Page({
       return item.replace(baseUrl, '');
     });
 		const imgs = [...baseUrls, ...uploadImgs]
-    console.log('imgs====', imgs)
 		return imgs.join(';');
 	},
 	async _createMsgCollect() {

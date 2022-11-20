@@ -18,6 +18,5 @@
   </view>
   </fui-panel>
   <fui-fab position="right" fabs="{{fabs}}" bindclick="handleClick"></fui-fab>
-     
 </view>
 

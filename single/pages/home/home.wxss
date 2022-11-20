@@ -240,6 +240,21 @@
 	font-size: 22rpx;
 	text-align: center;
 	color: #2657F0;
+	margin-right: 12rpx;
+	position: relative;
+}
+
+.feebback-c::after {
+	position: absolute;
+	content: "";
+	border-right: 2rpx #e5e5e6 solid;
+	right: -6rpx;
+	top: 0;
+	width: 2rpx;
+	height: 100%;
+}
+.feebback-c:last-child:after {
+	display: none;
 }
 
 .count-block {
@@ -263,4 +278,10 @@
 
 .n-main {
   margin-top: 12rpx;
+}
+
+.p-bt-c {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

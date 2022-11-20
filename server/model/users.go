@@ -6,7 +6,7 @@ type User struct {
 	Id         string    `xorm:"varchar(64) pk notnull unique 'user_id' comment('用户id')"`
 	Name       string    `xorm:"varchar(255) 'user_name' comment('用户名称')"`
 	OpenId     string    `xorm:"varchar(255) notnull unique 'wx_openid' comment('用户微信OpenId')" json:"openid"`
-	PhoneNumer string    `xorm:"varchar(64) notnull unique 'user_phone' comment('用户手机号码')"`
+	PhoneNumer string    `xorm:"varchar(64) notnull 'user_phone' comment('用户手机号码')"`
 	HeadeImg   string    `xorm:"varchar(255) notnull  'user_head' comment('用户头像')"`
 	Gender     string    `xorm:"varchar(4) notnull  'user_gender' comment('用户性别 M代表男性,W代表女性')"`
 	Enable     bool      `xorm:"Bool notnull  'enable' default 1 comment('是否可用')"`

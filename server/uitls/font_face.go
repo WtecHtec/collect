@@ -26,10 +26,6 @@ func InitFontFace() (bool, font.Face) {
 }
 
 func DrawWaterMarker(imgPath string, word string) bool {
-	if GG_FONT_STATUS == false {
-		logger.Logger.Error(fmt.Sprintf("没有初始化字体"))
-		return false
-	}
 	im, err := gg.LoadImage(fmt.Sprintf("./upload/%v", imgPath))
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("加载图片失败%v", err))
@@ -48,8 +44,8 @@ func DrawWaterMarker(imgPath string, word string) bool {
 	sw, sh := dc.MeasureString(word)
 	dc.SetRGBA(99, 99, 99, 0.6)
 	dc.Rotate(-0.4)
-	for j := 0; j < h*2; j += (int(sh+30) * rd) {
-		for i := -w / 2; i < w-24; i += (int(sw+24) * rd) {
+	for j := 0; j < h*2*rd; j += (int(sh + float64(30*rd))) {
+		for i := -w / 2; i < w-(24*rd); i += (int(sw + float64(24*rd))) {
 			dc.Push()
 			dc.DrawString(word, float64(i), float64(j))
 			dc.Pop()

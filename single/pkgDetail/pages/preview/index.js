@@ -3,6 +3,7 @@ import { getNoticeRaleOwnsg } from "../../server/dataserver"
 import { BASE_URL, mode } from "../../../config";
 const dayjs = require('../../../utils/day.min.js');
 const IMG_FIX_URL = BASE_URL[mode];
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -82,9 +83,24 @@ Page({
   previewImage(e) {
     const { imgUrls } = this.data;
     const { index } = e.currentTarget.dataset
-    wx.previewImage({
-      current: imgUrls[index], // 当前显示图片的 http 链接
-      urls: [...imgUrls] // 需要预览的图片 http 链接列表
-    })
-  }
+    // wx.previewImage({
+    //   current: imgUrls[index], // 当前显示图片的 http 链接
+    //   urls: [...imgUrls] // 需要预览的图片 http 链接列表
+    // })
+		app.globalData.previewInfo =  {
+			list: imgUrls.map(item => {
+				return {
+					picUrl: item,
+				}
+			}),
+			current: index,
+		}
+		wx.navigateTo({ url: '/pages/preview/index'})
+  },
+	bindError(e) {
+		const { index } = e.target.dataset
+		this.setData({
+			[`imgUrls[${index}]`] : '/static/icons/icon-03.png'
+		})
+	}
 })

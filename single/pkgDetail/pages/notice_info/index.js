@@ -119,8 +119,12 @@ Page({
         const imgs =  item.img_urls.split(';')
         item.imgNum = imgs.length
         item.imgIndex = allImgs.length
-        imgs.forEach(item => {
-          allImgs.push(`${IMG_FIX_URL}${item}`)
+        imgs.forEach(im => {
+          // allImgs.push(`${IMG_FIX_URL}${item}`)
+					allImgs.push({
+						picUrl: `${IMG_FIX_URL}${im}`,
+						desc: item.collect_desc || ''
+					})
         })
       })
     }
@@ -135,10 +139,17 @@ Page({
     const { msgCollects, allImgs } = this.data;
     const c = msgCollects[index];
     if (c)  {
-      wx.previewImage({
-        current: allImgs[c.imgIndex], // 当前显示图片的 http 链接
-        urls: [...allImgs] // 需要预览的图片 http 链接列表
-      })
+      // wx.previewImage({
+      //   current: allImgs[c.imgIndex], // 当前显示图片的 http 链接
+      //   urls: [...allImgs] // 需要预览的图片 http 链接列表
+      // })
+			app.globalData.previewInfo =  {
+				list: [
+				...allImgs
+				],
+				current: c.imgIndex,
+			}
+			wx.navigateTo({ url: '/pages/preview/index'})
     }
   }
 

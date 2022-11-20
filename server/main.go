@@ -29,8 +29,6 @@ func main() {
 
 	// 任务调度初始化
 	uitls.InitTimeTask()
-	// 初始化字体
-	uitls.InitFontFace()
 	// 1.创建路由
 	r := gin.Default()
 	// 加载路由

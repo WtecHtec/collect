@@ -11,4 +11,5 @@ export const PAGE_STATUS = {
   sueopt: 200, // 操作成功
 	opt404: 404, // 没有数据
 	opt405: 405, // 已存在
+	timeout: 406,
 }

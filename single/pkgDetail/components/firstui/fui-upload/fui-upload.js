@@ -92,7 +92,8 @@ Component({
   data: {
     urls: [],
     //preupload、uploading、success、error
-    status: []
+    status: [],
+		errUrls: []
   },
   lifetimes: {
     attached: function () {
@@ -135,13 +136,14 @@ Component({
       }
       return status
     },
-    onComplete(action) {
+    onComplete(action, index) {
       let status = this.getStatus()
       this.triggerEvent('complete', {
+				index,
         status: status,
         urls: this.data.urls,
         action: action,
-        param: this.data.param
+        param: this.data.param,
       })
     },
     _success(res) {
@@ -290,13 +292,16 @@ Component({
               if (res.confirm) {
                 let urls = [..._this.data.urls]
                 let status = [..._this.data.status]
+								let errUrls = [...this.data.errUrls]
                 urls.splice(index, 1)
                 status.splice(index, 1)
+								errUrls.splice(index, 1)
                 _this.setData({
+									errUrls,
                   urls: urls,
-                  status: status
+                  status: status,
                 }, () => {
-                  _this.onComplete('delete')
+                  _this.onComplete('delete', index)
                 })
               }
             }
@@ -305,13 +310,16 @@ Component({
         } else {
           let urls = [...this.data.urls]
           let status = [...this.data.status]
+					let errUrls = [...this.data.errUrls]
           urls.splice(index, 1)
           status.splice(index, 1)
+					errUrls.splice(index, 1)
           this.setData({
+						errUrls,
             urls: urls,
             status: status
           }, () => {
-            this.onComplete('delete')
+            this.onComplete('delete', index)
           })
         }
       }
@@ -337,7 +345,10 @@ Component({
       let urls = [...this.data.urls]
       const len = urls.length
       for (let i = 0; i < len; i++) {
-        if (!urls[i].startsWith('http://tmp/') && (urls[i].startsWith('https') || urls[i].startsWith('http')) ) {
+        if (!urls[i].startsWith('http://tmp/') 
+					&& (urls[i].startsWith('https') 
+					|| urls[i].startsWith('http')
+					|| urls[i].startsWith('/static/icons') ) ) {
           continue;
         } else {
           let value = `status[${i}]`
@@ -351,6 +362,12 @@ Component({
           })
         }
       }
-    }
+    },
+		bindError(e) {
+			const { index } = e.target.dataset
+			this.setData({
+				[`errUrls[${index}]`] : '/static/icons/icon-03.png'
+			})
+		}
   }
 })

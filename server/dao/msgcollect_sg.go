@@ -77,7 +77,7 @@ type MsgList struct {
 
 func GetSgMsgCollects(noticeId string) (bool, int, []MsgList) {
 	datas := make([]MsgList, 0)
-	err := datasource.Engine.SQL(fmt.Sprintf(`select mc.img_urls, mc.update_time , u.user_name, u.user_gender FROM msg_collect mc 
+	err := datasource.Engine.SQL(fmt.Sprintf(`select mc.img_urls, mc.collect_desc,  mc.update_time , u.user_name, u.user_gender FROM msg_collect mc 
 		left join user u on u.wx_openid = mc.create_id 
 		WHERE  mc.notice_id = '%v' ORDER BY mc.update_time DESC `, noticeId)).Find(&datas)
 	if err != nil {

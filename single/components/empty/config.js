@@ -7,4 +7,5 @@ export const IMG_MAP = {
 	200: '../../static/img/empty/icon-01.png', // 创建成功
 	404: '../../static/img/empty/empty.png', // 没有数据
 	405: '../../static/img/empty/icon-02.png', // 已存在
+	406: '../../static/img/empty/icon-03.png', // 已过期
 }
